@@ -1,0 +1,376 @@
+// Custom bootstrap variables must be set or imported before bootstrap itself.
+@import "bootstrap";
+@import "famfamfam-flags";
+@import "mana";
+@import "select2";
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.navbar {
+  text-align: center;
+  justify-content: space-around;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  margin-top: auto;
+}
+.empty_page .logo_row {
+  margin-top: 30vh;
+}
+a.site_logo {
+  color: black;
+}
+ul {
+  padding: 0px 0px 0px 20px;
+}
+.warnings {
+  font-size: small;
+  font-style: italic;
+  margin-bottom: 0.5em;
+  .warning {}
+}
+
+.results_summary {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+div.pagination {
+  text-align: center;
+}
+.pagination {
+  color: #888;
+  font-size: small;
+  display: block;
+  a {
+    color: #88f;
+  }
+  margin-bottom: 0.5em;
+}
+
+form.search {
+  input[type="text"] {
+    width: 100%;
+  }
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+
+.search_form_row {
+  margin-bottom: 1em;
+}
+
+.glossary_entry {
+  margin-bottom: 0.5em;
+  .glossary_term {
+    font-weight: bold;
+  }
+}
+
+.rule {
+  margin-bottom: 0.5em;
+  .rule_id {
+    font-weight: bold;
+  }
+}
+
+.infolabel {
+  color: #444;
+  font-size: small;
+}
+
+.cardinfo {
+  margin-bottom: 0.5em;
+  h3.card_title {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+  h5 {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  ul {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  .reminder_text {
+    font-style: italic;
+    margin-bottom: 0.25em;
+  }
+  .color_indicator {
+    font-style: italic;
+    margin-bottom: 0.25em;
+  }
+  .flavor {
+    font-style: italic;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+  .infolabel {
+    color: #444;
+    font-size: small;
+  }
+  .typeline {
+    margin-bottom: 0.25em;
+    font-weight: bold;
+  }
+  .power_toughness {
+    font-weight: bold;
+  }
+  .oracle {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    br {
+      content: "";
+      display: block;
+      margin-bottom: 0.25em;
+    }
+  }
+  .rulings {
+    font-size: small;
+    font-style: italic;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .legalities {
+    font-size: small;
+  }
+  .legality-legal, .legality-banned, .legality-restricted {
+    display: inline-block;
+    width: 7em;
+    text-align: center;
+    margin: 1px;
+  }
+  .legality-legal {
+    background-color: #8f8;
+  }
+  .legality-banned {
+    background-color: #f88;
+  }
+  .legality-restricted {
+    background-color: #fa4;
+  }
+}
+.foreign_names {
+  font-size: small;
+}
+
+.printings_list {
+  color: #888;
+  font-size: small;
+  .selected {
+    font-weight: bold;
+    color: black;
+  }
+  .matching {
+    color: black;
+  }
+  .not_matching a {
+    color: inherit;
+  }
+  .rarity {
+  }
+}
+
+.printings_box {
+  color: #888;
+  max-width: 200px;
+  font-size: xx-small;
+  .selected {
+    font-weight: bold;
+    color: black;
+  }
+  .matching {
+    color: black;
+  }
+  .not_matching a {
+    color: inherit;
+  }
+}
+.card_row {
+  position: relative;
+}
+.card_picture_cell {
+  padding: 0% 2% 2% 2%;
+}
+/* meld and split only enabled on sm+ devices */
+
+@keyframes foil_layer_animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.card_picture_container {
+  position: relative;
+
+  .foil_layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 60%);
+    background-size: 400% 400%;
+    animation: foil_layer_animation 4s ease infinite;
+    pointer-events: none;
+  }
+
+  .card_picture {
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: relative;
+    z-index: 0;
+
+    img {
+      width: 100%;
+    }
+
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    &:hover {
+      z-index: 1;
+    }
+    &.flip:hover {
+      transform: rotateZ(180deg);
+    }
+    &.flip_secondary {
+      transform: rotateZ(180deg);
+    }
+    &.flip_secondary:hover {
+      transform: rotateZ(0deg);
+    }
+    /* xs */
+    &.split:hover {
+      transform: translateX(20%) rotateZ(90deg);
+    }
+    .card_0_of_2 &.split:hover {
+      transform: translateX(20%) rotateZ(90deg);
+    }
+    .card_1_of_2 &.split:hover {
+      transform: translateX(-20%) rotateZ(90deg);
+    }
+    &.aftermath:hover {
+      transform: translateX(20%) rotateZ(-90deg);
+    }
+    .card_0_of_2 &.aftermath:hover {
+      transform: translateX(20%) rotateZ(-90deg);
+    }
+    .card_1_of_2 &.aftermath:hover {
+      transform: translateX(-20%) rotateZ(-90deg);
+    }
+    /* sm+ */
+    @media (min-width: 576px) {
+      .card_0_of_3 &.split:hover {
+        transform: translateX(20%) rotateZ(90deg);
+      }
+      .card_1_of_3 &.split:hover {
+        transform: translateX(0%) rotateZ(90deg);
+      }
+      .card_2_of_3 &.split:hover {
+        transform: translateX(-20%) rotateZ(90deg);
+      }
+      .card_0_of_3 &.aftermath:hover {
+        transform: translateX(20%) rotateZ(-90deg);
+      }
+      .card_1_of_3 &.aftermath:hover {
+        transform: translateX(0%) rotateZ(-90deg);
+      }
+      .card_2_of_3 &.aftermath:hover {
+        transform: translateX(-20%) rotateZ(-90deg);
+      }
+    }
+  }
+  & .dfc {
+  }
+  &:hover .dfc {
+    transform: rotateY(180deg);
+  }
+  & .dfc_reverse {
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+  &:hover .dfc_reverse {
+    transform: rotateY(360deg);
+  }
+  & .melded {
+  }
+  & .meld0 {
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+  & .meld1 {
+    position: absolute;
+    transform: rotateY(180deg);
+  }
+  &:hover .melded {
+    transform: rotateY(180deg);
+    z-index: 1;
+  }
+  &:hover .meld0 {
+    transform: translateY(-30%) rotateY(360deg);
+    z-index: 1;
+  }
+  &:hover .meld1 {
+    transform: translateY(72%) rotateY(360deg);
+    z-index: 1;
+  }
+}
+.picture_missing {
+  padding: 1em;
+  font-style: italic;
+  background-color: #ccc;
+  color: black;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+/* Mana symbols
+ * font-size is 70% of 28 / 16
+ * but somehow 0.7em fails with hybrid symbols
+ */
+.manacost {
+  white-space: pre;
+  font-size: 11.2px;
+  vertical-align: text-top;
+}
+h3 .manacost {
+  font-size: 19.6px;
+}
+.decklist {
+  border: 1px solid black;
+  padding: 0.5em;
+  header {
+    padding-bottom: 4px;
+    border-bottom: 1px solid black;
+  }
+  h6 {
+    margin: 0;
+  }
+  .card_group {
+    margin-bottom: 0.5rem;
+  }
+  .two-columns {
+    column-count: 2;
+    column-gap: 15px;
+    column-rule: thin solid #888;
+  }
+}
+.picture_preview_column {
+  position: relative;
+  .picture_preview_box {
+    position: relative;
+    width: 100%;
+  }
+}

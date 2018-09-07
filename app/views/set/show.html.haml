@@ -1,0 +1,35 @@
+.row
+  .col-12
+    %h3= @set.name
+
+.row.results_summary
+  .col-12
+    #{@set.name} contains #{pluralize(@cards.total_entries, "card")}.
+  - if @set.block_name
+    .col-12
+      It is part of #{@set.block_name} block.
+  - if @set.release_date
+    .col-12
+      = "Released: #{@set.release_date.to_s}"
+  - if @set.online_only?
+    .col-12
+      Is it an online only set.
+  - unless @set.decks.empty?
+    .col-12
+      %div Preconstructed decks:
+      %ul
+        - @set.decks.each do |deck|
+          %li
+            = link_to_deck(deck) do
+              = "#{deck.name} (#{deck.type})"
+
+- @cards.each do |card|
+  .row.card_row
+    .col-4.card_picture_cell
+      = render 'card/picture', card: card
+    .col-8.col-md-6.cardinfo
+      %div
+        = render 'card/card', card: card
+.row
+  .col-12.pagination
+    = will_paginate @cards

@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+gem "rake"
+gem "damerau-levenshtein"
+gem "unicode_utils"
+gem "nokogiri"
+gem "pry"
+gem "rspec", require: false, group: :test
+gem "simplecov", require: false, group: :test
+gem "pathname-glob"
+gem "memory_profiler", require: false, group: :test

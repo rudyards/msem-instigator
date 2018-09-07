@@ -1,0 +1,69 @@
+%h3.card_title
+  = link_to_card(card) do
+    = card.name
+  = format_oracle_text(card.display_mana_cost)
+
+.typeline= card.typeline
+
+- if card.color_indicator.present? or card.text.present? or card.reminder_text.present?
+  .oracle
+    - if card.reminder_text
+      .reminder_text= format_oracle_text(card.reminder_text)
+    - if card.color_indicator.present?
+      .color_indicator= "(Color indicator: #{card.name} is #{card.color_indicator})"
+    - if card.text.present?
+      = format_oracle_text(card.text)
+
+- if card.flavor.present?
+  .flavor= format_oracle_text(card.flavor)
+
+- if card.power
+  .power_toughness
+    = "#{card.display_power}/#{card.display_toughness}"
+
+- if card.loyalty
+  %div
+    %span.infolabel
+      Loyalty:
+    %i.mana.mana-loyalty.mana-loyalty-start{"data-loyalty" => "#{card.loyalty}"}
+    .sr-only
+      = card.loyalty
+
+- if card.hand
+  %div
+    %span.infolabel
+      Hand size bonus:
+    = card.hand
+
+- if card.life
+  %div
+    %span.infolabel
+      Life bonus:
+    = card.life
+
+- if card.others.present?
+  %div
+    %span.infolabel
+      - if card.others.size == 1
+        Card has other part:
+      - else
+        Card has other parts:
+      - card.others.each_with_index do |other, i|
+        = link_to_card(other) do
+          = other.name
+        - if i != card.others.size - 1
+          %small
+            &bullet;
+- if card.related.present?
+  %div
+    %span.infolabel
+      - if card.related.size == 1
+        Related card:
+      - else
+        Related cards:
+      - card.related.each_with_index do |related, i|
+        = link_to_card_name(related) do
+          = related
+        - if i != card.related.size - 1
+          %small
+            &bullet;
