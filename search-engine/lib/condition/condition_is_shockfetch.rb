@@ -1,16 +1,16 @@
 class ConditionIsShockfetch < Condition
   def search(db)
     names = [
-      "Ocean Monastery",
-      "Flooded Depths",
-      "Shardstone Rift",
-      "Amber Hills",
-      "Barren Desolation",
-      "Timber Range",
-      "Grim Bastion",
-      "Magmatic Torrent",
-      "Sunlit Highland",
-      "Mysterious Cataract",
+      "ocean monastery",
+      "flooded depths",
+      "shardstone rift",
+      "amber hills",
+      "barren desolation",
+      "timber range",
+      "grim bastion",
+      "magmatic torrent",
+      "sunlit highland",
+      "mysterious cataract",
     ]
 
     names
