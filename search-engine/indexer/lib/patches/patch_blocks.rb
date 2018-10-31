@@ -19,6 +19,8 @@ class PatchBlocks < Patch
     ["TOW", nil, "Tides of War", "TOW"],
     ["XPM", nil, "Xoltan Pre Modern", "XPM"],
     ["ZER", nil, "Zero", "ZER"],
+    ["HVF", nil, "Harvest Festival", "HVF"],
+    ["GHQ", nil, "Glacia: Hail To The Queen", "GHQ"]
     ["L", nil, "The Land Bundle", "L"],
 
   ]

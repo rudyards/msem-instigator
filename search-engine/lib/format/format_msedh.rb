@@ -27,6 +27,8 @@ class FormatMSEDH < Format
       "XPM",
       "ZER",
       "L",
+      "HVF",
+      "GHQ",
     ]
     end
 

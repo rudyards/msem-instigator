@@ -25,6 +25,8 @@ class FormatMSEM2 < Format
       "SOR",
       "TGE",
       "TOW",
+      "GHQ",
+      "HVF",
       "XPM",
       "ZER",
       "L",
