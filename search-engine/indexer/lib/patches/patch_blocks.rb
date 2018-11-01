@@ -20,7 +20,7 @@ class PatchBlocks < Patch
     ["XPM", nil, "Xoltan Pre Modern", "XPM"],
     ["ZER", nil, "Zero", "ZER"],
     ["HVF", nil, "Harvest Festival", "HVF"],
-    ["GHQ", nil, "Glacia: Hail To The Queen", "GHQ"]
+    ["GHQ", nil, "Glacia: Hail To The Queen", "GHQ"],
     ["L", nil, "The Land Bundle", "L"],
 
   ]
