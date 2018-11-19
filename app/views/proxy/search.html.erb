@@ -1,0 +1,13 @@
+</br>
+</br>
+<div>
+<% @cards.each do |card| %>
+    <div display="inline-block">
+        <% if card.layout == "split" %>
+        <img src="<%= card_picture_path(card) %>" alt="<%= card.name %>" class="proxy-images-split column">
+        <% else %>
+        <img src="<%= card_picture_path(card) %>" alt="<%= card.name %>" class="proxy-images column">
+        <% end %>
+    </div>
+<% end %>
+</div>

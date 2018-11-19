@@ -49,6 +49,33 @@ div.pagination {
   }
   margin-bottom: 0.5em;
 }
+.proxy-images {
+  width: 320px;
+  height: 450px;
+}
+.proxy-images-split {
+  width: 450px;
+  height: 320px;
+  transform:rotate(90deg)
+}
+
+form.proxy {
+  width:400px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 
 form.search {
   input[type="text"] {
@@ -58,6 +85,7 @@ form.search {
     width: 100%;
   }
 }
+
 
 .search_form_row {
   margin-bottom: 1em;

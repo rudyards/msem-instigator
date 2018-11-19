@@ -3,10 +3,6 @@ class HelpController < ApplicationController
     @title = "Syntax"
   end
 
-  def rules
-    @title = "Magic: The Gathering Comprehensive Rules"
-  end
-
   def contact
     @title = "Contact"
   end
