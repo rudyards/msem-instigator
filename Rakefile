@@ -41,3 +41,9 @@ task "pics:MSEM" do
     system "wget", "-nv", "-nc", url, "-O", path.to_s
   end
 end
+
+desc "Fetch new Comprehensive Rules"
+task "rules:update" do
+  sh "bin/fetch_comp_rules"
+  sh "bin/format_comp_rules"
+end

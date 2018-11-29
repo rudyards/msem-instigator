@@ -6,4 +6,8 @@ class HelpController < ApplicationController
   def contact
     @title = "Contact"
   end
+
+  def rules
+    @title = "Rules"
+  end
 end
