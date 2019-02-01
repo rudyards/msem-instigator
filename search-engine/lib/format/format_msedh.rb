@@ -29,6 +29,8 @@ class FormatMSEDH < Format
       "L",
       "HVF",
       "GHQ",
+      "101", "VTM",
+      "UNR",
     ]
     end
 
