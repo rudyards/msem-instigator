@@ -4,5 +4,8 @@ BanList.for_format("msem2") do
     "Deadly Manipulation" => "banned",
     "Virida the Forgotten One" => "banned",
     "Mystic Meddling " => "banned",
+    "Poisoned Well"     => "banned",
+    "Savage Congregation" => "banned",
+    "Planar Conflagration"  => "banned",
   )
 end
