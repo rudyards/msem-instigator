@@ -27,9 +27,12 @@ class FormatMSEDH < Format
       "XPM",
       "ZER",
       "L",
+      "L2",
+      "L3",
       "HVF",
       "GHQ",
-      "101", "VTM",
+      "101",
+      "VTM",
       "UNR",
     ]
     end

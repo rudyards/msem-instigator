@@ -30,7 +30,10 @@ class FormatMSEM2 < Format
       "XPM",
       "ZER",
       "L",
-      "101", "VTM",
+      "L2",
+      "L3",
+      "101",
+      "VTM",
       "UNR",
     ]
   end
