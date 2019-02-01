@@ -1,11 +1,12 @@
 # This is loaded manually in format.rb, go there to tell it to load more formats or change the order.
 
 class FormatMSEDH < Format
+  
   def format_pretty_name
     "MSEDH"
   end
 
-    def build_included_sets
+  def build_included_sets
     Set[
       "AFM", "KZD",
       "TOJ", "IMP", "PSA",
