@@ -35,6 +35,7 @@ class FormatMSEM2 < Format
       "101",
       "VTM",
       "UNR",
+      "MS1",
     ]
   end
 end

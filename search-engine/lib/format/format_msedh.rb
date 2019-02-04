@@ -35,6 +35,7 @@ class FormatMSEDH < Format
       "101",
       "VTM",
       "UNR",
+      "MS1",
     ]
     end
 
