@@ -36,6 +36,7 @@ class QueryTokenizer
         begin
           cond = {
             "a"  => ConditionArtistRegexp,
+            "d"  => ConditionDesignerRegexp,
             "ft" => ConditionFlavorRegexp,
             "n"  => ConditionNameRegexp,
             "name"  => ConditionNameRegexp,
@@ -47,6 +48,7 @@ class QueryTokenizer
         rescue RegexpError => e
           cond = {
             "a"  => ConditionArtist,
+            "d"  => ConditionDesigner,
             "ft" => ConditionFlavor,
             "n"  => ConditionWord,
             "name" => ConditionWord,
@@ -80,6 +82,8 @@ class QueryTokenizer
         tokens << [:test, ConditionOracle.new(s[1] || s[2])]
       elsif s.scan(/a\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
         tokens << [:test, ConditionArtist.new(s[1] || s[2])]
+      elsif s.scan(/d\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
+        tokens << [:test, ConditionDesigner.new(s[1] || s[2])]
       elsif s.scan(/(cn|tw|fr|de|it|jp|kr|pt|ru|sp|cs|ct|foreign)\s*[:=]\s*(?:"(.*?)"|([^\s\)]+))/i)
         tokens << [:test, ConditionForeign.new(s[1], s[2] || s[3])]
       elsif s.scan(/any\s*[:=]\s*(?:"(.*?)"|(\w+))/i)

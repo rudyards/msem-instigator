@@ -4,6 +4,7 @@ class ConditionAny < ConditionOr
     @conds = [
       ConditionWord.new(query),
       ConditionArtist.new(query),
+      ConditionDesigner.new(query),
       ConditionFlavor.new(query),
       ConditionOracle.new(query),
       ConditionTypes.new(query),

@@ -5,6 +5,7 @@ require_relative "artist"
 require_relative "card"
 require_relative "card_set"
 require_relative "card_printing"
+require_relative "designer"
 require_relative "query"
 require_relative "spelling_suggestions"
 require_relative "physical_card"
@@ -18,12 +19,13 @@ require_relative "deck"
 require_relative "deck_database"
 
 class CardDatabase
-  attr_reader :sets, :cards, :blocks, :artists, :cards_in_precons
+  attr_reader :sets, :cards, :blocks, :artists, :designers, :cards_in_precons
   def initialize
     @sets = {}
     @blocks = Set[]
     @cards = {}
     @artists = {}
+    @designers = {}
     yield(self)
   end
 
@@ -250,6 +252,7 @@ class CardDatabase
     fix_multipart_cards_color_identity!(color_identity_cache)
     link_multipart_cards!(multipart_cards)
     setup_artists!
+    setup_designers!
     setup_sort_index!
     DeckDatabase.new(self).load!
     index_cards_in_precons!
@@ -310,6 +313,24 @@ class CardDatabase
       end
       artist.printings << printing
       printing.artist = artist
+    end
+  end
+
+  def setup_designers!
+    each_printing do |printing|
+      designer_name = printing.designer_name
+      # Presumably same designer, just keep that consistent to simplify slug code
+      # We could even fix some unset designers here
+      if designer_name
+        designer_slug = designer_name.downcase.gsub(/[^a-z0-9\p{Han}\p{Katakana}\p{Hiragana}\p{Hangul}]+/, "_")
+      end
+      @designers[designer_slug] ||= Designer.new(designer_name)
+      designer = @designers[designer_slug]
+      unless designer_name == designer.name
+        warn "Different designers have same slug - `#{designer_name}' `#{designer.name}' (slug: #{designer_name})"
+      end
+      designer.printings << printing
+      printing.designer = designer
     end
   end
 

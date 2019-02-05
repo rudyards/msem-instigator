@@ -1,6 +1,6 @@
 class CardPrinting
   attr_reader :card, :set, :date, :release_date
-  attr_reader :watermark, :rarity, :artist_name, :multiverseid, :number, :frame, :flavor, :flavor_normalized, :border, :timeshifted
+  attr_reader :watermark, :rarity, :artist_name, :multiverseid, :number, :frame, :flavor, :flavor_normalized, :border, :timeshifted, :designer_name
   attr_reader :rarity_code, :print_sheet
 
   # Performance cache of derived information
@@ -8,7 +8,7 @@ class CardPrinting
   attr_reader :release_date_i
 
   # Set by CardDatabase initialization
-  attr_accessor :others, :artist, :default_sort_index
+  attr_accessor :others, :artist, :default_sort_index, :designer
 
   def initialize(card, set, data)
     @card = card
@@ -20,6 +20,7 @@ class CardPrinting
     @number = data["number"]
     @multiverseid = data["multiverseid"]
     @artist_name = data["artist"]
+    @designer_name = data["designer"]
     @flavor = data["flavor"] || -""
     @flavor_normalized = @flavor.tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-")
     @flavor_normalized = @flavor if @flavor_normalized == @flavor # Memory saving trick
