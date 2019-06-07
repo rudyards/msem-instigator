@@ -6,5 +6,11 @@ BanList.for_format("msem2") do
     "Poisoned Well"     => "banned",
     "Savage Congregation" => "banned",
     "Planar Conflagration"  => "banned",
+    "Ebb and Flow" => "banned",
+    "District of Artisans" => "banned", 
+    "Halskrow Street Gallows" => "banned",
+    "Parliament's Courtyard" => "banned",
+    "Public Gardens" => "banned",
+    "River's End Falls" => "banned"
   )
 end
