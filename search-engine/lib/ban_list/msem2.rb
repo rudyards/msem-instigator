@@ -11,6 +11,7 @@ BanList.for_format("msem2") do
     "Halskrow Street Gallows" => "banned",
     "Parliament's Courtyard" => "banned",
     "Public Gardens" => "banned",
-    "River's End Falls" => "banned"
+    "River's End Falls" => "banned",
+    "Revert To Moonlight" => "banned"
   )
 end
