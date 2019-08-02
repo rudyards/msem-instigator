@@ -36,6 +36,9 @@ class FormatMSEM2 < Format
       "VTM",
       "UNR",
       "MS1",
+      "DHL",
+      "MAC",
+      "EAU"
     ]
   end
 end
