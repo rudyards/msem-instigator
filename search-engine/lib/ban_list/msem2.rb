@@ -13,6 +13,7 @@ BanList.for_format("msem2") do
     "Public Gardens" => "banned",
     "River's End Falls" => "banned",
     "Revert To Moonlight" => "banned",
-    "Planar Traversal" => "banned"
+    "Planar Traversal" => "banned",
+    "Unmasker of Fate’s Design" => "banned"
   )
 end
