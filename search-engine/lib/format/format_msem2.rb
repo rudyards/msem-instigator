@@ -38,7 +38,9 @@ class FormatMSEM2 < Format
       "MS1",
       "DHL",
       "MAC",
-      "EAU"
+      "EAU",
+      "DOA",
+      "WAY",
     ]
   end
 end
