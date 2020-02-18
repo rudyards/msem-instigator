@@ -41,6 +41,8 @@ class FormatMSEM2 < Format
       "EAU",
       "DOA",
       "WAY",
+      "LAW",
+      "WAW"
     ]
   end
 end
