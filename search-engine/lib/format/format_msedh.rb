@@ -36,6 +36,8 @@ class FormatMSEDH < Format
       "VTM",
       "UNR",
       "MS1",
+      "LAW",
+      "WAW",
     ]
     end
 

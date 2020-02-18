@@ -42,7 +42,7 @@ class FormatMSEM2 < Format
       "DOA",
       "WAY",
       "LAW",
-      "WAW"
+      "WAW",
     ]
   end
 end
