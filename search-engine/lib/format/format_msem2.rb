@@ -43,6 +43,7 @@ class FormatMSEM2 < Format
       "WAY",
       "LAW",
       "WAW",
+      "MS2"
     ]
   end
 end
