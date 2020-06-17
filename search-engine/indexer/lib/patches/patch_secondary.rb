@@ -13,7 +13,7 @@ class PatchSecondary < Patch
         else
           card["secondary"] = true
         end
-      elsif card["layout"] == "flip" or card["layout"] == "aftermath"
+      elsif card["layout"] == "flip" or card["layout"] == "aftermath" or card["layout"] == "adventure"
         raise unless card["number"] =~ /[ab]\z/
         card["secondary"] = true if card["number"] =~ /b\z/
       elsif card["layout"] == "meld"

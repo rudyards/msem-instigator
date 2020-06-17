@@ -76,7 +76,7 @@ class Card
   end
 
   def front?
-    !@secondary or @layout == "aftermath" or @layout == "flip"
+    !@secondary or @layout == "aftermath" or @layout == "flip" or @layout == "adventure"
   end
 
   def back?
@@ -323,6 +323,26 @@ class Card
         "{G} or {W}"
       when "forest island"
         "{G} or {U}"
+      when "forest plains swamp"
+        "{W}, {B}, or {G}"
+      when "forest island mountain"
+        "{G}, {U}, or {R}"
+      when "island mountain plains"
+        "{U}, {R}, or {W}"
+      when "mountain plains swamp"
+        "{R}, {W}, or {B}"
+      when "forest island swamp"
+        "{B}, {G}, or {U}"
+      when "island plains swamp"
+        "{U}, {W}, or {B}"
+      when "island mountain swamp"
+        "{U}, {R}, or {B"
+      when "forest mountain swamp"
+        "{G}, {R}, or {B}"
+      when "forest mountain plains"
+        "{G}, {R}, or {W}"
+      when "forest island plains"
+        "{G}, {U}, or {W}"
       else
         raise "No idea what's correct line for #{basic_land_types.inspect}"
       end
