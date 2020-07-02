@@ -44,7 +44,10 @@ def build_included_sets
     "WAY",
     "LAW",
     "WAW",
-    "MS2"
+    "MS2",
+    "LVS",
+    "KOD",
+    "STN"
     ]
 end
 
