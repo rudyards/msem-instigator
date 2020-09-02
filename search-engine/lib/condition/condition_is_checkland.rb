@@ -1,16 +1,9 @@
 class ConditionIsCheckland < Condition
   def search(db)
     names = [
-      "clifftop retreat",
-      "dragonskull summit",
-      "drowned catacomb",
-      "glacial fortress",
-      "hinterland harbor",
-      "isolated chapel",
-      "rootbound crag",
-      "sulfur falls",
-      "sunpetal grove",
-      "woodland cemetery",
+      "lush oasis","spiraling canyon","fungal mire",
+      "frostfire geysers","gloomcover steppe","heart of the glade",
+      "flourishing crevasse","lavatorn fields","flooded morass","pool of light",
     ]
 
     names

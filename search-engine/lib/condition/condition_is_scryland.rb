@@ -1,16 +1,10 @@
 class ConditionIsScryland < Condition
   def search(db)
     names = [
-      "winterheath pass",
-      "chillroad pass",
-      "stonework gate pass",
-      "hanatun pass",
-      "sunset grove pass",
-      "ravenwood pass",
-      "sky’s reach pass",
-      "grimrot pass",
-      "glory bridge pass",
-      "frozen wilds pass",
+      "frozen wilds pass","glory bridge pass","grimrot pass",
+      "sky's reach pass","ravenwood pass","sunset grove pass",
+      "hanatun pass","stonework gate pass","chillroad pass",
+      "winterheath pass"
     ]
 
     names

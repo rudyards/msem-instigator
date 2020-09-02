@@ -67,3 +67,5 @@ end
 group :production do
   gem "unicorn"
 end
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
