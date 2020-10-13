@@ -85,6 +85,8 @@ class ConditionAny < ConditionOr
       @conds << ConditionIsSpell.new
     when "timeshifted"
       @conds << ConditionIsTimeshifted.new
+    when "staple"
+      @conds << ConditionIsStaple.new
     when "unique"
       @conds << ConditionIsUnique.new
     when "vanilla"

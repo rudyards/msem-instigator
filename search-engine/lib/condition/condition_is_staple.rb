@@ -189,6 +189,7 @@ class ConditionIsStaple < Condition
             "unjust sentence",
             "untethered disciple",
             "between life and death",
+        ]
         names
             .map{|n| db.cards[n]}
             .flat_map{|card| card ? card.printings : []}
