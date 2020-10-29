@@ -79,6 +79,8 @@ class ConditionAny < ConditionOr
       @conds << ConditionIsReserved.new
     when "scryland"
       @conds << ConditionIsScryland.new
+    when "scuttleback"
+      @conds << ConditionIsScuttleback.new
     when "shockfetch"
       @conds << ConditionIsShockfetch.new
     when "spell"
