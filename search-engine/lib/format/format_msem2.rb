@@ -47,7 +47,9 @@ class FormatMSEM2 < Format
       "MS2",
       "LVS",
       "KOD",
-      "STN"
+      "STN",
+      "SOU",
+      "ALR"
     ]
   end
 end

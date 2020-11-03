@@ -47,7 +47,9 @@ def build_included_sets
     "MS2",
     "LVS",
     "KOD",
-    "STN"
+    "STN",
+    "SOU",
+    "ALR"
     ]
 end
 
