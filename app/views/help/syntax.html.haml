@@ -19,31 +19,24 @@
       = search_help 't:"legendary land"', "search for Legendary Land cards"
       = search_help "is:permanent", "search for permanent cards (creatures, artifacts, enchantments, lands, and planeswalkers)"
       = search_help "is:spell", "search for spell cards (that is not lands)"
-      = search_help "is:commander", "search cards you can play as commanders (legendary creatures or planeswalkers with ability saying so)"
+      = search_help "is:commander", "search cards you can play as commanders (legendary creatures or permanents with an ability saying so)"
       = search_help "is:brawler", "search cards you can play as Brawl commanders (legendary creatures or planeswalkers)"
-      = search_help "is:historic", "search for historic cards (legendary, artifact, and/or Saga)"
+      = search_help "is:storied", "search for storied cards (legendary or enchantments)"
 
     %h4 Search by Oracle text
     %div Reminder text is not included in Oracle search
     %ul
-      = search_help "o:delve", %Q[search cards with "delve" in Oracle text]
+      = search_help "o:cadence", %Q[search cards with "cadence" in Oracle text]
       = search_help %Q[o:"destroy target creature"], %Q[search cards with "destroy target creature" in Oracle text]
-      = search_help "o:flying", %Q[search cards with "flying" in Oracle text - without cards with rearch simply in reminder text like ones with reach ability]
+      = search_help "o:flying", %Q[search cards with "flying" in Oracle text - without cards with it simply in reminder text like ones with reach ability]
       = search_help %Q[o:"when ~ enters the battlefield"], %Q[You can use ~ as placeholder for name of the card]
 
     %h4 Search by edition
     %ul
-      = search_help "e:bfz", %Q[cards from "Battle for Zendikar" set]
-      = search_help %Q[e:"scars of mirrodin"], %Q[cards from "Scars of Mirrodin" set]
-      = search_help %Q[e:ascension], %Q[cards from all sets including "ascension" in name (only if there's no exact match)]
-      = search_help "e:isd,dka", %Q[cards from "Innistrad" and "Dark Ascension" sets]
-
-    %h4 Search by block
-    %ul
-      = search_help "b:zendikar", "cards from Zendikar block"
-      = search_help "b:isd", "cards from Innistrad block"
-      = search_help %Q[b:"return to ravnica"], %Q[cards from "Return to Ravnica" block]
-      = search_help "b:isd,soi", "cards from Innistrad and Shadow of Innistrad blocks"
+      = search_help "e:lvs", %Q[cards from "Love Song" set]
+      = search_help %Q[e:"tales of old jiangshi"], %Q[cards from "Tales of Old Jiangshi" set]
+      = search_help %Q[e:arcanum], %Q[cards from all sets including "arcanum" in name (only if there's no exact match)]
+      = search_help "e:mac,cac", %Q[cards from "Memorium Arcanum" and "Carpe Arcanum" sets]
 
     %h4 Search by color expression
     %ul
@@ -95,8 +88,8 @@
       = search_help "mana=3uu", "cards with mana cost {3}{u}{u}"
       = search_help "mana={3}{u}{u}", "cards with mana cost {3}{u}{u}"
       = search_help "mana>={b/g}", "cards with mana cost including {b/g} hybrid mana"
-      = search_help "mana>={2/r}", "cards with mana cost including {2/r} Shadowmoor hybrid mana"
-      = search_help "mana={p/r}", "cards with mana cost equal {p/r} Phyrexian mana"
+      / = search_help "mana>={2/r}", "cards with mana cost including {2/r} twobrid mana"
+      / = search_help "mana={p/r}", "cards with mana cost equal {p/r} Phyrexian mana"
       = search_help "mana!=2gr", "cards with mana cost different from {2}{g}{r} (or no mana cost)"
 
     %div This search supports variable symbols: "m", "n", and "o" each represent a single mana of any color but must each differ from the others; "h" represents a single hybrid mana.
@@ -122,7 +115,6 @@
 
     %h4 Boolean expressions
     %ul
-      = search_help "t:goblin AND cmc=2", "cards which are Goblins and have converted mana cost 2"
       = search_help "t:goblin AND cmc=2", "cards which are Goblins and have converted mana cost 2 (AND is optional)"
       = search_help "t:goblin OR cmc=2", "cards which are Goblins or have converted mana cost 2"
       = search_help "c:u (t:goblin OR t:elf)", "cards which are blue Goblins or blue Elves"
@@ -141,53 +133,53 @@
 
     %h4 Search by flavor text
     %ul
-      = search_help "ft:chandra", %Q[cards with "chandra" in flavor text]
-      = search_help %Q[ft:"Jaya Ballard"], %Q[cards with "Jaya Ballard" in flavor text]
+      = search_help "ft:telam", %Q[cards with "Telam" in flavor text]
+      = search_help %Q[ft:"Suzume Oshiruko"], %Q[cards with "Suzume Oshiruko" in flavor text]
 
     %h4 Search by artist
     %ul
-      = search_help %Q[a:argyle], "cards with art drawn by (Steve) Argyle"
-      = search_help %Q[a:"rebecca guay"], "cards with art drawn by Rebecca Guay"
+      = search_help %Q[a:alex], "cards with art drawn by anyone named Alex"
+      = search_help %Q[a:"anato finnstark"], "cards with art drawn by Anato Finnstark"
 
 
     %h4 Search by card frame features
     %div For each of these you can use not: as opposite of is:. Data might occasionally be inaccurate for some promo printings.
     %ul
-      = search_help "is:black-bordered", "cards with black borders"
-      = search_help "not:black-bordered", "cards with borders other than black"
-      = search_help "is:white-bordered", "cards with white borders"
-      = search_help "is:silver-bordered", "cards with silver borders"
-      = search_help "is:borderless", "cards without borders"
-      = search_help "is:old", "cards with old-style frames"
-      = search_help "is:new", "cards with new-style frames"
-      = search_help "is:modern", "cards with new-style frames (pre-M15 variant)"
-      = search_help "is:m15", "cards with new-style frames (M15+ variant)"
-      = search_help "is:future", "cards with future-style frames"
-      = search_help "is:holofoil", "cards with holographic foil"
-      = search_help "is:timeshifted", "timeshifted cards"
+      / = search_help "is:black-bordered", "cards with black borders"
+      / = search_help "not:black-bordered", "cards with borders other than black"
+      / = search_help "is:white-bordered", "cards with white borders"
+      / = search_help "is:silver-bordered", "cards with silver borders"
+      / = search_help "is:borderless", "cards without borders"
+      / = search_help "is:old", "cards with old-style frames"
+      / = search_help "is:new", "cards with new-style frames"
+      / = search_help "is:modern", "cards with new-style frames (pre-M15 variant)"
+      / = search_help "is:m15", "cards with new-style frames (M15+ variant)"
+      / = search_help "is:future", "cards with future-style frames"
+      / = search_help "is:holofoil", "cards with holographic foil"
+      / = search_help "is:timeshifted", "timeshifted cards"
       = search_help "is:split", "split cards"
-      = search_help "is:flip", "flip cards (Kamigawa)"
+      / = search_help "is:flip", "flip cards (Kamigawa)"
       = search_help "is:dfc", "double-faced cards"
       = search_help "is:multipart", "multi-part cards (split, flip, or dfc)"
-      = search_help "is:funny", "cards from funny sets"
-      = search_help "is:promo", "promotional cards"
-      = search_help "is:meld", "meld cards"
+      / = search_help "is:funny", "cards from funny sets"
+      / = search_help "is:promo", "promotional cards"
+      / = search_help "is:meld", "meld cards"
       = search_help "is:primary", "regular cards and directly playable parts of double-faced/meld/flip/aftermath cards"
       = search_help "is:secondary", "parts of double-faced/meld/flip/aftermath card that's not directly playable"
       = search_help "is:front", "cards on front face"
       = search_help "is:back", "cards on face face of double-faced/meld cards"
-      = search_help "is:digital", "MTGO only"
+      / = search_help "is:digital", "MTGO only"
       = search_help "not:reprint", "first printings of cards"
       = search_help "is:reprint", "reprints of cards"
       = search_help "is:unique", "cards which were never reprinted"
-      = search_help "is:booster", "cards which appear in randomized boosters"
-      = search_help "is:draft", "draft-matters cards including conspiracies"
+      / = search_help "is:booster", "cards which appear in randomized boosters"
+      / = search_help "is:draft", "draft-matters cards including conspiracies"
       = search_help "number:117", "cards with collector number 117 (old cards, promos etc. have arbitrarily assiged unique numbers)"
 
     %h4 Search by card nickname
     %div A few common nicknames are supported as queries.
     %ul
-      = search_help "is:shockland", "all 10 shocklands"
+      = search_help "is:shockfetch", "all 10 shocklands"
       = search_help "is:shockland t:island t:mountain", "blue-red shockland"
       = search_help "is:fetchland", "all 10 fetchlands"
       = search_help "is:fetchland o:island", "all fetchlands which can fetch the island"
@@ -209,29 +201,29 @@
       = search_help "is:scryland o:{g}", "all green scrylands"
       = search_help "is:battleland", "all 5 battlelands"
       = search_help "is:battleland t:island", "both blue battlelands"
-      = search_help "is:augment", "all 13 augment cards from Unstable"
+      / = search_help "is:augment", "all 13 augment cards from Unstable"
 
     %h4 Search by card layout
     %div Selecting non-standard layout expands search to special cards as well
     %ul
       = search_help "layout:normal", "cards with normal layout"
-      = search_help "layout:leveler", "cards with leveler layout"
-      = search_help "layout:vanguard", "cards with vanguard layout (not included by deafult)"
+      / = search_help "layout:leveler", "cards with leveler layout"
+      / = search_help "layout:vanguard", "cards with vanguard layout (not included by deafult)"
       = search_help "layout:dfc", "cards with dfc layout"
       = search_help "layout:split", "cards with split layout"
-      = search_help "layout:flip", "cards with flip layout"
-      = search_help "layout:plane", "cards with plane layout (not included by deafult)"
-      = search_help "layout:scheme", "cards with scheme layout (not included by deafult)"
-      = search_help "layout:phenomenon", "cards with phenomenon layout (not included by deafult)"
+      / = search_help "layout:flip", "cards with flip layout"
+      / = search_help "layout:plane", "cards with plane layout (not included by deafult)"
+      / = search_help "layout:scheme", "cards with scheme layout (not included by deafult)"
+      / = search_help "layout:phenomenon", "cards with phenomenon layout (not included by deafult)"
 
     %h4 Search by other part
     %div Every card part (of split, flip, or double-faced card) is treated as separate object, so search like cmc=2 cmc=3 won't return anything, as no part has cmc of 2 and 3 simultaneously. There's special syntax for that.
 
     %ul
       = search_help "cmc=2 // cmc=3", "cards with converted mana cost 2 or one side and converted mana cost 3 on another (split spells)"
-      = search_help "t:creature // t:planeswalker", "cards where one side is a creature and the other side is a planeswalker (Magic Origins Planeswalkers)"
-      = search_help "t:creature //", "cards where one side is a creature, and there's other side"
-      = search_help "far // away", "card named Far on one side and Away on another side"
+      = search_help "t:creature // t:planeswalker", "cards where one side is a creature and the other side is a planeswalker (Spark of Revolution Planeswalkers)"
+      = search_help "t:creature //", "cards where one side is a creature, and there's another side"
+      = search_help "rock // roll", "card named Rock on one side and Roll on another side"
 
     %div There's also lower level syntax if you prefer that. Unlike // it will return only specifically requested side, not both.
     %ul
@@ -242,29 +234,29 @@
     %div If a card is related to another card (e.g. the card names the other card, or vice versa), you can use that in your search.
     %ul
       = search_help "related:Arrest", "cards related to card named Arrest"
-      = search_help "related:t:artifact", "cards related to artifacts"
+      = search_help "related:t:snow", "cards related to snowtyped cards"
 
     %h4 Search by alternative printing
     %div Every card printing is treated as separate object, so you can't search for cards which were printing in both Magic 2010 and Magic 2011 with e:m10 e:m11. There's special syntax for that.
     %ul
-      = search_help "e:m10 alt:e:m11", "cards from Magic 2010 which were also printed in Magic 2011"
-      = search_help %Q[a:"Rebecca Guay" alt:(not a:"Rebecca Guay")], "cards drawn by Rebecca Guay which were also printed by someone who's not Rebecca Guay"
+      = search_help "e:doa alt:e:ms2", "cards from Discoveries of Akieva which were also printed in MSEM Masters 2020"
+      = search_help %Q[a:"Kekai Kotaki" alt:(not a:"Kekai Kotaki")], "cards drawn by Kekai Kotaki which were also printed by someone who's not Kekai Kotaki"
 
-    %h4 Search by foreign name
-    %ul
-      = search_help "cs:巨龙", %Q[cards with "巨龙" in Chinese Simplified name]
-      = search_help "ct:巨龍", %Q[cards with "巨龍" in Chinese Traditional name]
-      = search_help "fr:Intrusion", %Q[cards with "Intrusion" in French name]
-      = search_help "de:Wunderkind", %Q[cards with "Wunderkind" in German name]
-      = search_help "it:mostro", %Q[cards with "mostro" in Italian name]
-      = search_help "jp:エルフ", %Q[cards with "エルフ" in Japanese name]
-      = search_help "kr:우진", %Q[cards with "우진" in Korean name]
-      = search_help "pt:pesadelo", %Q[cards with "pesadelo" in Brazilian Portuguese name]
-      = search_help "ru:Дракон", %Q[cards with "Дракон" in Russian name]
-      = search_help %Q[sp:"Llave maestra"], %Q[cards with "Llave maestra" in Spanish name]
-      = search_help %Q[foreign:"龍"], %Q[cards with "龍" in any foreign name]
-      = search_help %Q[t:planeswalker kr:*], %Q[planeswalker cards with Korean version]
-      = search_help "de:/\w{20,}/", %Q[cards with 20+ letter word in German name]
+    / %h4 Search by foreign name
+    / %ul
+    /   = search_help "cs:巨龙", %Q[cards with "巨龙" in Chinese Simplified name]
+    /   = search_help "ct:巨龍", %Q[cards with "巨龍" in Chinese Traditional name]
+    /   = search_help "fr:Intrusion", %Q[cards with "Intrusion" in French name]
+    /   = search_help "de:Wunderkind", %Q[cards with "Wunderkind" in German name]
+    /   = search_help "it:mostro", %Q[cards with "mostro" in Italian name]
+    /   = search_help "jp:エルフ", %Q[cards with "エルフ" in Japanese name]
+    /   = search_help "kr:우진", %Q[cards with "우진" in Korean name]
+    /   = search_help "pt:pesadelo", %Q[cards with "pesadelo" in Brazilian Portuguese name]
+    /   = search_help "ru:Дракон", %Q[cards with "Дракон" in Russian name]
+    /   = search_help %Q[sp:"Llave maestra"], %Q[cards with "Llave maestra" in Spanish name]
+    /   = search_help %Q[foreign:"龍"], %Q[cards with "龍" in any foreign name]
+    /   = search_help %Q[t:planeswalker kr:*], %Q[planeswalker cards with Korean version]
+    /   = search_help "de:/\w{20,}/", %Q[cards with 20+ letter word in German name]
 
     %h4 Search by regular expression
     %div Reglar expressions follow ruby syntax and are case insensitive by default.
@@ -305,7 +297,7 @@
       = search_help "t:dragon view:images", "search for Dragons, display results as just images"
       = search_help "t:dragon view:text", "search for Dragons, display results as just text"
 
-    %h4 Name comparison
-    %div To help with spoiler season number crunch you can now see which cards could possibly fit in a gap.
-    %ul
-      = search_help %Q[f:Modern print<=M14 t:land name>"Selesnya Guildgate" name<"Simic Guildgate"], "Modern cards printed up to M14 which could fit in land slot between Selesnya Guildgate and Simic Guildgate"
+    / %h4 Name comparison
+    / %div To help with spoiler season number crunch you can now see which cards could possibly fit in a gap.
+    / %ul
+    /   = search_help %Q[f:Modern print<=M14 t:land name>"Selesnya Guildgate" name<"Simic Guildgate"], "Modern cards printed up to M14 which could fit in land slot between Selesnya Guildgate and Simic Guildgate"
