@@ -2,6 +2,11 @@ BanList.for_format("msem2") do
   format_start(
     "https://snapdragonfirework.wixsite.com/msem2/bans",
     "Aether Leak" => "banned", 
+    "Angeltouched Cavern" => "banned",
+    "Angeltouched Crag" => "banned",
+    "Angeltouched Garden" => "banned",
+    "Angeltouched Marsh" => "banned",
+    "Angeltouched Saltflat" => "banned",
     "Chigau, the Red Market" => "banned", 
     "Deadly Manipulation" => "banned", 
     "District of Artisans" => "banned", 
