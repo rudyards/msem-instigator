@@ -48,7 +48,7 @@ GEM
     autoprefixer-rails (10.0.1.3)
       execjs
     bindex (0.8.1)
-    bootstrap (4.3.1)
+    bootstrap (4.5.0)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
@@ -101,7 +101,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     kgio (2.11.3)
-    libv8 (8.4.255.0)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -116,8 +115,6 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    mini_racer (0.3.1)
-      libv8 (~> 8.4.255)
     minitest (5.14.2)
     nio4r (2.5.4)
     nokogiri (1.10.10)
@@ -219,7 +216,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (= 4.3.1)
+  bootstrap (= 4.5)
   byebug (~> 11.1)
   capybara
   coffee-rails
@@ -230,7 +227,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen
-  mini_racer
   pathname-glob
   pry
   rails (= 5.2)
