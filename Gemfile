@@ -3,7 +3,7 @@ ruby "2.7.1"
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "rails", "5.1.4"
+gem "rails", "5.2"
 # Use SCSS for stylesheets
 gem "sass-rails"
 # Use Uglifier as compressor for JavaScript assets
@@ -23,6 +23,7 @@ gem "jbuilder", "~> 2.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 
 gem "bootstrap", "4.3.1"
+
 gem "rails-assets-tether"
 gem "select2-rails"
 
