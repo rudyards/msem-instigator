@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+
     actioncable (5.2.4.4)
       actionpack (= 5.2.4.4)
       nio4r (~> 2.0)
@@ -48,7 +49,7 @@ GEM
     autoprefixer-rails (10.0.1.3)
       execjs
     bindex (0.8.1)
-    bootstrap (4.3.1)
+    bootstrap (4.5.0)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
@@ -216,7 +217,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap (= 4.3.1)
+  bootstrap (= 4.5)
   byebug (~> 11.1)
   capybara
   coffee-rails
