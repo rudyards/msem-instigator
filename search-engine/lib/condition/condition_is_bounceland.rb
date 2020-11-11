@@ -1,16 +1,16 @@
 class ConditionIsBounceland < Condition
   def search(db)
     names = [
-      "Sprawling Coast",
-      "Shaded Cove",
-      "Scorched Sanctum",
-      "Distant Highlands",
-      "Suntouched Temple",
-      "Boundless Sinks",
-      "Crystal Coasts",
-      "Lonely Morass",
-      "Endless Deserts",
-      "Unexplored Ruins",
+      "sprawling coast",
+      "shaded cove",
+      "scorched sanctum",
+      "distant highlands",
+      "suntouched temple",
+      "boundless sinks",
+      "crystal coasts",
+      "lonely morass",
+      "endless deserts",
+      "unexplored ruins",
     ]
 
     names
