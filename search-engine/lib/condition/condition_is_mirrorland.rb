@@ -1,7 +1,7 @@
 class ConditionIsMirrorland < Condition
   def search(db)
     names = [
-      "crafted coast","dire dive","haunted estate","lush outcrop",
+      "crafted coast","dire dive","haunted estate","lush outcrop","gleaming veldt",
       "spired canopy","ghastly castle","grisly marsh","sunken cavern","sunny dunes"
     ]
 
