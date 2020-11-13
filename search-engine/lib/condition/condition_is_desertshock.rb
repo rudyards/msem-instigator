@@ -1,4 +1,4 @@
-class ConditionIsDesertShock< Condition
+class ConditionIsDesertshock< Condition
   def search(db)
     names = [
       "weathered oasis","scorched canyon","sunset sands",

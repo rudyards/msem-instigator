@@ -2,7 +2,7 @@ class ConditionIsHandland < Condition
   def search(db)
     names = [
       "choked estuary","foreboding ruins","fortified village","game trail","port town",
-      "deserted trail","flourishing waterways","imperial barracks","legacy foundations"
+      "deserted trail","flourishing waterways","imperial barracks","legacy foundations", "horizon of origins"
     ]
 
     names
