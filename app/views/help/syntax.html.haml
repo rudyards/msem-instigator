@@ -22,6 +22,7 @@
       = search_help "is:commander", "search cards you can play as commanders (legendary creatures or permanents with an ability saying so)"
       = search_help "is:brawler", "search cards you can play as Brawl commanders (legendary creatures or planeswalkers)"
       = search_help "is:storied", "search for storied cards (legendary or enchantments)"
+      = search_help "is:scuttleback", "search for cards that Saddled Scuttleback can find"
 
     %h4 Search by Oracle text
     %div Reminder text is not included in Oracle search
@@ -180,28 +181,27 @@
     %div A few common nicknames are supported as queries.
     %ul
       = search_help "is:shockfetch", "all 10 shocklands"
-      = search_help "is:shockland t:island t:mountain", "blue-red shockland"
-      = search_help "is:fetchland", "all 10 fetchlands"
-      = search_help "is:fetchland o:island", "all fetchlands which can fetch the island"
-      = search_help "is:dual", "all 10 original duals"
-      = search_help "is:dual t:swamp t:forest", "black-green dual"
+      = search_help "is:monofetch", "all 5 monofetches"
+      = search_help "is:monofetch o:island", "all fetchlands which can fetch the island"
+      = search_help "is:drawdual", "all 10 drawduals"
+      = search_help "is:drawdual t:swamp t:forest", "black-green drawdual"
       = search_help "is:bounceland", "all 10 bounceland"
       = search_help "is:bounceland o:{r} o:{u}", "red-blue bounceland"
-      = search_help "is:gainland", "all 15 gainlands"
-      = search_help "is:gainland o:{w}", "all white gainlands"
-      = search_help "is:fastland", "all 10 fastlands"
-      = search_help "is:fastland o:{r} o:{g}", "red-green fastland"
-      = search_help "is:checkland", "all 10 checklands"
-      = search_help "is:checkland o:{w} o:{u}", "white-blue checkland"
-      = search_help "is:filterland", "all 15 Oddysey and Shadowmoor filtrelands"
-      = search_help "is:filterland o:{b}", "all filterlands producing black"
-      = search_help "is:manland", "all 24 manlands"
-      = search_help "is:manland o:flynig", "all manlands which become flying creatures"
+      = search_help "is:plaguedual", "all 10 plaguelands"
+      = search_help "is:desertshock", "all 10 desertshocks"
+      = search_help "is:fastland o:{r} o:{g}", "red-green desertshock"
+      = search_help "is:mirrorland", "all 10 mirrorland"
+      = search_help "is:checkland o:{w} o:{u}", "white-blue mirrorland"
+      = search_help "is:tormentland", "all 10 tormentland"
+      = search_help "is:tormentland o:{b}", "all tormentlands producing black"
       = search_help "is:scryland", "all 10 scrylands"
       = search_help "is:scryland o:{g}", "all green scrylands"
-      = search_help "is:battleland", "all 5 battlelands"
-      = search_help "is:battleland t:island", "both blue battlelands"
-      / = search_help "is:augment", "all 13 augment cards from Unstable"
+      = search_help "is:cycleland", "all 10 cycleland"
+      = search_help "is:cycleland t:island", "all blue cycleland"
+      = search_help "is:handland", "all 10 handlands"
+      = search_help "is:investigateland", "all 10 investigatelands"
+      = search_help "is:tricheck", "all 10 trichecks"
+
 
     %h4 Search by card layout
     %div Selecting non-standard layout expands search to special cards as well
