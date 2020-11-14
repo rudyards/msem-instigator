@@ -14,7 +14,7 @@ class Card
   attr_reader :data, :printings
   attr_writer :printings # For db subset
 
-  attr_reader :name, :names, :layout, :colors, :mana_cost, :reserved, :types
+  attr_reader :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer
   attr_reader :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra
   attr_reader :hand, :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name
   attr_reader :mana_hash, :typeline, :funny, :color_indicator, :related
@@ -26,6 +26,7 @@ class Card
     @stemmed_name = normalize_name(@name).downcase.gsub(/s\b/, "").tr("-", " ")
     @names = data["names"]
     @layout = data["layout"]
+    @designer = data["designer"]
     @colors = data["colors"] || ""
     @funny = data["funny"]
     @text = (data["text"] || "")
