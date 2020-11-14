@@ -73,7 +73,6 @@ class Indexer
       "border",
       "code",
       "custom",
-      # "foiling",
       "frame",
       "gatherer_code",
       "has_boosters",
@@ -193,6 +192,7 @@ class Indexer
     printing_data = []
     card.each do |printing|
       common_card_data << printing.slice(
+        "designer",
         "cmc",
         "colors",
         "display_power",

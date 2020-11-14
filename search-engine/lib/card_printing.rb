@@ -1,5 +1,5 @@
 class CardPrinting
-  attr_reader :card, :set, :date, :release_date
+  attr_reader :card, :set, :date, :release_date, :designer
   attr_reader :watermark, :rarity, :artist_name, :multiverseid, :number, :frame, :flavor, :flavor_normalized, :border, :timeshifted
   attr_reader :rarity_code, :print_sheet
 
@@ -13,6 +13,7 @@ class CardPrinting
   def initialize(card, set, data)
     @card = card
     @set = set
+    @designer = designer
     @others = nil
     @release_date = data["release_date"] ? Date.parse(data["release_date"]) : @set.release_date
     @release_date_i = @release_date.to_i_sort
