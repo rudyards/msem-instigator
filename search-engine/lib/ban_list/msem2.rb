@@ -27,5 +27,18 @@ BanList.for_format("msem2") do
     "Sentinel of Latter Days" => "banned", 
     "Unmasker of Fate's Design" => "banned", 
     "Vidal, Rune Thief" => "banned", 
-    "Zetla, the Dragon's Voice" => "banned"  )
+    "Zetla, the Dragon's Voice" => "banned",
+    "Winter's Exhaustion" => "banned",
+    "Eleventh Hour Breakthrough"  => "banned",
+    "Dawnlit Battlefield"  => "banned", 
+    "Deadwood Grove"  => "banned", 
+    "Frozen Hinterlands"  => "banned", 
+    "Hazy Coppice" => "banned", 
+    "Lush Outskirts" => "banned", 
+    "Shrouded Rooftops" => "banned", 
+    "Spires of Caulte" => "banned", 
+    "Sunlit Fissure" => "banned", 
+    "Towering Boughs" => "banned", 
+    "Weathered Fortress" => "banned"
+      )
 end
