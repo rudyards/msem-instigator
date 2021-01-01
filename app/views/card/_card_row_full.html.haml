@@ -13,6 +13,8 @@
           Artist:
         = link_to_artist(card.artist) do
           = card.artist.name
+      %li.infolabel
+        = "Designer: #{card.designer}"
       - if card.reserved
         %li.infolabel
           = "#{card.name} is on the Reserved List."
