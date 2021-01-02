@@ -39,6 +39,8 @@
         = format_oracle_text(card.display_mana_cost)
       %ul
         %li.infolabel
+          = "Designer: #{card.designer}"
+        %li.infolabel
           %span
             Artist:
           = link_to_artist(card.artist) do
