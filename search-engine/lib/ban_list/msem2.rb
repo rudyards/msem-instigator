@@ -39,6 +39,9 @@ BanList.for_format("msem2") do
     "Spires of Caulte" => "banned", 
     "Sunlit Fissure" => "banned", 
     "Towering Boughs" => "banned", 
-    "Weathered Fortress" => "banned"
+    "Weathered Fortress" => "banned",
+    "Malice Crafter" => "banned",
+    "Creeping Crypts" => "banned",
+    "Pyre Ritual" => "banned"
       )
 end
