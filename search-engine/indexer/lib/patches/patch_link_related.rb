@@ -1,4 +1,6 @@
 class PatchLinkRelated < Patch
+  # Array of Shame here is for card names that are erroneously flagged as Related when they aren't.
+  NotRelated = ["Lo", "Sword"]
   def call
     # The index has tokens as cards, CardDatabase filters them out
     # We should probably move them out of the way before that
@@ -7,7 +9,7 @@ class PatchLinkRelated < Patch
     # Get longest match so
     # "Take Inventory" doesn't mistakenly seem to refer to "Take" etc.
     # Second regexp for empire series
-    any_card = Regexp.union(all_card_names.sort_by(&:size).reverse)
+    any_card = Regexp.union(all_card_names.sort_by(&:size).reverse-NotRelated)
     rx = /\b(?:named|Partner with) (#{any_card})(?:(?:,|,? and|,? or) (#{any_card}))?(?:(?:,|,? and|,? or) (#{any_card}))?/
 
     # Extract links
