@@ -49,7 +49,8 @@ def build_included_sets
     "KOD",
     "STN",
     "SOU",
-    "ALR"
+    "ALR",
+    "MON"
     ]
 end
 

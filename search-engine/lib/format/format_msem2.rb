@@ -48,7 +48,8 @@ class FormatMSEM2 < Format
       "KOD",
       "STN",
       "SOU",
-      "ALR"
+      "ALR",
+      "MON"
     ]
   end
 end
