@@ -14,7 +14,9 @@
         = link_to_artist(card.artist) do
           = card.artist.name
       %li.infolabel
-        = "Designer: #{card.card.designer}"
+        %span
+          Designer:
+        %a{ :href => "/card?q=designer%3A#{card.card.designer}" } #{card.card.designer}
       - if card.reserved
         %li.infolabel
           = "#{card.name} is on the Reserved List."
