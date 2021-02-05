@@ -28,6 +28,8 @@ gem "bootstrap", "4.5"
 gem "rails-assets-tether"
 gem "select2-rails"
 
+gem 'json'
+
 
 
 # Use ActiveModel has_secure_password
