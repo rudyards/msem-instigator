@@ -2,6 +2,7 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
+require 'json'
 Rails.application.load_tasks
 
 def db
@@ -39,6 +40,19 @@ task "pics:MSEM" do
     command = "wget -nv -nc #{url} -O #{path}"
     #puts "   command: #{command}"
     system "wget", "-nv", "-nc", url, "-O", path.to_s
+  end
+end
+
+desc "Delete outdated images"
+task "uninstall" do
+  file = File.read('./uninstall.json')
+  data_hash = JSON.parse(file)
+  data_hash.each do |c|
+    set = c["setID"]
+    id_num = c["cardID"]
+    image_path = "./public/cards/#{set}/#{id_num}.jpg"
+    File.delete(image_path) if File.exist?(image_path)
+    puts "#{c["name"]} deleted"
   end
 end
 
