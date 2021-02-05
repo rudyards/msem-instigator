@@ -1,0 +1,4 @@
+{
+    "ruby.rubocop.executePath": "/Users/rudy/.rvm/gems/ruby-2.7.1/bin/rubocop/",
+    "ruby.rubocop.configFilePath": "/Users/rudy/Git Projects/msem-instigator/.rubocop.yml"
+}
