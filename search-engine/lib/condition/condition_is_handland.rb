@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 class ConditionIsHandland < Condition
   def search(db)
     names = [
-      "choked estuary","foreboding ruins","fortified village","game trail","port town",
-      "deserted trail","flourishing waterways","imperial barracks","legacy foundations", "horizon of origins"
+      'choked estuary', 'foreboding ruins', 'fortified village', 'game trail', 'port town',
+      'deserted trail', 'flourishing waterways', 'imperial barracks', 'legacy foundations', 'horizon of origins'
     ]
 
     names
-      .map{|n| db.cards[n]}
-      .flat_map{|card| card ? card.printings : []}
+      .map { |n| db.cards[n] }
+      .flat_map { |card| card ? card.printings : [] }
       .to_set
   end
 
   def to_s
-    "is:handland"
+    'is:handland'
   end
 end

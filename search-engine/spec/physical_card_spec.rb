@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 describe PhysicalCard do
-  include_context "db"
+  include_context 'db'
 
   def find_unique(query)
     printings = db.search("++ #{query}").printings
     raise "Expected 1 result for #{query.inspect}, got #{printings.size}" unless printings.size
+
     printings[0]
   end
 
-  it "all sets can return list of physical cards" do
-    db.sets.each do |set_code, set|
+  it 'all sets can return list of physical cards' do
+    db.sets.each do |_set_code, set|
       # Need to .uniq as meld appears twice on the left side and once on the right side
-      set.physical_cards.flat_map{|c| [*c.front, *c.back]}.uniq.should match_array(set.printings)
+      set.physical_cards.flat_map { |c| [*c.front, *c.back] }.uniq.should match_array(set.printings)
     end
   end
 
@@ -19,7 +22,7 @@ describe PhysicalCard do
   let(:physical_card3) { PhysicalCard.for(card3, false) }
 
   context "for normal cards it's just one front" do
-    let(:card1) { find_unique("lightning bolt e:m10") }
+    let(:card1) { find_unique('lightning bolt e:m10') }
     it do
       physical_card1.front.should eq([card1])
       physical_card1.back.should eq([])
@@ -27,9 +30,9 @@ describe PhysicalCard do
     end
   end
 
-  context "split" do
-    let(:card1) { find_unique("crime e:di") }
-    let(:card2) { find_unique("punishment e:di") }
+  context 'split' do
+    let(:card1) { find_unique('crime e:di') }
+    let(:card2) { find_unique('punishment e:di') }
     it do
       physical_card1.should eq(physical_card2)
       physical_card1.front.should eq([card1, card2])
@@ -38,9 +41,9 @@ describe PhysicalCard do
     end
   end
 
-  context "fuse" do
-    let(:card1) { find_unique("alive e:dgm") }
-    let(:card2) { find_unique("well e:dgm") }
+  context 'fuse' do
+    let(:card1) { find_unique('alive e:dgm') }
+    let(:card2) { find_unique('well e:dgm') }
     it do
       physical_card1.should eq(physical_card2)
       physical_card1.front.should eq([card1, card2])
@@ -49,9 +52,9 @@ describe PhysicalCard do
     end
   end
 
-  context "flip" do
-    let(:card1) { find_unique("budoka pupil e:bok") }
-    let(:card2) { find_unique("ichiga e:bok") }
+  context 'flip' do
+    let(:card1) { find_unique('budoka pupil e:bok') }
+    let(:card2) { find_unique('ichiga e:bok') }
     it do
       physical_card1.should eq(physical_card2)
       physical_card1.front.should eq([card1, card2])
@@ -60,9 +63,9 @@ describe PhysicalCard do
     end
   end
 
-  context "aftermath" do
-    let(:card1) { find_unique("appeal e:hou") }
-    let(:card2) { find_unique("authority e:hou") }
+  context 'aftermath' do
+    let(:card1) { find_unique('appeal e:hou') }
+    let(:card2) { find_unique('authority e:hou') }
     it do
       physical_card1.should eq(physical_card2)
       physical_card1.front.should eq([card1, card2])
@@ -71,9 +74,9 @@ describe PhysicalCard do
     end
   end
 
-  context "DFC" do
-    let(:card1) { find_unique("delver of secrets e:isd") }
-    let(:card2) { find_unique("isnsectile aberration e:isd") }
+  context 'DFC' do
+    let(:card1) { find_unique('delver of secrets e:isd') }
+    let(:card2) { find_unique('isnsectile aberration e:isd') }
     it do
       physical_card1.should eq(physical_card2)
       physical_card1.front.should eq([card1])
@@ -83,10 +86,10 @@ describe PhysicalCard do
   end
 
   # This doesn't quite fit the model, so just doing our best
-  context "meld" do
-    let(:card1) { find_unique("bruna e:emn") }
-    let(:card2) { find_unique("gisela e:emn") }
-    let(:card3) { find_unique("brisela e:emn") }
+  context 'meld' do
+    let(:card1) { find_unique('bruna e:emn') }
+    let(:card2) { find_unique('gisela e:emn') }
+    let(:card3) { find_unique('brisela e:emn') }
     it do
       physical_card1.should_not eq(physical_card2)
       physical_card1.should eq(physical_card3)

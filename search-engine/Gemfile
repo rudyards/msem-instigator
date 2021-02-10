@@ -1,10 +1,12 @@
-source "https://rubygems.org"
-gem "rake"
-gem "damerau-levenshtein"
-gem "unicode_utils"
-gem "nokogiri"
-gem "pry"
-gem "rspec", require: false, group: :test
-gem "simplecov", require: false, group: :test
-gem "pathname-glob"
-gem "memory_profiler", require: false, group: :test
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+gem 'damerau-levenshtein'
+gem 'memory_profiler', require: false, group: :test
+gem 'nokogiri'
+gem 'pathname-glob'
+gem 'pry'
+gem 'rake'
+gem 'rspec', require: false, group: :test
+gem 'simplecov', require: false, group: :test
+gem 'unicode_utils'

@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative "../lib/indexer"
+require_relative '../lib/indexer'
 path = "#{__dir__}/../../index/index.json"
-verbose = (ARGV[0] == "--verbose")
+verbose = (ARGV[0] == '--verbose')
 
 Indexer.new(path, verbose).call

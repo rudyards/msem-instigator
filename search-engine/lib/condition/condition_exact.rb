@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionExact < Condition
   def initialize(name)
     @name = name

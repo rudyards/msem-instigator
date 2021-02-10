@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Patch
   def initialize(cards, sets)
     @cards = cards
@@ -9,7 +11,7 @@ class Patch
   end
 
   def each_printing(&block)
-    @cards.each do |name, printings|
+    @cards.each do |_name, printings|
       printings.each(&block)
     end
   end
@@ -19,14 +21,14 @@ class Patch
   end
 
   def cards_by_set
-    @cards_by_set ||= @cards.values.flatten.group_by{|c| c["set_code"]}
+    @cards_by_set ||= @cards.values.flatten.group_by { |c| c['set_code'] }
   end
 
   def delete_printing_if(&block)
-    @cards.each do |name, printings|
+    @cards.each do |_name, printings|
       printings.delete_if(&block)
     end
-    @cards.delete_if do |name, printings|
+    @cards.delete_if do |_name, printings|
       printings.empty?
     end
   end

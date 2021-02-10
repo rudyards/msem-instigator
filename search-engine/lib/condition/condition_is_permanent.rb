@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class ConditionIsPermanent < ConditionSimple
   def match?(card)
-    not card.types.any?{|t|
-      t == "instant" or t == "sorcery" or t == "plane" or t == "scheme" or t == "phenomenon" or t == "conspiracy" or t == "vanguard"
-    }
+    card.types.none? do |t|
+      %w[instant sorcery plane scheme phenomenon conspiracy vanguard].include?(t)
+    end
   end
 
   def to_s
-    "is:permanent"
+    'is:permanent'
   end
 end

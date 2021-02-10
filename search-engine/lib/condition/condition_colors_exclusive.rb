@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionColorsExclusive < ConditionColors
   def match?(card)
     super and (card.colors.chars - @colors_query).empty?

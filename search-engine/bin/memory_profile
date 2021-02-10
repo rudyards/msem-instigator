@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "memory_profiler"
-require_relative "../lib/card_database"
+require 'memory_profiler'
+require_relative '../lib/card_database'
 c = nil
-report = MemoryProfiler.report{
+report = MemoryProfiler.report do
   c = CardDatabase.load
-}
+end
 report.pretty_print

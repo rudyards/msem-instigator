@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fixing printing dates of promo cards
 # If we treat prerelease promos as released at prerelease
 # but actualy cards as released at release
@@ -8,33 +10,36 @@ class PatchFixPromoPrintDates < Patch
   def call
     each_card do |name, printings|
       # Prerelease
-      ptc_printing = printings.find{|c| c["set_code"] == "ptc" }
+      ptc_printing = printings.find { |c| c['set_code'] == 'ptc' }
       # Release
-      mlp_printing = printings.find{|c| c["set_code"] == "mlp" }
+      mlp_printing = printings.find { |c| c['set_code'] == 'mlp' }
       # Gameday
-      mgdc_printing = printings.find{|c| c["set_code"] == "mgdc" }
+      mgdc_printing = printings.find { |c| c['set_code'] == 'mgdc' }
       # Media inserts
-      mbp_printing = printings.find{|c| c["set_code"] == "mbp" }
+      mbp_printing = printings.find { |c| c['set_code'] == 'mbp' }
 
       guess_date = guess_date_for(printings)
 
-      if ptc_printing and not ptc_printing["release_date"]
+      if ptc_printing && !(ptc_printing['release_date'])
         raise "No guessable date for #{name}" unless guess_date
+
         guess_ptc_date = (Date.parse(guess_date) - 6).to_s
-        ptc_printing["release_date"] = guess_ptc_date
+        ptc_printing['release_date'] = guess_ptc_date
       end
-      if mlp_printing and not mlp_printing["release_date"]
+      if mlp_printing && !(mlp_printing['release_date'])
         raise "No guessable date for #{name}" unless guess_date
-        mlp_printing["release_date"] = guess_date
+
+        mlp_printing['release_date'] = guess_date
       end
-      if mgdc_printing and not mgdc_printing["release_date"]
+      if mgdc_printing && !(mgdc_printing['release_date'])
         raise "No guessable date for #{name}" unless guess_date
-        mgdc_printing["release_date"] = guess_date
+
+        mgdc_printing['release_date'] = guess_date
       end
-      if mbp_printing and not mbp_printing["release_date"]
-        raise "No guessable date for #{name}" unless guess_date
-        mbp_printing["release_date"] = guess_date
-      end
+      next unless mbp_printing && !(mbp_printing['release_date'])
+      raise "No guessable date for #{name}" unless guess_date
+
+      mbp_printing['release_date'] = guess_date
     end
   end
 
@@ -42,8 +47,8 @@ class PatchFixPromoPrintDates < Patch
 
   def guess_date_for(printings)
     printings
-      .select{|c| !["ptc", "mlp", "mgdc", "mbp"].include?(c["set_code"]) }
-      .map{|c| c["release_date"] || c["set"]["release_date"] || "9999-12-31" }
+      .reject { |c| %w[ptc mlp mgdc mbp].include?(c['set_code']) }
+      .map { |c| c['release_date'] || c['set']['release_date'] || '9999-12-31' }
       .min
   end
 end

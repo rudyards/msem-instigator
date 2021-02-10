@@ -1,17 +1,19 @@
-describe "CLI Frontend" do
+# frozen_string_literal: true
+
+describe 'CLI Frontend' do
   let(:cli) { $cli_frontend ||= CLIFrontend.new }
 
-  it "non_verbose" do
+  it 'non_verbose' do
     assert_cli(
-      search: "angel serenity",
+      search: 'angel serenity',
       verbose: false,
       output: <<-EOF,
         Angel of Serenity
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
     assert_cli(
-      search: "t:forest",
+      search: 't:forest',
       verbose: false,
       output: <<-EOF,
         Bayou
@@ -31,14 +33,14 @@ describe "CLI Frontend" do
         Taiga
         Temple Garden
         Tropical Island
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
   end
 
-  it "verbose_all_sets" do
+  it 'verbose_all_sets' do
     assert_cli(
-      search: "jace beleren",
+      search: 'jace beleren',
       verbose: true,
       output: <<-EOF,
         Jace Beleren {1}{u}{u}
@@ -48,11 +50,11 @@ describe "CLI Frontend" do
         [−1]: Target player draws a card.
         [−10]: Target player puts the top twenty cards of their library into their graveyard.
         Loyalty: 3
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
     assert_cli(
-      search: "siege rhino",
+      search: 'siege rhino',
       verbose: true,
       output: <<-EOF,
         Siege Rhino {1}{w}{b}{g}
@@ -61,14 +63,14 @@ describe "CLI Frontend" do
         Trample
         When Siege Rhino enters the battlefield, each opponent loses 3 life and you gain 3 life.
         4/5
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
   end
 
-  it "verbose_linebreaks" do
+  it 'verbose_linebreaks' do
     assert_cli(
-      search: "mana=4gg t:dragon",
+      search: 'mana=4gg t:dragon',
       verbose: true,
       output: <<-EOF,
         Canopy Dragon {4}{g}{g}
@@ -84,14 +86,14 @@ describe "CLI Frontend" do
         Flying
         When Destructor Dragon dies, destroy target noncreature permanent.
         4/4
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
   end
 
-  it "verbose color indicator" do
+  it 'verbose color indicator' do
     assert_cli(
-      search: "mana=4 c:u c:w",
+      search: 'mana=4 c:u c:w',
       verbose: true,
       output: <<-EOF,
         Transguild Courier {4}
@@ -99,14 +101,14 @@ describe "CLI Frontend" do
         Artifact Creature - Golem
         (Color indicator: Transguild Courier is all colors)
         3/3
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
   end
 
-  it "verbose reminder text" do
+  it 'verbose reminder text' do
     assert_cli(
-      search: "steam vents",
+      search: 'steam vents',
       verbose: true,
       output: <<-EOF,
         Steam Vents
@@ -114,14 +116,14 @@ describe "CLI Frontend" do
         Land - Island Mountain
         ({T}: Add {U} or {R}.)
         As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
   end
 
-  it "verbose_some_sets" do
+  it 'verbose_some_sets' do
     assert_cli(
-      search: "bloodbraid elf a:steve",
+      search: 'bloodbraid elf a:steve',
       verbose: true,
       output: <<-EOF,
         Bloodbraid Elf {2}{r}{g}
@@ -130,14 +132,14 @@ describe "CLI Frontend" do
         Haste
         Cascade
         3/2
-        EOF
-      error: ""
+      EOF
+      error: ''
     )
   end
 
-  it "error_reporting" do
+  it 'error_reporting' do
     assert_cli(
-      search: "kolagan",
+      search: 'kolagan',
       verbose: false,
       output: <<-EOF,
         Dragonlord Kolaghan
@@ -148,20 +150,20 @@ describe "CLI Frontend" do
         Kolaghan Stormsinger
         Kolaghan's Command
         Kolaghan, the Storm's Fury
-        EOF
+      EOF
       error: <<-EOF
         Trying spelling "kolaghan" in addition to "kolagan"
-        EOF
+      EOF
     )
     assert_cli(
-      search: %Q[time:"Battle for Homelands" t:ral],
+      search: %(time:"Battle for Homelands" t:ral),
       verbose: false,
       output: <<-EOF,
         Ral Zarek
-        EOF
+      EOF
       error: <<-EOF
         Doesn't look like correct date, ignored: "battle for homelands"
-        EOF
+      EOF
     )
   end
 
@@ -172,23 +174,27 @@ describe "CLI Frontend" do
   def assert_cli(**args)
     expected_output = strip_indent(args[:output])
     expected_error  = strip_indent(args[:error])
-    out, err = capture_io{ cli.call(args[:verbose], args[:search]) }
+    out, err = capture_io { cli.call(args[:verbose], args[:search]) }
     err.should eq(expected_error)
     out.should eq(expected_output)
   end
 
   def strip_indent(str)
-    str.gsub(/^ {8}/, "")
+    str.gsub(/^ {8}/, '')
   end
 
   def capture_io
-    require "stringio"
-    orig_stdout, orig_stderr         = $stdout, $stderr
-    captured_stdout, captured_stderr = StringIO.new, StringIO.new
-    $stdout, $stderr                 = captured_stdout, captured_stderr
+    require 'stringio'
+    orig_stdout = $stdout
+    orig_stderr = $stderr
+    captured_stdout = StringIO.new
+    captured_stderr = StringIO.new
+    $stdout = captured_stdout
+    $stderr = captured_stderr
     yield
     [captured_stdout.string, captured_stderr.string]
-   ensure
-    $stdout, $stderr = orig_stdout, orig_stderr
+  ensure
+    $stdout = orig_stdout
+    $stderr = orig_stderr
   end
 end

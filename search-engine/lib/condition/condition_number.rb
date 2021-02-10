@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ConditionNumber < ConditionSimple
-  def initialize(number, op=":")
+  def initialize(number, op = ':')
     @number_s = number.downcase
     @number_i = @number_s.to_i
     @op = op
@@ -9,13 +11,13 @@ class ConditionNumber < ConditionSimple
     card_number_s = card.number.downcase
     card_number_i = card.number.to_i
     case @op
-    when ">"
-      ([card_number_i, card_number_s] <=> [@number_i, @number_s]) > 0
-    when ">="
+    when '>'
+      ([card_number_i, card_number_s] <=> [@number_i, @number_s]).positive?
+    when '>='
       ([card_number_i, card_number_s] <=> [@number_i, @number_s]) >= 0
-    when "<"
-      ([card_number_i, card_number_s] <=> [@number_i, @number_s]) < 0
-    when "<="
+    when '<'
+      ([card_number_i, card_number_s] <=> [@number_i, @number_s]).negative?
+    when '<='
       ([card_number_i, card_number_s] <=> [@number_i, @number_s]) <= 0
     else # = or :
       card_number_s == @number_s

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionArtist < ConditionSimple
   def initialize(artist)
     @artist = artist.downcase

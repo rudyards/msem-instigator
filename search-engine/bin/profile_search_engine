@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative "../lib/card_database"
-require "benchmark"
-require "ruby-prof"
+require_relative '../lib/card_database'
+require 'benchmark'
+require 'ruby-prof'
 
 @db = CardDatabase.load
 
@@ -17,9 +18,9 @@ end
 result = RubyProf.stop
 # print a flat profile to text
 printer = RubyProf::FlatPrinter.new(result)
-printer.print(STDOUT, sort_method: :total_time)
+printer.print($stdout, sort_method: :total_time)
 
-puts ""
+puts ''
 
 printer = RubyProf::GraphPrinter.new(result)
-printer.print(STDOUT, sort_method: :total_time)
+printer.print($stdout, sort_method: :total_time)

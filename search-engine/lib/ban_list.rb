@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BanList
-  START = Date.parse("1900-01-01")
+  START = Date.parse('1900-01-01')
 
   def initialize(format)
     @format = format
@@ -8,11 +10,12 @@ class BanList
   end
 
   def legality(card_name, time)
-    statuses = @cards[card_name] || [[START, "legal"]]
+    statuses = @cards[card_name] || [[START, 'legal']]
     if time
-      status = "legal"
+      status = 'legal'
       statuses.each do |change_time, leg|
-        break if time and change_time > time
+        break if time && (change_time > time)
+
         status = leg
       end
       status
@@ -25,7 +28,7 @@ class BanList
     result = {}
     @cards.each_key do |card_name|
       status = legality(card_name, time)
-      result[card_name] = status unless status == "legal"
+      result[card_name] = status unless status == 'legal'
     end
     result
   end
@@ -33,21 +36,21 @@ class BanList
   def events
     events = {}
     @cards.each do |card_name, card_events|
-      [[nil, "legal"], *card_events].each_cons(2) do |(d1, l1), (d2, l2)|
+      [[nil, 'legal'], *card_events].each_cons(2) do |(_d1, l1), (d2, l2)|
         events[d2] ||= []
-        events[d2] << {name: card_name, old: l1, new: l2}
+        events[d2] << { name: card_name, old: l1, new: l2 }
       end
     end
 
-    events.sort.reverse.map do |date,evs|
-      url = @events.find{|d,_,_| d == date}[1]
+    events.sort.reverse.map do |date, evs|
+      url = @events.find { |d, _, _| d == date }[1]
       date = nil if date == START
       [date, url, evs]
     end
   end
 
   def change_dates
-    @events.map{|d,_,_| d}
+    @events.map { |d, _, _| d }
   end
 
   private
@@ -68,13 +71,16 @@ class BanList
   def validate
     dates = @events.map(&:first)
     raise "#{self} not sorted" unless dates.sort == dates
-      raise "#{self} has multiples of same date" if dates.uniq != dates
+    raise "#{self} has multiples of same date" if dates.uniq != dates
+
     @cards.each do |card_name, legalities|
       dates = legalities.map(&:first)
       status = legalities.map(&:last)
       raise "#{self} for #{card_name} not sorted" unless dates.sort == dates
-      raise "#{self} for #{card_name} starts with legal, which is redundant" if status[0] == "legal"
-      raise "#{self} for #{card_name} has transition to same status" if status.each_cons(2).any?{|before, after| before==after}
+      raise "#{self} for #{card_name} starts with legal, which is redundant" if status[0] == 'legal'
+      raise "#{self} for #{card_name} has transition to same status" if status.each_cons(2).any? do |before, after|
+                                                                          before == after
+                                                                        end
     end
   end
 
@@ -92,7 +98,7 @@ class BanList
     def for_format(format, &block)
       ban_list = self[format]
       ban_list.instance_eval(&block)
-      ban_list.instance_eval{ validate }
+      ban_list.instance_eval { validate }
     end
 
     def all_change_dates
@@ -101,4 +107,4 @@ class BanList
   end
 end
 
-Dir["#{__dir__}/ban_list/*.rb"].each do |path| require_relative path end
+Dir["#{__dir__}/ban_list/*.rb"].each { |path| require_relative path }

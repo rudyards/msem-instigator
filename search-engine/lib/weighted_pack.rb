@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Shares nothing with Pack except some testing stuff
 class WeightedPack < Pack
   # Takes Hash<Pack, Integer>
@@ -10,9 +12,9 @@ class WeightedPack < Pack
     random_number = rand(@total_weight)
     @packs.each do |pack, weight|
       random_number -= weight
-      return pack.open if random_number < 0
+      return pack.open if random_number.negative?
     end
-    raise "Weighted sample algorithm failed"
+    raise 'Weighted sample algorithm failed'
   end
 
   ## Testing support

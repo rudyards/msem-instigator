@@ -1,37 +1,39 @@
+# frozen_string_literal: true
+
 # Where's autoloader when we need it
-require_relative "condition/condition"
-require_relative "condition/condition_simple"
-require_relative "condition/condition_format"
-require_relative "condition/condition_print"
-require_relative "condition/condition_regexp"
-require_relative "condition/condition_or"
-Dir["#{__dir__}/condition/condition_*.rb"].sort.each do |path| require_relative path end
-require_relative "query_tokenizer"
+require_relative 'condition/condition'
+require_relative 'condition/condition_simple'
+require_relative 'condition/condition_format'
+require_relative 'condition/condition_print'
+require_relative 'condition/condition_regexp'
+require_relative 'condition/condition_or'
+Dir["#{__dir__}/condition/condition_*.rb"].sort.each { |path| require_relative path }
+require_relative 'query_tokenizer'
 
 class QueryParser
   def parse(query_string)
     str = query_string.strip
     if str =~ /\A(\+\+)?!(.*)\z/
-      if $1 == "++"
-        metadata = {ungrouped: true}
-      else
-        metadata = {}
-      end
-      name = $2
+      metadata = if Regexp.last_match(1) == '++'
+                   { ungrouped: true }
+                 else
+                   {}
+                 end
+      name = Regexp.last_match(2)
       # These cards need special treatment:
       # * "Ach! Hans, Run!"
       # * Look at Me, I'm R&D
       # * R&D's Secret Lair
       # * Sword of Dungeons & Dragons
       # * "Rumors of My Death . . ."
-      unless name =~ /Ach.*Hans.*Run/i or name =~ /Rumors.*of.*My.*Death/i
-        name = name.sub(/\A"(.*)"\z/) { $1 }
+      unless name =~ (/Ach.*Hans.*Run/i) || name =~ (/Rumors.*of.*My.*Death/i)
+        name = name.sub(/\A"(.*)"\z/) { Regexp.last_match(1) }
       end
-      if name =~ %r[&|/] && name !~ /R&D/i && name !~ /Dungeons\s*&\s*Dragons/i
-        cond = ConditionExactMultipart.new(name)
-      else
-        cond = ConditionExact.new(name)
-      end
+      cond = if name =~ %r{&|/} && name !~ /R&D/i && name !~ /Dungeons\s*&\s*Dragons/i
+               ConditionExactMultipart.new(name)
+             else
+               ConditionExact.new(name)
+             end
       [cond, metadata, []]
     else
       @tokens, @warnings = QueryTokenizer.new.tokenize(str)
@@ -41,7 +43,7 @@ class QueryParser
     end
   end
 
-private
+  private
 
   def conds_to_query(conds)
     if conds.empty?
@@ -54,10 +56,11 @@ private
   end
 
   def parse_query
-    old_time, @time = @time, nil
+    old_time = @time
+    @time = nil
     cond = parse_cond_list
     if @time
-      printed_early = ConditionPrint.new("<=", @time)
+      printed_early = ConditionPrint.new('<=', @time)
       cond = conds_to_query([cond, printed_early])
       cond.metadata! :time, @time
       cond
@@ -95,7 +98,7 @@ private
         # This is semantically meaningful
         left_query = conds_to_query(conds)
         right_query = parse_cond_list
-        if left_query and right_query
+        if left_query && right_query
           return ConditionPart.new(ConditionAnd.new(left_query, ConditionOther.new(right_query)))
         else
           query = left_query || right_query
@@ -120,6 +123,7 @@ private
 
   def parse_cond
     return nil if @tokens.empty?
+
     case @tokens[0][0]
     when :open
       @tokens.shift
@@ -127,7 +131,7 @@ private
       @tokens.shift if @tokens[0] == [:close] # Ignore mismatched
       subquery
     when :close
-      return
+      nil
     when :not, :other, :part, :related, :alt
       tok, = @tokens.shift
       cond = parse_cond
@@ -150,7 +154,7 @@ private
       parse_cond
     when :time
       # Quietly eat it, for now
-      @warnings << "Multiple time: clauses in same subquery" if @time
+      @warnings << 'Multiple time: clauses in same subquery' if @time
       @time = @tokens.shift[1]
       parse_cond
     else

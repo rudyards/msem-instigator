@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Condition
   def inspect
     to_s
@@ -19,13 +21,13 @@ class Condition
     # structural equality, subclass if you need something fancier
     self.class == other.class and
       instance_variables == other.instance_variables and
-      instance_variables.all?{|ivar| instance_variable_get(ivar) == other.instance_variable_get(ivar) }
+      instance_variables.all? { |ivar| instance_variable_get(ivar) == other.instance_variable_get(ivar) }
   end
 
   def hash
     [
       self.class,
-      instance_variables.map{|ivar| [ivar, instance_variable_get(ivar)] }
+      instance_variables.map { |ivar| [ivar, instance_variable_get(ivar)] }
     ].hash
   end
 
@@ -36,17 +38,18 @@ class Condition
   private
 
   def normalize_text(text)
-    text.downcase.gsub(/[Ææ]/, "ae").tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-").strip
+    text.downcase.gsub(/[Ææ]/, 'ae').tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-").strip
   end
 
   def normalize_name(name)
-    normalize_text(name).split.join(" ")
+    normalize_text(name).split.join(' ')
   end
 
   def maybe_quote(text)
-    if text.is_a?(Date)
-      '"%d.%d.%d"' % [text.year, text.month, text.day]
-    elsif text =~ /\A[a-zA-Z0-9]+\z/
+    case text
+    when Date
+      format('"%d.%d.%d"', text.year, text.month, text.day)
+    when /\A[a-zA-Z0-9]+\z/
       text
     else
       text.inspect

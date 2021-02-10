@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionNameComparison < ConditionSimple
   def initialize(op, name)
     @op = op
@@ -7,15 +9,15 @@ class ConditionNameComparison < ConditionSimple
   def match?(card)
     card_name = normalize_for_comparison(card.name)
     case @op
-    when "="
+    when '='
       card_name == @name
-    when ">"
+    when '>'
       card_name > @name
-    when ">="
+    when '>='
       card_name >= @name
-    when "<="
+    when '<='
       card_name <= @name
-    when "<"
+    when '<'
       card_name < @name
     else
       raise "Unrecognized comparison #{@op}"
@@ -29,6 +31,6 @@ class ConditionNameComparison < ConditionSimple
   private
 
   def normalize_for_comparison(name)
-    name.downcase.gsub(/[,']/, "")
+    name.downcase.gsub(/[,']/, '')
   end
 end

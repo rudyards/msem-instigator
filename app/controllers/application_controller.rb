@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -16,9 +18,9 @@ class ApplicationController < ActionController::Base
 
   def paginate_by_set(printings, page)
     printings
-             .sort_by{|c| [-c.release_date_i, c.set_name, c.name]}
-             .group_by(&:set)
-             .to_a
-             .paginate(page: page, per_page: 10)
+      .sort_by { |c| [-c.release_date_i, c.set_name, c.name] }
+      .group_by(&:set)
+      .to_a
+      .paginate(page: page, per_page: 10)
   end
 end

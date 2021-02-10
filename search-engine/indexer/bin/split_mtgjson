@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "open-uri"
-require "pathname"
-require "json"
+require 'open-uri'
+require 'pathname'
+require 'json'
 
 class SplitMtgjson
-  SETS_DIR = Pathname(__dir__) + "../../data/sets"
+  SETS_DIR = "#{Pathname(__dir__)}../../data/sets"
 
   def initialize(path)
     @data = JSON.parse(open(path).read)
@@ -15,16 +16,14 @@ class SplitMtgjson
   def call
     SETS_DIR.mkpath
     @data.each do |set_code, set|
-      set["cards"].each do |card|
+      set['cards'].each do |card|
         # Delete this, as it changes a ton and messes up git history
-        card.delete "printings"
+        card.delete 'printings'
         # Sort this for better diffs
-        if card["foreignNames"]
-          card["foreignNames"].sort_by!{|c| [c["language"], c["multiverseid"]]}
-        end
+        card['foreignNames']&.sort_by! { |c| [c['language'], c['multiverseid']] }
       end
 
-      (SETS_DIR + "#{set_code}.json").open("w") do |fh|
+      (SETS_DIR + "#{set_code}.json").open('w') do |fh|
         fh.puts set.to_json
       end
     end
@@ -32,8 +31,8 @@ class SplitMtgjson
 end
 
 unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} /path/to/AllSets-x.json"
-  STDERR.puts "   or: #{$0} http://url.to/AllSets-x.json"
+  warn "Usage: #{$PROGRAM_NAME} /path/to/AllSets-x.json"
+  warn "   or: #{$PROGRAM_NAME} http://url.to/AllSets-x.json"
   exit 1
 end
 

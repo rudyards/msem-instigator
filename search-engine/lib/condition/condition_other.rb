@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionOther < Condition
   def initialize(cond)
     @cond = cond
@@ -6,9 +8,7 @@ class ConditionOther < Condition
   def search(db)
     result = Set[]
     @cond.search(db).each do |c|
-      if c.others
-        result.merge(c.others)
-      end
+      result.merge(c.others) if c.others
     end
     result
   end

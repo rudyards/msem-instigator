@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 class Deck
   attr_reader :set, :name, :type, :cards, :sideboard, :slug
+
   def initialize(set, name, type, cards, sideboard)
     @set = set
     @name = name
     @type = type
     @cards = cards
     @sideboard = sideboard
-    @slug = @name.downcase.gsub("'s", "s").gsub(/[^a-z0-9s]+/, "-")
+    @slug = @name.downcase.gsub("'s", 's').gsub(/[^a-z0-9s]+/, '-')
   end
 
   def cards_with_sideboard
@@ -34,7 +37,7 @@ class Deck
   end
 
   def all_set_codes
-    @all_set_codes ||= [*@cards, *@sideboard].map{|_,card| card.set_code}.to_set
+    @all_set_codes ||= [*@cards, *@sideboard].map { |_, card| card.set_code }.to_set
   end
 
   def set_code
@@ -57,12 +60,12 @@ class Deck
       output << "#{count} #{card}"
     end
     unless @sideboard.empty?
-      output << ""
-      output << "Sideboard"
+      output << ''
+      output << 'Sideboard'
       @sideboard.each do |count, card|
         output << "#{count} #{card}"
       end
     end
-    output.join("\n") + "\n"
+    "#{output.join("\n")}\n"
   end
 end

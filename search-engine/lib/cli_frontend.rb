@@ -1,4 +1,6 @@
-require_relative "card_database"
+# frozen_string_literal: true
+
+require_relative 'card_database'
 
 class CLIFrontend
   def initialize
@@ -26,28 +28,28 @@ class CLIFrontend
     results.printings.each do |card_printing|
       (cards[card_printing.name] ||= []) << card_printing
     end
-    cards.each_with_index do |(card_name, printings), i|
+    cards.each_with_index do |(_card_name, printings), i|
       card = printings[0].card
-      if printings.size == card.printings.size
-        codes = printings.sort_by(&:release_date).map(&:set_code)
-      else
-        codes = card.printings.sort_by(&:release_date).map do |cp|
-          if printings.include?(cp)
-            "+#{cp.set_code}"
-          else
-            "-#{cp.set_code}"
-          end
-        end
-      end
-      puts [card.name, card.display_mana_cost].compact.join(" ")
-      puts "[#{codes.join(" ")}]"
+      codes = if printings.size == card.printings.size
+                printings.sort_by(&:release_date).map(&:set_code)
+              else
+                card.printings.sort_by(&:release_date).map do |cp|
+                  if printings.include?(cp)
+                    "+#{cp.set_code}"
+                  else
+                    "-#{cp.set_code}"
+                  end
+                end
+              end
+      puts [card.name, card.display_mana_cost].compact.join(' ')
+      puts "[#{codes.join(' ')}]"
       puts card.typeline
-      puts "#{card.reminder_text}" if card.reminder_text
+      puts card.reminder_text.to_s if card.reminder_text
       puts "(Color indicator: #{card.name} is #{card.color_indicator})" if card.color_indicator
-      puts "#{card.text}" if card.text != ""
+      puts card.text.to_s if card.text != ''
       puts "#{card.display_power}/#{card.display_toughness}" if card.power
       puts "Loyalty: #{card.loyalty}" if card.loyalty
-      puts "" unless i+1 == cards.size
+      puts '' unless i + 1 == cards.size
     end
   end
 end

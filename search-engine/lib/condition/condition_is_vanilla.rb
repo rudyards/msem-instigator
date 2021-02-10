@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class ConditionIsVanilla < ConditionSimple
   def match?(card)
-    card.text == ""
+    card.text == ''
   end
 
   def to_s
-    "is:vanilla"
+    'is:vanilla'
   end
 end

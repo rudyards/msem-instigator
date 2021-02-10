@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
+require 'active_model/railtie'
+require 'active_job/railtie'
 # require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "sprockets/railtie"
-require "rails/test_unit/railtie"
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'sprockets/railtie'
+require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -33,18 +35,18 @@ end
 
 # will_paginate hacks
 # based on https://stackoverflow.com/questions/4592489/adding-rel-nofollow-to-will-paginate-links-in-rails/12075691
-require "will_paginate/view_helpers/action_view"
+require 'will_paginate/view_helpers/action_view'
 class LinkRendererRelNofollow < WillPaginate::ActionView::LinkRenderer
   def rel_value(page)
     case page
     when @collection.previous_page
-      "prev nofollow" + (page == 1 ? " start nofollow" : "")
+      "prev nofollow#{page == 1 ? ' start nofollow' : ''}"
     when @collection.next_page
-      "next nofollow"
+      'next nofollow'
     when 1
-      "start nofollow"
+      'start nofollow'
     else
-      "nofollow"
+      'nofollow'
     end
   end
 end

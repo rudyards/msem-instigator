@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class LegalityInformation
-  def initialize(card, time=nil)
+  def initialize(card, time = nil)
     @card = card
     @time = time
     @result = {}
@@ -12,7 +14,7 @@ class LegalityInformation
   end
 
   def legal_everywhere?
-    @result.values.all? {|x| x == "legal"}
+    @result.values.all? { |x| x == 'legal' }
   end
 
   def legal_nowhere?
@@ -20,6 +22,6 @@ class LegalityInformation
   end
 
   def to_h
-    @result.select{|k,v| v}
+    @result.select { |_k, v| v }
   end
 end

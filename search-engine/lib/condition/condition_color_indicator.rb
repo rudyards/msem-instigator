@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ConditionColorIndicator < ConditionSimple
   def initialize(indicator)
-    @indicator = indicator.downcase.gsub(/ml/, "").chars.to_set
+    @indicator = indicator.downcase.gsub(/ml/, '').chars.to_set
     @indicator_name = color_indicator_name(@indicator)
   end
 
@@ -14,18 +16,18 @@ class ConditionColorIndicator < ConditionSimple
     "in:#{@indicator.to_a.join}"
   end
 
-private
+  private
 
   # This must match Card.color_indicator_name
   # (but won't be identical to it)
   def color_indicator_name(indicator)
-    names = {"w" => "white", "u" => "blue", "b" => "black", "r" => "red", "g" => "green"}
-    color_indicator = names.map{|c,cv| indicator.include?(c) ? cv : nil}.compact
+    names = { 'w' => 'white', 'u' => 'blue', 'b' => 'black', 'r' => 'red', 'g' => 'green' }
+    color_indicator = names.map { |c, cv| indicator.include?(c) ? cv : nil }.compact
     case color_indicator.size
     when 5
-      "all colors"
+      'all colors'
     when 1, 2
-      color_indicator.join(" and ")
+      color_indicator.join(' and ')
     when 0
       # devoid and Ghostfire - for some reason they use rules text, not color indicator
       # "colorless"

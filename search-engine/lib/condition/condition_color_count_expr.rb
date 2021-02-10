@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionColorCountExpr < ConditionSimple
   def initialize(a, op, b)
     @a = a.downcase
@@ -6,22 +8,22 @@ class ConditionColorCountExpr < ConditionSimple
   end
 
   def match?(card)
-    if @a == "c"
-      a = card.colors.size
-    else
-      a = card.color_identity.size
-    end
+    a = if @a == 'c'
+          card.colors.size
+        else
+          card.color_identity.size
+        end
 
     case @op
-    when "="
+    when '='
       a == @b
-    when ">="
+    when '>='
       a >= @b
-    when ">"
+    when '>'
       a > @b
-    when "<="
+    when '<='
       a <= @b
-    when "<"
+    when '<'
       a < @b
     else
       raise "Expr comparison parse error: #{@op}"

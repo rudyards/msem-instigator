@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionBorder < ConditionSimple
   def initialize(border)
     @border = border.downcase

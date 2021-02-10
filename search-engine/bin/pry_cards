@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative "../lib/card_database"
-require "pry"
+require_relative '../lib/card_database'
+require 'pry'
 
 binding.pry(CardDatabase.load)
