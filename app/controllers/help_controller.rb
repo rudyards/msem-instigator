@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class HelpController < ApplicationController
   def syntax
-    @title = "Syntax"
+    @title = 'Syntax'
   end
 
   def contact
-    @title = "Contact"
+    @title = 'Contact'
   end
 
   def rules
-    @title = "Rules"
+    @title = 'Rules'
   end
 end

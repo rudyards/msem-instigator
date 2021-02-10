@@ -1,11 +1,14 @@
-describe "Opening packs smoke test" do
-  include_context "db"
+# frozen_string_literal: true
+
+describe 'Opening packs smoke test' do
+  include_context 'db'
   let(:pack_factory) { PackFactory.new(db) }
 
-  it "Opening packs should return something" do
-    db.sets.each do |set_code, set|
+  it 'Opening packs should return something' do
+    db.sets.each do |set_code, _set|
       pack = pack_factory.for(set_code)
       next unless pack
+
       cards = pack.open
       cards.should be_a(Array)
       cards.each do |card|

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class Sorter
-  COLOR_ORDER = ["w", "u", "b", "r", "g", "uw", "bu", "br", "gr", "gw", "bw", "ru", "bg", "rw", "gu", "buw", "bru", "bgr", "grw", "guw", "brw", "gru", "bgw", "ruw", "bgu", "bruw", "bgru", "bgrw", "gruw", "bguw", "bgruw", ""].each_with_index.to_h.freeze
+  COLOR_ORDER = ['w', 'u', 'b', 'r', 'g', 'uw', 'bu', 'br', 'gr', 'gw', 'bw', 'ru', 'bg', 'rw', 'gu', 'buw', 'bru',
+                 'bgr', 'grw', 'guw', 'brw', 'gru', 'bgw', 'ruw', 'bgu', 'bruw', 'bgru', 'bgrw', 'gruw', 'bguw', 'bgruw', ''].each_with_index.to_h.freeze
 
   # Fallback sorting for printings of each card:
   # * not MTGO only
@@ -13,11 +16,12 @@ class Sorter
   attr_reader :warnings, :sort_order
 
   def initialize(sort_order, seed)
-    known_sort_orders = ["ci", "cmc", "color", "name", "new", "newall", "number", "old", "oldall", "pow", "rand", "rarity", "tou"]
-    known_sort_orders += known_sort_orders.map{|s| "-#{s}"}
+    known_sort_orders = %w[ci cmc color name new newall number old oldall pow rand
+                           rarity tou]
+    known_sort_orders += known_sort_orders.map { |s| "-#{s}" }
 
     @seed = seed
-    @sort_order = sort_order ? sort_order.split(",") : []
+    @sort_order = sort_order ? sort_order.split(',') : []
     @warnings = []
     @sort_order = @sort_order.map do |part|
       if known_sort_orders.include?(part)
@@ -32,6 +36,7 @@ class Sorter
 
   def sort(results)
     return results.sort_by(&:default_sort_index) unless @sort_order
+
     results.sort_by do |c|
       card_key(c)
     end
@@ -46,47 +51,47 @@ class Sorter
   def card_key(c)
     @sort_order.flat_map do |part|
       case part
-      when "new", "-old"
+      when 'new', '-old'
         [c.set.regular? ? 0 : 1, -c.release_date_i]
-      when "old", "-new"
+      when 'old', '-new'
         [c.set.regular? ? 0 : 1, c.release_date_i]
-      when "newall", "-oldall"
+      when 'newall', '-oldall'
         [-c.release_date_i]
-      when "oldall", "-newall"
+      when 'oldall', '-newall'
         [c.release_date_i]
-      when "cmc"
+      when 'cmc'
         [c.cmc ? 0 : 1, -c.cmc.to_i]
-      when "-cmc"
+      when '-cmc'
         [c.cmc ? 0 : 1, c.cmc.to_i]
-      when "pow"
+      when 'pow'
         [c.power ? 0 : 1, -c.power.to_i]
-      when "-pow"
+      when '-pow'
         [c.power ? 0 : 1, c.power.to_i]
-      when "tou"
+      when 'tou'
         [c.toughness ? 0 : 1, -c.toughness.to_i]
-      when "-tou"
+      when '-tou'
         [c.toughness ? 0 : 1, c.toughness.to_i]
-      when "rand", "-rand"
+      when 'rand', '-rand'
         [Digest::MD5.hexdigest(@seed + c.name)]
-      when "number"
+      when 'number'
         [c.set.name, c.number.to_i, c.number]
-      when "-number"
+      when '-number'
         [c.set.name, -c.number.to_i, reverse_string_order(c.number)]
-      when "color"
+      when 'color'
         [COLOR_ORDER.fetch(c.colors)]
-      when "-color"
+      when '-color'
         [-COLOR_ORDER.fetch(c.colors)]
-      when "ci"
+      when 'ci'
         [COLOR_ORDER.fetch(c.color_identity)]
-      when "-ci"
+      when '-ci'
         [-COLOR_ORDER.fetch(c.color_identity)]
-      when "rarity"
+      when 'rarity'
         [-c.rarity_code]
-      when "-rarity"
+      when '-rarity'
         [c.rarity_code]
-      when "name"
+      when 'name'
         [c.name]
-      when "-name"
+      when '-name'
         [reverse_string_order(c.name)]
       else # unknown key, should have been caught by initializer
         raise "Invalid sort order #{part}"
@@ -96,6 +101,6 @@ class Sorter
 
   # This is a stupid hack, and also really slow
   def reverse_string_order(s)
-    s.unpack("U*").map{|code| -code}
+    s.unpack('U*').map(&:-@)
   end
 end

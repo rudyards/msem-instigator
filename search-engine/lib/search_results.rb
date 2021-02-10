@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchResults
   attr_reader :printings, :warnings
 
@@ -12,16 +14,16 @@ class SearchResults
   end
 
   def card_ids
-    @printings.map{|c| "#{c.name} [#{c.id}]"}
+    @printings.map { |c| "#{c.name} [#{c.id}]" }
   end
 
   def card_names_and_set_codes
-    @printings.group_by(&:name).map{|name, cards| [name, *cards.map(&:set_code).sort]}
+    @printings.group_by(&:name).map { |name, cards| [name, *cards.map(&:set_code).sort] }
   end
 
   def card_groups
     if @ungrouped
-      @printings.map{|cp| [cp]}
+      @printings.map { |cp| [cp] }
     else
       @printings.group_by(&:name).values
     end

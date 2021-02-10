@@ -1,34 +1,37 @@
-require "date"
-require "json"
-require "set"
-require "pathname"
-require "pathname-glob"
-require_relative "core_ext"
-require_relative "card_sets_data"
-require_relative "patches/patch"
+# frozen_string_literal: true
 
-Dir["#{__dir__}/patches/*.rb"].each do |path| require_relative path end
+require 'date'
+require 'json'
+require 'set'
+require 'pathname'
+require 'pathname-glob'
+require_relative 'core_ext'
+require_relative 'card_sets_data'
+require_relative 'patches/patch'
+
+Dir["#{__dir__}/patches/*.rb"].each { |path| require_relative path }
 
 class Indexer
-  ROOT = Pathname(__dir__).parent.parent.parent + "data"
+  ROOT = "#{Pathname(__dir__).parent.parent.parent}data"
   puts "Indexer: Root = #{ROOT}"
 
   # In verbose mode we validate each patch to make sure it actually does something
-  def initialize(save_path, verbose=false)
+  def initialize(save_path, verbose = false)
     @save_path = Pathname(save_path)
     @verbose = verbose
     @data = CardSetsData.new
   end
 
   def json_normalize(data)
-    if data.is_a?(Array)
+    case data
+    when Array
       data.map do |elem|
         json_normalize(elem)
       end
-    elsif data.is_a?(Hash)
-      Hash[data.map{|k,v|
+    when Hash
+      Hash[data.map do |k, v|
         [k, json_normalize(v)]
-      }.sort]
+      end.sort]
     else
       data
     end
@@ -38,9 +41,9 @@ class Indexer
     @save_path.parent.mkpath
     # Keep set index order as is, normalize eveything else
     index = prepare_index
-    index["cards"] = json_normalize(index["cards"])
-    index["sets"].each do |set_code, set|
-      index["sets"][set_code] = set
+    index['cards'] = json_normalize(index['cards'])
+    index['sets'].each do |set_code, set|
+      index['sets'][set_code] = set
     end
     @save_path.write(index.to_json)
   end
@@ -55,33 +58,33 @@ class Indexer
     apply_patches(cards, sets)
 
     ### Return data for saving
-    sets = sets.map{|s| [s["code"], index_set(s)]}.to_h
+    sets = sets.map { |s| [s['code'], index_set(s)] }.to_h
     set_order = sets.keys.each_with_index.to_h
     {
-      "sets" => sets,
-      "cards" => cards.map{|name, card_data|
+      'sets' => sets,
+      'cards' => cards.map do |name, card_data|
         [name, index_card(card_data, set_order)]
-      }.sort.to_h
+      end.sort.to_h
     }
   end
 
   def index_set(set)
     set.slice(
-      "block_code",
-      "block_name",
-      "booster",
-      "border",
-      "code",
-      "custom",
-      "frame",
-      "gatherer_code",
-      "has_boosters",
-      "name",
-      "official_block_code",
-      "official_code",
-      "online_only",
-      "release_date",
-      "type",
+      'block_code',
+      'block_name',
+      'booster',
+      'border',
+      'code',
+      'custom',
+      'frame',
+      'gatherer_code',
+      'has_boosters',
+      'name',
+      'official_block_code',
+      'official_code',
+      'online_only',
+      'release_date',
+      'type'
     ).compact
   end
 
@@ -139,7 +142,7 @@ class Indexer
       # Not bugs, more like different judgment calls than mtgjson
       PatchBfm,
       PatchUrza,
-      PatchFixPromoPrintDates,
+      PatchFixPromoPrintDates
     ]
   end
 
@@ -150,9 +153,7 @@ class Indexer
         # It could still be useful for debugging
         before = Marshal.load(Marshal.dump([cards, sets]))
         patch_class.new(cards, sets).call
-        if before == [cards, sets]
-          warn "Patch #{patch_class} seems to be doing nothing"
-        end
+        warn "Patch #{patch_class} seems to be doing nothing" if before == [cards, sets]
       else
         patch_class.new(cards, sets).call
       end
@@ -163,28 +164,28 @@ class Indexer
     sets = []
     cards = {}
 
-    @data.each_set do |set_code, set_data|
+    @data.each_set do |_set_code, set_data|
       set = set_data.slice(
-        "booster",
-        "border",
-        "custom",
-        "name",
-        "releaseDate",
-        "type",
+        'booster',
+        'border',
+        'custom',
+        'name',
+        'releaseDate',
+        'type'
       ).merge(
-        "code" => set_data["magicCardsInfoCode"],
-        "gatherer_code" => set_data["gathererCode"],
-        "official_code" => set_data["code"],
-        "online_only" => set_data["onlineOnly"],
+        'code' => set_data['magicCardsInfoCode'],
+        'gatherer_code' => set_data['gathererCode'],
+        'official_code' => set_data['code'],
+        'online_only' => set_data['onlineOnly']
       ).compact
       sets << set
-      set_data["cards"].each_with_index do |card_data, i|
-        name = card_data["name"]
-        card_data["set"] = set
+      set_data['cards'].each_with_index do |card_data, _i|
+        name = card_data['name']
+        card_data['set'] = set
         (cards[name] ||= []) << card_data
       end
     end
-    return sets, cards
+    [sets, cards]
   end
 
   def index_card(card, set_order)
@@ -192,65 +193,63 @@ class Indexer
     printing_data = []
     card.each do |printing|
       common_card_data << printing.slice(
-        "designer",
-        "cmc",
-        "colors",
-        "display_power",
-        "display_toughness",
-        "foreign_names",
-        "funny",
-        "hand", # vanguard
-        "hide_mana_cost",
-        "layout",
-        "life", # vanguard
-        "loyalty",
-        "manaCost",
-        "name",
-        "names",
-        "power",
-        "related",
-        "reserved",
-        "rulings",
-        "secondary",
-        "subtypes",
-        "supertypes",
-        "text",
-        "toughness",
-        "types",
+        'designer',
+        'cmc',
+        'colors',
+        'display_power',
+        'display_toughness',
+        'foreign_names',
+        'funny',
+        'hand', # vanguard
+        'hide_mana_cost',
+        'layout',
+        'life', # vanguard
+        'loyalty',
+        'manaCost',
+        'name',
+        'names',
+        'power',
+        'related',
+        'reserved',
+        'rulings',
+        'secondary',
+        'subtypes',
+        'supertypes',
+        'text',
+        'toughness',
+        'types'
       ).compact
 
       printing_data << [
-        printing["set_code"],
+        printing['set_code'],
         printing.slice(
-          "artist",
-          "border",
-          "exclude_from_boosters",
-          "flavor",
+          'artist',
+          'border',
+          'exclude_from_boosters',
+          'flavor',
           # "foiling",
-          "frame",
-          "multiverseid",
-          "number",
-          "print_sheet",
-          "rarity",
-          "release_date",
-          "timeshifted",
-          "watermark",
+          'frame',
+          'multiverseid',
+          'number',
+          'print_sheet',
+          'rarity',
+          'release_date',
+          'timeshifted',
+          'watermark'
         ).compact
       ]
     end
 
     result = common_card_data[0]
-    name = result["name"]
+    name = result['name']
     # Make sure it's reconciled at this point
     # This should be hard error once we're done
-    common_card_data[1..-1].each do |other_printing|
-      if other_printing != result
-        warn "Data for card #{name} inconsistent"
-      end
+    common_card_data[1..].each do |other_printing|
+      warn "Data for card #{name} inconsistent" if other_printing != result
     end
 
     # Output in canonical form, to minimize diffs between mtgjson updates
-    result["printings"] = printing_data.sort_by{|sc,d| [set_order.fetch(sc), d["number"], d["multiverseid"]] }
+    result['printings'] = printing_data.sort_by { |sc, d| [set_order.fetch(sc), d['number'], d['multiverseid']] }
     result
   end
 end

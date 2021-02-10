@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "pathname"
-require "json"
+require 'pathname'
+require 'json'
 
 class ValidateMtgjson
   def initialize(path)
@@ -9,31 +10,38 @@ class ValidateMtgjson
   end
 
   def warning(msg)
-    puts "#{@data["name"]}: #{msg}"
+    puts "#{@data['name']}: #{msg}"
   end
 
   def call
-    @data["cards"].group_by{|x|x}.each do |card, cards|
+    @data['cards'].group_by { |x| x }.each do |card, cards|
       next if cards.size == 1
-      warning "Card #{card["name"]}/#{card["number"]}/#{card["multiverseid"]} has #{cards.size} identical copies in the file"
+
+      warning "Card #{card['name']}/#{card['number']}/#{card['multiverseid']} has #{cards.size} identical copies in the file"
     end
 
-    @data["cards"].group_by{|c| c["number"]}.each do |number, cards|
+    @data['cards'].group_by { |c| c['number'] }.each do |number, cards|
       if number
         next if cards.size == 1
-        warning "Multiple cards assigned same number #{number}: #{cards.map{|c| "#{c["name"]}/#{c["multiverseid"]}"}.join(", ")}"
+
+        warning "Multiple cards assigned same number #{number}: #{cards.map do |c|
+                                                                    "#{c['name']}/#{c['multiverseid']}"
+                                                                  end.join(', ')}"
       else
-        warning "Missing collector number: #{cards.map{|c| "#{c["name"]}/#{c["multiverseid"]}"}.join(", ")}"
+        warning "Missing collector number: #{cards.map { |c| "#{c['name']}/#{c['multiverseid']}" }.join(', ')}"
       end
     end
 
-    @data["cards"].group_by{|c| c["multiverseid"]}.each do |multiverseid, cards|
+    @data['cards'].group_by { |c| c['multiverseid'] }.each do |multiverseid, cards|
       if multiverseid
         next if cards.size == 1
-        next if cards.size == 2 and ["flip", "split", "aftermath"].include?(cards[0]["layout"])
-        warning "Multiple cards assigned same multiverseid #{multiverseid}: #{cards.map{|c| "#{c["name"]}/#{c["number"]}"}.join(", ")}"
+        next if (cards.size == 2) && %w[flip split aftermath].include?(cards[0]['layout'])
+
+        warning "Multiple cards assigned same multiverseid #{multiverseid}: #{cards.map do |c|
+                                                                                "#{c['name']}/#{c['number']}"
+                                                                              end.join(', ')}"
       else
-        warning "Missing multiverseid #{multiverseid}: #{cards.map{|c| "#{c["name"]}/#{c["number"]}"}.join(", ")}"
+        warning "Missing multiverseid #{multiverseid}: #{cards.map { |c| "#{c['name']}/#{c['number']}" }.join(', ')}"
       end
     end
   end

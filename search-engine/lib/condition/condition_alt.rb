@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionAlt < Condition
   def initialize(cond)
     @cond = cond

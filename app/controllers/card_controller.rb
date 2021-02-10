@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class CardController < ApplicationController
   def show
     set = params[:set]
     number = params[:id]
-    if $CardDatabase.sets[set]
-      @card = $CardDatabase.sets[set].printings.find{|cp| cp.number == number}
-    end
+    @card = $CardDatabase.sets[set].printings.find { |cp| cp.number == number } if $CardDatabase.sets[set]
     if @card
       @title = @card.name
     else
@@ -15,9 +15,7 @@ class CardController < ApplicationController
   def gallery
     set = params[:set]
     number = params[:id]
-    if $CardDatabase.sets[set]
-      @card = $CardDatabase.sets[set].printings.find{|cp| cp.number == number}
-    end
+    @card = $CardDatabase.sets[set].printings.find { |cp| cp.number == number } if $CardDatabase.sets[set]
 
     if @card
       first_printing = @card.printings.first
@@ -38,7 +36,7 @@ class CardController < ApplicationController
   # as this untested copypasta is nasty
   # FIXME: And now it's not even the same anymore
   def index
-    @search = (params[:q] || "").strip
+    @search = (params[:q] || '').strip
     page = [1, params[:page].to_i].max
 
     unless @search.present?
@@ -48,11 +46,9 @@ class CardController < ApplicationController
     end
 
     # Temporary issue with bots
-    if params[:page]
-      logger.info "PAGINATED #{params.inspect} BY USERAGENT: #{request.headers['HTTP_USER_AGENT']}"
-    end
+    logger.info "PAGINATED #{params.inspect} BY USERAGENT: #{request.headers['HTTP_USER_AGENT']}" if params[:page]
 
-    if request.headers['HTTP_USER_AGENT'] =~ /MJ12bot/ and params[:page]
+    if request.headers['HTTP_USER_AGENT'] =~ (/MJ12bot/) && params[:page]
       render_403
       return
     end
@@ -69,16 +65,16 @@ class CardController < ApplicationController
     end
 
     case query.view
-    when "full"
+    when 'full'
       # force detailed view
       @cards = @cards.paginate(page: page, per_page: 10)
-      render "index_full"
-    when "images"
+      render 'index_full'
+    when 'images'
       @cards = @cards.paginate(page: page, per_page: 60)
-      render "index_images"
-    when "text"
+      render 'index_images'
+    when 'text'
       @cards = @cards.paginate(page: page, per_page: 60)
-      render "index_text"
+      render 'index_text'
     else
       # default view
       @cards = @cards.paginate(page: page, per_page: 25)
@@ -88,7 +84,7 @@ class CardController < ApplicationController
   private
 
   def choose_best_printing(printings)
-    best_printing = printings.find{|cp| ApplicationHelper.card_picture_path(cp) } || printings[1]
+    best_printing = printings.find { |cp| ApplicationHelper.card_picture_path(cp) } || printings[1]
     [best_printing, printings]
   end
 end

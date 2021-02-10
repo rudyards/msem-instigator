@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 # CardSheet is collection of CardSheet and PhysicalCard elements
 class CardSheet
   attr_reader :elements, :weights, :total_weight
 
-  def initialize(elements, weights=nil)
+  def initialize(elements, weights = nil)
     @elements = elements
     @weights = weights
-    if @weights
-      @total_weight = @weights.inject(0, &:+)
-    else
-      @total_weight = @elements.size
-    end
+    @total_weight = if @weights
+                      @weights.inject(0, &:+)
+                    else
+                      @elements.size
+                    end
   end
 
   def random_card
@@ -17,9 +19,9 @@ class CardSheet
       random_number = rand(@total_weight)
       result = @weights.each_with_index do |w, i|
         random_number -= w
-        break @elements[i] if random_number < 0
+        break @elements[i] if random_number.negative?
       end
-      raise "Weighted sample algorithm failed" unless result
+      raise 'Weighted sample algorithm failed' unless result
     else
       result = @elements.sample
     end
@@ -55,13 +57,13 @@ class CardSheet
   end
 
   def probabilities
-    result = Hash.new(Rational(0,1))
+    result = Hash.new(Rational(0, 1))
     @elements.each_with_index do |element, i|
-      if @weights
-        probability = Rational(@weights[i], @total_weight)
-      else
-        probability = Rational(1, @total_weight)
-      end
+      probability = if @weights
+                      Rational(@weights[i], @total_weight)
+                    else
+                      Rational(1, @total_weight)
+                    end
       if element.is_a?(CardSheet)
         element.probabilities.each do |card, subsheet_probability|
           result[card] += probability * subsheet_probability

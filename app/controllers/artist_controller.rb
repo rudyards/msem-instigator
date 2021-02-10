@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ArtistController < ApplicationController
   def index
-    @title = "Artists"
+    @title = 'Artists'
     @artists = Hash.new(0)
     $CardDatabase.sets.each_value do |set|
       set.printings.each do |printing|

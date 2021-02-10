@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class Format
   attr_reader :included_sets, :excluded_sets
 
-  def initialize(time=nil)
-    raise ArgumentError unless time.nil? or time.is_a?(Date)
+  def initialize(time = nil)
+    raise ArgumentError unless time.nil? || time.is_a?(Date)
+
     @time = time
     @ban_list = BanList[format_name]
     if respond_to?(:build_included_sets)
@@ -15,7 +18,7 @@ class Format
   end
 
   def legality(card)
-    if card.extra or !in_format?(card)
+    if card.extra || !in_format?(card)
       nil
     else
       @ban_list.legality(card.name, @time)
@@ -27,8 +30,8 @@ class Format
       # next if @time and printing.release_date > @time
       if @included_sets
         next unless @included_sets.include?(printing.set_code)
-      else
-        next if @excluded_sets.include?(printing.set_code)
+      elsif @excluded_sets.include?(printing.set_code)
+        next
       end
       return true
     end
@@ -36,7 +39,7 @@ class Format
   end
 
   def format_pretty_name
-    raise "Subclass responsibility"
+    raise 'Subclass responsibility'
   end
 
   def format_name
@@ -63,8 +66,8 @@ class Format
     def formats_index
       # Removed spaces so you can say "lw block" lw-block lwblock lw_block or whatever
       {
-        "msem2"                      => FormatMSEM2,
-        "msedh"                      => FormatMSEDH
+        'msem2' => FormatMSEM2,
+        'msedh' => FormatMSEDH
       }
     end
 
@@ -73,14 +76,13 @@ class Format
     end
 
     def [](format_name)
-      format_name = format_name.downcase.gsub(/\s|-|_/, "")
+      format_name = format_name.downcase.gsub(/\s|-|_/, '')
       formats_index[format_name] || FormatUnknown
     end
   end
 end
 
-Dir["#{__dir__}/format_*.rb"].each do |path| require_relative path end
+Dir["#{__dir__}/format_*.rb"].each { |path| require_relative path }
 
 # formats = Dir["#{__dir__}/format_*.rb"]
 # puts("Loading formats: #{formats}")
-

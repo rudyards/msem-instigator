@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionFirstprint < ConditionPrint
   def to_s
     timify_to_s "firstprint#{@op}#{@date}"
@@ -7,7 +9,7 @@ class ConditionFirstprint < ConditionPrint
 
   def get_date(card, max_date)
     if max_date
-      card.card.printings.map(&:release_date).compact.select{|d| d <= max_date}.min
+      card.card.printings.map(&:release_date).compact.select { |d| d <= max_date }.min
     else
       card.first_release_date
     end

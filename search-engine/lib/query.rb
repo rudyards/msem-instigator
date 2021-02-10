@@ -1,7 +1,9 @@
-require_relative "query_parser"
-require_relative "search_results"
-require_relative "sorter"
-require "digest"
+# frozen_string_literal: true
+
+require_relative 'query_parser'
+require_relative 'search_results'
+require_relative 'sorter'
+require 'digest'
 
 class Date
   # Any kind of key for sorting
@@ -13,14 +15,10 @@ end
 class Query
   attr_reader :warnings, :seed
 
-  def initialize(query_string, seed=nil)
+  def initialize(query_string, seed = nil)
     @query_string = query_string
     @cond, @metadata, @warnings = QueryParser.new.parse(query_string)
-    if needs_seed?
-      @seed = seed || "%016x" % rand(0x1_0000_0000_0000_0000)
-    else
-      @seed = nil
-    end
+    @seed = (seed || '%016x' % rand(0x1_0000_0000_0000_0000) if needs_seed?)
     @sorter = Sorter.new(@metadata[:sort], @seed)
     @warnings += @sorter.warnings
   end
@@ -50,8 +48,8 @@ class Query
     str = [
       @cond.to_s,
       # ("time:#{maybe_quote(@metadata[:time])}" if @metadata[:time]),
-      ("sort:#{@metadata[:sort]}" if @metadata[:sort]),
-    ].compact.join(" ")
+      ("sort:#{@metadata[:sort]}" if @metadata[:sort])
+    ].compact.join(' ')
     (@metadata[:ungrouped] ? "++#{str}" : str)
   end
 
@@ -61,11 +59,11 @@ class Query
     # It's something we might want to revisit someday
     self.class == other.class and
       instance_variables == other.instance_variables and
-      instance_variables.all?{|ivar|
+      instance_variables.all?  do |ivar|
         ivar == :@query_string or
-        ivar == :@seed or
-        instance_variable_get(ivar) == other.instance_variable_get(ivar)
-      }
+          ivar == :@seed or
+          instance_variable_get(ivar) == other.instance_variable_get(ivar)
+      end
   end
 
   def view
@@ -79,9 +77,10 @@ class Query
   end
 
   def maybe_quote(text)
-    if text.is_a?(Date)
-      '"%d.%d.%d"' % [text.year, text.month, text.day]
-    elsif text =~ /\A[a-zA-Z0-9]+\z/
+    case text
+    when Date
+      format('"%d.%d.%d"', text.year, text.month, text.day)
+    when /\A[a-zA-Z0-9]+\z/
       text
     else
       text.inspect

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class PhysicalCard
   attr_reader :front, :back, :foil
+
   def initialize(front, back, foil)
     @front = front
     @back = back
@@ -7,11 +10,11 @@ class PhysicalCard
   end
 
   def name
-    @front.map(&:name).join(" // ")
+    @front.map(&:name).join(' // ')
   end
 
   def back_name
-    @back.map(&:name).join(" // ")
+    @back.map(&:name).join(' // ')
   end
 
   def to_s
@@ -20,11 +23,11 @@ class PhysicalCard
 
   def inspect
     [
-      "PhysicalCard[",
+      'PhysicalCard[',
       name,
-      @back != [] ? "; #{back_name}}" : "",
-      foil ? "; foil" : "",
-      "]",
+      @back != [] ? "; #{back_name}}" : '',
+      foil ? '; foil' : '',
+      ']'
     ].join
   end
 
@@ -73,12 +76,12 @@ class PhysicalCard
     self == other
   end
 
-  def self.for(card, foil=false)
+  def self.for(card, foil = false)
     # meld really doesn't fit this model, as we have one CardPrinting that's on two physical card backs
     # just fake something that works
-    if card.back? and card.layout == "meld"
+    if card.back? && (card.layout == 'meld')
       self.for(card.others[0], foil)
-    elsif !card.has_multiple_parts? or card.name == "B.F.M. (Big Furry Monster)" or card.name == "B.F.M. (Big Furry Monster, Right Side)"
+    elsif !card.has_multiple_parts? || (card.name == 'B.F.M. (Big Furry Monster)') || (card.name == 'B.F.M. (Big Furry Monster, Right Side)')
       PhysicalCard.new([card], [], foil)
     else
       front_parts, back_parts = [card, *card.others].partition(&:front?)

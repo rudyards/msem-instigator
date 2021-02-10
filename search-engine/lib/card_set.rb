@@ -1,27 +1,27 @@
+# frozen_string_literal: true
+
 class CardSet
-  attr_reader :name, :code, :official_code, :gatherer_code
-  attr_reader :block_name, :block_code, :official_block_code
-  attr_reader :border, :frame, :release_date, :printings, :type
-  attr_reader :decks, :foiling
+  attr_reader :name, :code, :official_code, :gatherer_code, :block_name, :block_code, :official_block_code, :border,
+              :frame, :release_date, :printings, :type, :decks, :foiling
 
   def initialize(db, data)
     @db = db
-    @name          = data["name"]
-    @code          = data["code"]
-    @official_code = data["official_code"]
-    @gatherer_code = data["gatherer_code"]
-    @block_name    = data["block_name"]
-    @block_code    = data["block_code"]&.downcase
-    @official_block_code = data["official_block_code"]&.downcase
-    @border        = data["border"]
-    @frame         = data["frame"]
-    @type          = data["type"]
-    @release_date  = data["release_date"] && Date.parse(data["release_date"])
+    @name          = data['name']
+    @code          = data['code']
+    @official_code = data['official_code']
+    @gatherer_code = data['gatherer_code']
+    @block_name    = data['block_name']
+    @block_code    = data['block_code']&.downcase
+    @official_block_code = data['official_block_code']&.downcase
+    @border        = data['border']
+    @frame         = data['frame']
+    @type          = data['type']
+    @release_date  = data['release_date'] && Date.parse(data['release_date'])
     @printings     = Set[]
-    @online_only   = !!data["online_only"]
-    @has_boosters  = !!data["has_boosters"]
+    @online_only   = !data['online_only'].nil?
+    @has_boosters  = !data['has_boosters'].nil?
     @decks         = []
-    @foiling       = data["foiling"]
+    @foiling       = data['foiling']
   end
 
   def cards_in_precons
@@ -37,7 +37,7 @@ class CardSet
   end
 
   def regular?
-    @type == "core" or @type == "expansion"
+    @type == 'core' or @type == 'expansion'
   end
 
   include Comparable
@@ -49,13 +49,13 @@ class CardSet
     @code.hash
   end
 
-  def physical_cards(foil=false)
+  def physical_cards(foil = false)
     @printings.map do |card|
       PhysicalCard.for(card, foil)
     end.uniq
   end
 
-  def physical_cards_in_boosters(foil=false)
+  def physical_cards_in_boosters(foil = false)
     physical_cards(foil).select(&:in_boosters?)
   end
 end

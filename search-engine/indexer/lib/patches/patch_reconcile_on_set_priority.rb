@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class PatchReconcileOnSetPriority < Patch
   # If something is missing, it will fail validation later on,
   # only pass what you'd like to see reconciled automatically
   def fields_to_reconcile
-    [
-      "name",
-      "manaCost",
-      "text",
-      "types",
-      "subtypes",
-      "supertypes",
-      "rulings",
+    %w[
+      name
+      manaCost
+      text
+      types
+      subtypes
+      supertypes
+      rulings
     ]
   end
 
@@ -24,8 +26,8 @@ class PatchReconcileOnSetPriority < Patch
             printing[field_name] = canonical
           end
         else
-          conflicting_sets = variants.values.map{|scs| scs.join(",") }
-          warn "Can't reconcile #{name}, need to prioritize between #{ conflicting_sets.join(" vs ") }"
+          conflicting_sets = variants.values.map { |scs| scs.join(',') }
+          warn "Can't reconcile #{name}, need to prioritize between #{conflicting_sets.join(' vs ')}"
         end
       end
     end
@@ -34,8 +36,8 @@ class PatchReconcileOnSetPriority < Patch
   def max_priority_variants(printings, field_name)
     by_priority = {}
     printings.each do |printing|
-      set_code = printing["set_code"]
-      set_priority = printing["set"]["priority"]
+      set_code = printing['set_code']
+      set_priority = printing['set']['priority']
       variant = printing[field_name]
       by_priority[set_priority] ||= {}
       by_priority[set_priority][variant] ||= []

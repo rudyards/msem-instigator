@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ignoring marketing/token cards completely
 class Pack
   def initialize(sheets)
@@ -7,7 +9,7 @@ class Pack
   def open
     result = []
     @sheets.each do |sheet, count|
-      result.push *sheet.random_cards_without_duplicates(count)
+      result.push(*sheet.random_cards_without_duplicates(count))
     end
     result
   end

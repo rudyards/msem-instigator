@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class ConditionAnd < Condition
   attr_reader :conds
+
   def initialize(*conds)
     @conds = conds.compact.uniq.map do |c|
       if c.is_a?(ConditionAnd)
@@ -9,30 +12,32 @@ class ConditionAnd < Condition
       end
     end.flatten.uniq
     raise if @conds.empty?
+
     @simple_conds, @special_conds = @conds.partition(&:simple?)
     @simple = @conds.all?(&:simple?)
   end
 
   def search(db)
-    if @special_conds.empty?
-      results = db.printings
-    else
-      results = @special_conds.map{|cond| cond.search(db)}.inject(&:&)
-    end
+    results = if @special_conds.empty?
+                db.printings
+              else
+                @special_conds.map { |cond| cond.search(db) }.inject(&:&)
+              end
     @simple_conds.each do |cond|
-      results = results.select{|card| cond.match?(card) }
+      results = results.select { |card| cond.match?(card) }
     end
     results.to_set
   end
 
   def match?(card)
     raise unless @simple
-    @conds.all?{|cond| cond.match?(card)}
+
+    @conds.all? { |cond| cond.match?(card) }
   end
 
   def metadata!(key, value)
     super
-    @conds.each{|cond| cond.metadata!(key, value)}
+    @conds.each { |cond| cond.metadata!(key, value) }
   end
 
   def simple?

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class ConditionIsReprint < ConditionSimple
   def match?(card)
-    card.age > 0
+    card.age.positive?
   end
 
   def to_s
-    "is:reprint"
+    'is:reprint'
   end
 end

@@ -1,18 +1,19 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative "../lib/cli_frontend"
+require_relative '../lib/cli_frontend'
 
 # If it gets any more complex than this, just use trollop
-if ARGV[0] == "-v"
+if ARGV[0] == '-v'
   ARGV.shift
   verbose = true
 else
   verbose = false
 end
 
-if ARGV.size == 0
-  STDERR.puts "Usage: #{$0} [-v] <query>"
+if ARGV.size.zero?
+  warn "Usage: #{$PROGRAM_NAME} [-v] <query>"
   exit 1
 end
 
-CLIFrontend.new.call(verbose, ARGV.join(" "))
+CLIFrontend.new.call(verbose, ARGV.join(' '))

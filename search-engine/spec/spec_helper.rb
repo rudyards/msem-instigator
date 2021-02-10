@@ -1,12 +1,14 @@
-if ENV["COVERAGE"]
-  require "simplecov"
+# frozen_string_literal: true
+
+if ENV['COVERAGE']
+  require 'simplecov'
   SimpleCov.start
 end
 
-require_relative "../lib/card_database"
-require_relative "../lib/cli_frontend"
-require_relative "../lib/sealed"
-require "pry"
+require_relative '../lib/card_database'
+require_relative '../lib/cli_frontend'
+require_relative '../lib/sealed'
+require 'pry'
 
 RSpec.configure do |config|
   config.expect_with(:rspec) do |c|
@@ -20,29 +22,29 @@ end
 RSpec::Matchers.define :include_cards do |*cards|
   match do |query_string|
     results = search_names(query_string)
-    cards.all?{|card| results.include?(card)}
+    cards.all? { |card| results.include?(card) }
   end
 
   failure_message do |query_string|
     results = search_names(query_string)
-    fails = cards.reject{|card| results.include?(card)}
+    fails = cards.reject { |card| results.include?(card) }
     "Expected `#{query_string}' to include following cards:\n" +
-      fails.map{|c| "* #{c}\n"}.join
+      fails.map { |c| "* #{c}\n" }.join
   end
 end
 
 RSpec::Matchers.define :exclude_cards do |*cards|
   match do |query_string|
     results = search_names(query_string)
-    results != [] and cards.none?{|card| results.include?(card)}
+    results != [] and cards.none? { |card| results.include?(card) }
   end
 
   failure_message do |query_string|
     results = search_names(query_string)
-    fails = cards.select{|card| results.include?(card)}
+    fails = cards.select { |card| results.include?(card) }
     if fails != []
       "Expected `#{query_string}' to exclude following cards:\n" +
-        fails.map{|c| "* #{c}\n"}.join
+        fails.map { |c| "* #{c}\n" }.join
     else
       "Test is unreliable because results are empty: #{query_string}"
     end
@@ -57,7 +59,7 @@ RSpec::Matchers.define :return_no_cards do
   failure_message do |query_string|
     results = search(query_string)
     "Expected `#{query_string}' to have no results, but got following cards:\n" +
-      results.map{|c| "* #{c}\n"}.join
+      results.map { |c| "* #{c}\n" }.join
   end
 end
 
@@ -69,11 +71,11 @@ RSpec::Matchers.define :return_cards do |*cards|
   failure_message do |query_string|
     results = search(query_string)
     "Expected `#{query_string}' to return:\n" +
-      (cards | results).sort.map{|c|
-        (cards.include?(c) ? "[*]" : "[ ]") +
-        (results.include?(c) ? "[*]" : "[ ]") +
-        "#{c}\n"
-      }.join
+      (cards | results).sort.map do |c|
+        (cards.include?(c) ? '[*]' : '[ ]') +
+          (results.include?(c) ? '[*]' : '[ ]') +
+          "#{c}\n"
+      end.join
   end
 end
 
@@ -86,9 +88,9 @@ RSpec::Matchers.define :return_cards_in_order do |*cards|
   failure_message do |query_string|
     results = search_names(query_string)
     "Expected `#{query_string}' to return:\n" +
-      cards.map{|c| "* #{c}\n"}.join +
-    "\nInstead got:\n" +
-      results.map{|c| "* #{c}\n"}.join
+      cards.map { |c| "* #{c}\n" }.join +
+      "\nInstead got:\n" +
+      results.map { |c| "* #{c}\n" }.join
   end
 end
 
@@ -103,12 +105,12 @@ RSpec::Matchers.define :equal_search do |query_string2|
     results1 = search(query_string1)
     results2 = search(query_string2)
     if results1 != results2
-      "Expected `#{query_string1}' and `#{query_string2}' to return same results, got:\n"+
-        (results1 | results2).sort.map{|c|
-        (results1.include?(c) ? "[*]" : "[ ]") +
-        (results2.include?(c) ? "[*]" : "[ ]") +
-        "#{c}\n"
-      }.join
+      "Expected `#{query_string1}' and `#{query_string2}' to return same results, got:\n" +
+        (results1 | results2).sort.map  do |c|
+          (results1.include?(c) ? '[*]' : '[ ]') +
+            (results2.include?(c) ? '[*]' : '[ ]') +
+            "#{c}\n"
+        end.join
     else
       "Test is unreliable because results are empty: #{query_string1}"
     end
@@ -126,12 +128,12 @@ RSpec::Matchers.define :equal_search_cards do |query_string2|
     results1 = search_names(query_string1)
     results2 = search_names(query_string2)
     if results1 != results2
-      "Expected `#{query_string1}' and `#{query_string2}' to return same results, got:\n"+
-        (results1 | results2).sort.map{|c|
-        (results1.include?(c) ? "[*]" : "[ ]") +
-        (results2.include?(c) ? "[*]" : "[ ]") +
-        "#{c}\n"
-      }.join
+      "Expected `#{query_string1}' and `#{query_string2}' to return same results, got:\n" +
+        (results1 | results2).sort.map  do |c|
+          (results1.include?(c) ? '[*]' : '[ ]') +
+            (results2.include?(c) ? '[*]' : '[ ]') +
+            "#{c}\n"
+        end.join
     else
       "Test is unreliable because results are empty: #{query_string1}"
     end
@@ -158,7 +160,7 @@ RSpec::Matchers.define :have_count_printings do |count|
   end
 end
 
-shared_context "db" do |*sets|
+shared_context 'db' do |*sets|
   def load_database(*sets)
     $card_database ||= {}
     $card_database[[]]   ||= CardDatabase.load
@@ -179,104 +181,118 @@ shared_context "db" do |*sets|
   def assert_search_results(query, *cards)
     query.should return_cards(*cards)
   end
+
   def assert_search_include(query, *cards)
     query.should include_cards(*cards)
   end
+
   def assert_search_exclude(query, *cards)
     query.should exclude_cards(*cards)
   end
+
   def assert_search_equal(query1, query2)
     query1.should equal_search(query2)
   end
+
   def assert_search_equal_cards(query1, query2)
     query1.should equal_search_cards(query2)
   end
+
   def assert_search_differ(query1, query2)
     query1.should_not equal_search(query2)
   end
+
   def assert_search_differ_cards(query1, query2)
     query1.should_not equal_search_cards(query2)
   end
+
   def assert_count_cards(query, count)
     query.should have_count_cards(count)
   end
+
   def assert_count_printings(query, count)
     query.should have_count_printings(count)
   end
+
   def assert_search_results_ordered(query, *results)
     query.should return_cards_in_order(*results)
   end
-  def assert_full_banlist(format, time, banned_cards, restricted_cards=[])
+
+  def assert_full_banlist(format, time, banned_cards, restricted_cards = [])
     time = Date.parse(time)
     expected_banlist = Hash[
-      banned_cards.map{|c| [c, "banned"]} +
-      restricted_cards.map{|c| [c, "restricted"]}
+      banned_cards.map { |c| [c, 'banned'] } +
+      restricted_cards.map { |c| [c, 'restricted'] }
     ]
     actual_banlist = BanList[format].full_ban_list(time)
     expected_banlist.should eq(actual_banlist)
   end
+
   def assert_banlist_changes(date, *changes)
     prev_date = Date.parse(date)
     this_date = (prev_date >> 1) + 5
     changes.each_slice(2) do |change, card|
       raise unless change =~ /\A(.*) (\S+)\z/
-      assert_banlist_change prev_date, this_date, $1, $2, card
+
+      assert_banlist_change prev_date, this_date, Regexp.last_match(1), Regexp.last_match(2), card
     end
   end
+
   def assert_banlist_change(prev_date, this_date, format, change, card)
-    if format == "vintage+"
+    if format == 'vintage+'
       change_legacy = change
       case change
-      when "banned", "restricted"
-        change_legacy = "banned"
-      when "unbanned", "unrestricted"
-        change_legacy = "unbanned"
-      when "banned-to-restricted", "restricted-to-banned"
+      when 'banned', 'restricted'
+        change_legacy = 'banned'
+      when 'unbanned', 'unrestricted'
+        change_legacy = 'unbanned'
+      when 'banned-to-restricted', 'restricted-to-banned'
         change_legacy = nil
       else
         raise
       end
-      assert_banlist_change(prev_date, this_date, "vintage", change, card)
-      assert_banlist_change(prev_date, this_date, "legacy", change_legacy, card) if change_legacy
+      assert_banlist_change(prev_date, this_date, 'vintage', change, card)
+      assert_banlist_change(prev_date, this_date, 'legacy', change_legacy, card) if change_legacy
       return
     end
     case change
-    when "banned"
-      assert_banlist_status(prev_date, format, "legal", card)
-      assert_banlist_status(this_date, format, "banned", card)
-    when "unbanned"
-      assert_banlist_status(prev_date, format, "banned", card)
-      assert_banlist_status(this_date, format, "legal", card)
-    when "restricted"
-      assert_banlist_status(prev_date, format, "legal", card)
-      assert_banlist_status(this_date, format, "restricted", card)
-    when "unrestricted"
-      assert_banlist_status(prev_date, format, "restricted", card)
-      assert_banlist_status(this_date, format, "legal", card)
-    when "banned-to-restricted"
-      assert_banlist_status(prev_date, format, "banned", card)
-      assert_banlist_status(this_date, format, "restricted", card)
-    when "restricted-to-banned"
-      assert_banlist_status(prev_date, format, "restricted", card)
-      assert_banlist_status(this_date, format, "banned", card)
+    when 'banned'
+      assert_banlist_status(prev_date, format, 'legal', card)
+      assert_banlist_status(this_date, format, 'banned', card)
+    when 'unbanned'
+      assert_banlist_status(prev_date, format, 'banned', card)
+      assert_banlist_status(this_date, format, 'legal', card)
+    when 'restricted'
+      assert_banlist_status(prev_date, format, 'legal', card)
+      assert_banlist_status(this_date, format, 'restricted', card)
+    when 'unrestricted'
+      assert_banlist_status(prev_date, format, 'restricted', card)
+      assert_banlist_status(this_date, format, 'legal', card)
+    when 'banned-to-restricted'
+      assert_banlist_status(prev_date, format, 'banned', card)
+      assert_banlist_status(this_date, format, 'restricted', card)
+    when 'restricted-to-banned'
+      assert_banlist_status(prev_date, format, 'restricted', card)
+      assert_banlist_status(this_date, format, 'banned', card)
     else
       raise "Unknown transition `#{change}'"
     end
   end
+
   def assert_banlist_status(date, format, expected_legality, card_name)
     if date.is_a?(Date)
-      dsc = "#{date}"
+      dsc = date.to_s
       set_date = date
     else
       dsc = "#{set} (#{set_date})"
       set_date = db.sets[set].release_date
     end
-    actual_legality = BanList[format].legality(card_name, set_date) || "legal"
+    actual_legality = BanList[format].legality(card_name, set_date) || 'legal'
     [card_name, expected_legality].should eq([card_name, actual_legality])
   end
 
   # FIXME: All of this needs to be migrated to proper rspec
-  def assert_block_composition(format_name, time, sets, exceptions={})
+  def assert_block_composition(format_name, time, sets, exceptions = {})
     time = db.sets[time].release_date if time.is_a?(String)
     format = Format[format_name].new(time)
     actual_legality = db.cards.values.map do |card|
@@ -304,10 +320,12 @@ shared_context "db" do |*sets|
     expected_legality = {}
     sets.each do |set_code|
       raise "Unknown set #{set_code}" unless db.sets[set_code]
+
       db.sets[set_code].printings.each do |card_printing|
-        next if %W[vanguard plane phenomenon scheme token].include?(card_printing.layout)
-        next if card_printing.types == ["conspiracy"]
-        expected_legality[card_printing.name] = "legal"
+        next if %w[vanguard plane phenomenon scheme token].include?(card_printing.layout)
+        next if card_printing.types == ['conspiracy']
+
+        expected_legality[card_printing.name] = 'legal'
       end
     end
     expected_legality.merge!(exceptions)
@@ -320,9 +338,10 @@ shared_context "db" do |*sets|
 
   # If more than 1 returned, assuming it doesn't matter, and picking first by the usual order
   # (like with basic from same set)
-  def physical_card(query, foil=false)
+  def physical_card(query, foil = false)
     card_printings = db.search(query).printings
     raise "No card matching #{query.inspect}" if card_printings.empty?
+
     PhysicalCard.for(card_printings[0], foil)
   end
 end

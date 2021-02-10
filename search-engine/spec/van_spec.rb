@@ -1,10 +1,12 @@
-describe "Vanguard" do
-  include_context "db", "van"
+# frozen_string_literal: true
 
-  it "Vanguard cards" do
-    "t:*"            .should equal_search "t:vanguard"
-    "layout:vanguard".should equal_search "t:vanguard"
-    "sakashima"      .should return_cards "Sakashima the Impostor Avatar"
-    "sakashima t:*"  .should return_cards "Sakashima the Impostor Avatar"
+describe 'Vanguard' do
+  include_context 'db', 'van'
+
+  it 'Vanguard cards' do
+    't:*'.should equal_search 't:vanguard'
+    'layout:vanguard'.should equal_search 't:vanguard'
+    'sakashima'.should return_cards 'Sakashima the Impostor Avatar'
+    'sakashima t:*'.should return_cards 'Sakashima the Impostor Avatar'
   end
 end

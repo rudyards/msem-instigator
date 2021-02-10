@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ConditionLayout < ConditionSimple
   def initialize(layout)
     @layout = layout.downcase
-    @layout = "double-faced" if @layout == "dfc"
+    @layout = 'double-faced' if @layout == 'dfc'
   end
 
   def match?(card)

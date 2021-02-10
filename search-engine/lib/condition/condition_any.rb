@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionAny < ConditionOr
   def initialize(query)
     @query = query.downcase
@@ -7,91 +9,91 @@ class ConditionAny < ConditionOr
       ConditionFlavor.new(query),
       ConditionOracle.new(query),
       ConditionTypes.new(query),
-      ConditionForeign.new("foreign", query),
+      ConditionForeign.new('foreign', query)
     ]
     case @query
-    when "white"
-      @conds << ConditionColorExpr.new("c", ">=", "w")
-    when "blue"
-      @conds << ConditionColorExpr.new("c", ">=", "u")
-    when "black"
-      @conds << ConditionColorExpr.new("c", ">=", "b")
-    when "red"
-      @conds << ConditionColorExpr.new("c", ">=", "r")
-    when "green"
-      @conds << ConditionColorExpr.new("c", ">=", "g")
-    when "colorless"
-      @conds << ConditionColorExpr.new("c", "=", "")
-    when "common", "uncommon", "rare", "mythic", "mythic rare", "special", "basic"
-      @conds << ConditionRarity.new("=", @query)
-    when %r[\A(-?\d+)/(-?\d+)\z]
+    when 'white'
+      @conds << ConditionColorExpr.new('c', '>=', 'w')
+    when 'blue'
+      @conds << ConditionColorExpr.new('c', '>=', 'u')
+    when 'black'
+      @conds << ConditionColorExpr.new('c', '>=', 'b')
+    when 'red'
+      @conds << ConditionColorExpr.new('c', '>=', 'r')
+    when 'green'
+      @conds << ConditionColorExpr.new('c', '>=', 'g')
+    when 'colorless'
+      @conds << ConditionColorExpr.new('c', '=', '')
+    when 'common', 'uncommon', 'rare', 'mythic', 'mythic rare', 'special', 'basic'
+      @conds << ConditionRarity.new('=', @query)
+    when %r{\A(-?\d+)/(-?\d+)\z}
       @conds << ConditionAnd.new(
-        ConditionExpr.new("pow", "=", $1),
-        ConditionExpr.new("tou", "=", $2),
+        ConditionExpr.new('pow', '=', Regexp.last_match(1)),
+        ConditionExpr.new('tou', '=', Regexp.last_match(2))
       )
-    when "augment"
+    when 'augment'
       @conds << ConditionIsAugment.new
-    when "battleland"
+    when 'battleland'
       @conds << ConditionIsBattleland.new
-    when "bounceland"
+    when 'bounceland'
       @conds << ConditionIsBounceland.new
-    when "checkland"
+    when 'checkland'
       @conds << ConditionIsCheckland.new
-    when "commander" # ???
+    when 'commander' # ???
       @conds << ConditionIsCommander.new
-    when "digital"
+    when 'digital'
       @conds << ConditionIsDigital.new
-    when "dual"
+    when 'dual'
       @conds << ConditionIsDual.new
-    when "draft"
+    when 'draft'
       @conds << ConditionIsDraft.new
-    when "fastland"
+    when 'fastland'
       @conds << ConditionIsFastland.new
-    when "fetchland"
+    when 'fetchland'
       @conds << ConditionIsFetchland.new
-    when "filterland"
+    when 'filterland'
       @conds << ConditionIsFilterland.new
-    when "funny"
+    when 'funny'
       @conds << ConditionIsFunny.new
-    when "gainland"
+    when 'gainland'
       @conds << ConditionIsGainland.new
-    when "manland"
+    when 'manland'
       @conds << ConditionIsManland.new
-    when "multipart"
+    when 'multipart'
       @conds << ConditionIsMultipart.new
-    when "permanent"
+    when 'permanent'
       @conds << ConditionIsPermanent.new
-    when "primary"
+    when 'primary'
       @conds << ConditionIsPrimary.new
-    when "secondary"
+    when 'secondary'
       @conds << ConditionIsSecondary.new
-    when "front"
+    when 'front'
       @conds << ConditionIsFront.new
-    when "back"
+    when 'back'
       @conds << ConditionIsBack.new
-    when "booster"
+    when 'booster'
       @conds << ConditionIsBooster.new
-    when "promo"
+    when 'promo'
       @conds << ConditionIsPromo.new
-    when "reprint"
+    when 'reprint'
       @conds << ConditionIsReprint.new
-    when "reserved"
+    when 'reserved'
       @conds << ConditionIsReserved.new
-    when "scryland"
+    when 'scryland'
       @conds << ConditionIsScryland.new
-    when "scuttleback"
+    when 'scuttleback'
       @conds << ConditionIsScuttleback.new
-    when "shockfetch"
+    when 'shockfetch'
       @conds << ConditionIsShockfetch.new
-    when "spell"
+    when 'spell'
       @conds << ConditionIsSpell.new
-    when "timeshifted"
+    when 'timeshifted'
       @conds << ConditionIsTimeshifted.new
-    when "staple"
+    when 'staple'
       @conds << ConditionIsStaple.new
-    when "unique"
+    when 'unique'
       @conds << ConditionIsUnique.new
-    when "vanilla"
+    when 'vanilla'
       @conds << ConditionIsVanilla.new
     end
     @simple = @conds.all?(&:simple?)

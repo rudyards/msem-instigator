@@ -1,27 +1,30 @@
-describe "Set Codes" do
-  include_context "db"
+# frozen_string_literal: true
 
-  it "full_name" do
-    db.sets.values.each do |set|
+describe 'Set Codes' do
+  include_context 'db'
+
+  it 'full_name' do
+    db.sets.each_value do |set|
       assert_resolves set.name, set
     end
   end
 
-  it "mci_code" do
-    db.sets.values.each do |set|
+  it 'mci_code' do
+    db.sets.each_value do |set|
       assert_resolves set.code, set
     end
   end
 
-  it "official_code" do
-    db.sets.values.each do |set|
+  it 'official_code' do
+    db.sets.each_value do |set|
       assert_resolves set.official_code, set
     end
   end
 
-  it "gatherer_code" do
-    db.sets.values.each do |set|
+  it 'gatherer_code' do
+    db.sets.each_value do |set|
       next unless set.gatherer_code
+
       assert_resolves set.gatherer_code, set
     end
   end

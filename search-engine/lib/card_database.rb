@@ -1,24 +1,27 @@
-require "pathname"
-require "json"
-require "set"
-require_relative "artist"
-require_relative "card"
-require_relative "card_set"
-require_relative "card_printing"
-require_relative "query"
-require_relative "spelling_suggestions"
-require_relative "physical_card"
-require_relative "card_sheet"
-require_relative "card_sheet_factory"
-require_relative "pack"
-require_relative "pack_factory"
-require_relative "weighted_pack"
-require_relative "sealed"
-require_relative "deck"
-require_relative "deck_database"
+# frozen_string_literal: true
+
+require 'pathname'
+require 'json'
+require 'set'
+require_relative 'artist'
+require_relative 'card'
+require_relative 'card_set'
+require_relative 'card_printing'
+require_relative 'query'
+require_relative 'spelling_suggestions'
+require_relative 'physical_card'
+require_relative 'card_sheet'
+require_relative 'card_sheet_factory'
+require_relative 'pack'
+require_relative 'pack_factory'
+require_relative 'weighted_pack'
+require_relative 'sealed'
+require_relative 'deck'
+require_relative 'deck_database'
 
 class CardDatabase
   attr_reader :sets, :cards, :blocks, :artists, :cards_in_precons
+
   def initialize
     @sets = {}
     @blocks = Set[]
@@ -32,11 +35,9 @@ class CardDatabase
     query.search(self)
   end
 
-  def each_printing
-    @cards.each do |card_name, card|
-      card.printings.each do |printing|
-        yield printing
-      end
+  def each_printing(&block)
+    @cards.each do |_card_name, card|
+      card.printings.each(&block)
     end
   end
 
@@ -55,10 +56,11 @@ class CardDatabase
     name = card_printing.name
     decks.select do |deck|
       next unless deck.all_set_codes.include?(set_code)
+
       [*deck.cards, *deck.sideboard].any? do |_, physical_card|
         physical_card.parts.any? do |physical_card_part|
           physical_card_part.set_code == card_printing.set_code and
-          physical_card_part.name == card_printing.name
+            physical_card_part.name == card_printing.name
         end
       end
     end
@@ -76,13 +78,14 @@ class CardDatabase
   def sets_with_packs
     @sets_with_packs ||= begin
       factory = PackFactory.new(self)
-      @sets.values.reverse.select{|set| factory.for(set.code)}
+      @sets.values.reverse.select { |set| factory.for(set.code) }
     end
   end
 
   def resolve_time(time)
     return nil unless time
     return time if time.is_a?(Date)
+
     sets = resolve_editions(time)
     case sets.size
     when 0
@@ -121,8 +124,12 @@ class CardDatabase
       matching_mci_code      << set if set_code == edition
       matching_official_code << set if set.official_code.downcase == edition
       matching_gatherer_code << set if set.gatherer_code&.downcase == edition
-      matching_name          << set if normalized_set_name == normalized_edition or normalized_set_name_alt == normalized_edition_alt
-      matching_name_part     << set if normalized_set_name.include?(normalized_edition) or normalized_set_name_alt.include?(normalized_edition_alt)
+      if (normalized_set_name == normalized_edition) || (normalized_set_name_alt == normalized_edition_alt)
+        matching_name          << set
+      end
+      if normalized_set_name.include?(normalized_edition) || normalized_set_name_alt.include?(normalized_edition_alt)
+        matching_name_part     << set
+      end
     end
 
     [
@@ -130,28 +137,29 @@ class CardDatabase
       matching_official_code,
       matching_gatherer_code,
       matching_name,
-      matching_name_part,
-    ].find{|s| s.size > 0} || Set[]
+      matching_name_part
+    ].find { |s| s.size.positive? } || Set[]
   end
 
   def normalize_set_name(name)
-    normalize_text(name).downcase.gsub("'s", "s").split(/[^a-z0-9]+/).join(" ")
+    normalize_text(name).downcase.gsub("'s", 's').split(/[^a-z0-9]+/).join(' ')
   end
 
   def normalize_set_name_alt(name)
-    normalize_text(name).downcase.gsub("'s", "").split(/[^a-z0-9]+/).join(" ")
+    normalize_text(name).downcase.gsub("'s", '').split(/[^a-z0-9]+/).join(' ')
   end
 
   def resolve_edition(edition)
     editions = resolve_editions(edition).to_a
     return editions[0] if editions.size <= 1
+
     raise "Ambiguous set name #{edition}, matches #{editions.size} sets"
   end
 
   class <<self
     private :new
 
-    def load(path=Pathname("#{__dir__}/../index/index.json"))
+    def load(path = Pathname("#{__dir__}/../index/index.json"))
       # puts "Initialize #{path}"
       new do |db|
         db.send(:load_from_json!, Pathname(path))
@@ -176,18 +184,20 @@ class CardDatabase
   def freeze_strings!(data)
     case data
     when Array
-      data.each_with_index do |v,i|
-        if v.is_a?(Array) or v.is_a?(Hash)
+      data.each_with_index do |v, i|
+        case v
+        when Array, Hash
           freeze_strings!(v)
-        elsif v.is_a?(String)
+        when String
           data[i] = -v
         end
       end
     when Hash
-      data.each do |k,v|
-        if v.is_a?(Array) or v.is_a?(Hash)
+      data.each do |k, v|
+        case v
+        when Array, Hash
           freeze_strings!(v)
-        elsif v.is_a?(String)
+        when String
           data[k] = -v
         end
       end
@@ -198,6 +208,7 @@ class CardDatabase
     @blocks = db.blocks
     db.sets.each do |set_code, set|
       next unless set_codes.include?(set_code)
+
       @sets[set_code] = set
     end
     db.cards.each do |card_name, card|
@@ -205,6 +216,7 @@ class CardDatabase
         set_codes.include?(printing.set_code)
       end
       next if printings.empty?
+
       @cards[card_name] = card.dup
       @cards[card_name].printings = printings
     end
@@ -216,26 +228,27 @@ class CardDatabase
     multipart_cards = {}
     data = JSON.parse(path.open.read)
     freeze_strings!(data)
-    data["sets"].each do |set_code, set_data|
+    data['sets'].each do |set_code, set_data|
       @sets[set_code] = CardSet.new(self, set_data)
-      if set_data["block_code"]
-        @blocks << set_data["block_code"]
-        @blocks << set_data["official_block_code"] if set_data["official_block_code"]
-        @blocks << normalize_name(set_data["block_name"])
-      end
+      next unless set_data['block_code']
+
+      @blocks << set_data['block_code']
+      @blocks << set_data['official_block_code'] if set_data['official_block_code']
+      @blocks << normalize_name(set_data['block_name'])
     end
-    data["cards"].each do |card_name, card_data|
-      next if card_data["layout"] == "token" # Do not include tokens
+    data['cards'].each do |card_name, card_data|
+      next if card_data['layout'] == 'token' # Do not include tokens
+
       # puts("load_from_json!: card: #{card_name}")
-      normalized_name = card_name.downcase.tr("Äàáâäèéêíõöúûü", "Aaaaaeeeioouuu")
-      card = @cards[normalized_name] = Card.new(card_data.reject{|k,_| k == "printings"})
+      normalized_name = card_name.downcase.tr('Äàáâäèéêíõöúûü', 'Aaaaaeeeioouuu')
+      card = @cards[normalized_name] = Card.new(card_data.reject { |k, _| k == 'printings' })
       color_identity_cache[card_name] = card.partial_color_identity
       # puts("        card_data[\"names\"]=#{card_data["names"]}")
-      if card_data["names"]
+      if card_data['names']
         # puts("        multipart card found: #{card_data["names"]}")
-        multipart_cards[card_name] = card_data["names"] - [card_name]
+        multipart_cards[card_name] = card_data['names'] - [card_name]
       end
-      card_data["printings"].each do |set_code, printing_data|
+      card_data['printings'].each do |set_code, printing_data|
         printing = CardPrinting.new(
           card,
           @sets[set_code],
@@ -258,20 +271,20 @@ class CardDatabase
   def index_cards_in_precons!
     @cards_in_precons = {}
     @sets.values
-      .flat_map(&:decks)
-      .flat_map(&:cards_with_sideboard)
-      .map(&:last)
-      .flat_map{|c| c.parts.map(&:name).map{|n| [c.set_code, c.foil, n] }}
-      .each do |set_code, foil, name|
+         .flat_map(&:decks)
+         .flat_map(&:cards_with_sideboard)
+         .map(&:last)
+         .flat_map { |c| c.parts.map(&:name).map { |n| [c.set_code, c.foil, n] } }
+         .each do |set_code, foil, name|
       @cards_in_precons[set_code] ||= [Set.new, Set.new]
       @cards_in_precons[set_code][foil ? 1 : 0] << name
     end
   end
 
   def fix_multipart_cards_color_identity!(color_identity_cache)
-    @cards.each do |card_name, card|
+    @cards.each do |_card_name, card|
       if card.has_multiple_parts?
-        card.color_identity = -card.names.map{|n| color_identity_cache[n].chars }.inject(&:|).sort.join
+        card.color_identity = -card.names.map { |n| color_identity_cache[n].chars }.inject(&:|).sort.join
       end
     end
   end
@@ -280,14 +293,13 @@ class CardDatabase
     # puts(" card_database: link_multipart_cards: multipart_cards=#{multipart_cards}")
     multipart_cards.each do |card_name, other_names|
       card = @cards[card_name.downcase]
-      other_cards = other_names.map{|name| @cards[name.downcase] }
+      other_cards = other_names.map { |name| @cards[name.downcase] }
       # puts(" card_database: other_cards=#{other_cards}")
       card.printings.each do |printing|
         printing.others = other_cards.map do |other_card|
-          from_same_set = other_card.printings.select{|other_printing| other_printing.set_code == printing.set_code}
-          unless from_same_set.size == 1
-            raise "Can't link other side - #{card_name}"
-          end
+          from_same_set = other_card.printings.select { |other_printing| other_printing.set_code == printing.set_code }
+          raise "Can't link other side - #{card_name}" unless from_same_set.size == 1
+
           # puts "#{from_same_set}"
           from_same_set[0]
         end
@@ -300,7 +312,7 @@ class CardDatabase
       artist_name = printing.artist_name
       # Presumably same artist, just keep that consistent to simplify slug code
       # We could even fix some unset artists here
-      artist_slug = artist_name.downcase.gsub(/[^a-z0-9\p{Han}\p{Katakana}\p{Hiragana}\p{Hangul}]+/, "_")
+      artist_slug = artist_name.downcase.gsub(/[^a-z0-9\p{Han}\p{Katakana}\p{Hiragana}\p{Hangul}]+/, '_')
       @artists[artist_slug] ||= Artist.new(artist_name)
       artist = @artists[artist_slug]
       unless artist_name == artist.name
@@ -312,29 +324,29 @@ class CardDatabase
   end
 
   def setup_sort_index!
-    printings.sort_by{|c|
+    printings.sort_by do |c|
       [
         c.name,
         c.online_only? ? 1 : 0,
-        c.frame == "old" ? 1 : 0,
+        c.frame == 'old' ? 1 : 0,
         c.set.regular? ? 0 : 1,
         -c.release_date_i,
         c.set.name,
         c.number.to_i,
-        c.number,
+        c.number
       ]
-    }.each_with_index do |c, i|
+    end.each_with_index do |c, i|
       c.default_sort_index = i
     end
   end
 
   # These method seem to occur in every single class out there
   def normalize_text(text)
-    text.downcase.gsub(/[Ææ]/, "ae").tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-").strip
+    text.downcase.gsub(/[Ææ]/, 'ae').tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-").strip
   end
 
   def normalize_name(name)
-    normalize_text(name).split.join(" ")
+    normalize_text(name).split.join(' ')
   end
 
   def spelling_suggestions
@@ -348,6 +360,6 @@ class CardDatabase
   end
 
   def inspect
-    "CardDatabase"
+    'CardDatabase'
   end
 end

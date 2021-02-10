@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "get_process_mem"
-require_relative "../lib/card_database"
+require 'get_process_mem'
+require_relative '../lib/card_database'
 
 # This is OS-level measurement
 CardDatabase.load

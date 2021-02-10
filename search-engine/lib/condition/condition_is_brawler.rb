@@ -1,11 +1,16 @@
+# frozen_string_literal: true
+
 class ConditionIsBrawler < ConditionSimple
   def match?(card)
     return false if card.secondary?
-    return true if card.types.include?("legendary") and (card.types.include?("creature") or card.types.include?("planeswalker"))
+    if card.types.include?('legendary') && (card.types.include?('creature') || card.types.include?('planeswalker'))
+      return true
+    end
+
     false
   end
 
   def to_s
-    "is:brawler"
+    'is:brawler'
   end
 end

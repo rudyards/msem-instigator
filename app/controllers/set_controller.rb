@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class SetController < ApplicationController
   def index
-    @sets = $CardDatabase.sets.values.sort_by{|s| [-s.release_date.to_i_sort, s.name] }
-    @title = "Sets"
+    @sets = $CardDatabase.sets.values.sort_by { |s| [-s.release_date.to_i_sort, s.name] }
+    @title = 'Sets'
   end
 
   def show
@@ -13,7 +15,7 @@ class SetController < ApplicationController
     end
 
     @title = @set.name
-    @cards = @set.printings.sort_by{|cp| [cp.number.to_i, cp.number]}
+    @cards = @set.printings.sort_by { |cp| [cp.number.to_i, cp.number] }
 
     page = [1, params[:page].to_i].max
     @cards = @cards.paginate(page: page, per_page: 25)
@@ -29,7 +31,7 @@ class SetController < ApplicationController
 
     @title = @set.name
     @cards = @set
-      .printings
-      .sort_by{|cp| [cp.name, cp.number.to_i, cp.number]}
+             .printings
+             .sort_by { |cp| [cp.name, cp.number.to_i, cp.number] }
   end
 end

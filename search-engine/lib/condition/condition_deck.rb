@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionDeck < Condition
   def initialize(deck_name)
     @deck_name = deck_name
@@ -6,17 +8,17 @@ class ConditionDeck < Condition
   def search(db)
     decks = resolve_deck_name(db)
     if decks.empty?
-      warning %Q[No deck matching "#{@deck_name}"]
+      warning %(No deck matching "#{@deck_name}")
     elsif decks.size > 1
-      deck_names = decks.map{|deck| "#{deck.name} (#{deck.set_name})"}
-      warning %Q[Multiple decks matching "#{@deck_name}": #{deck_names.join(", ")}]
+      deck_names = decks.map { |deck| "#{deck.name} (#{deck.set_name})" }
+      warning %(Multiple decks matching "#{@deck_name}": #{deck_names.join(', ')})
     end
 
     # We don't have printing resolution within same set
     # so we need extra step, so all C17 Forests get included, not just some
     matching_card_names = {}
     decks.each do |deck|
-      [*deck.cards, *deck.sideboard].each do |count, card|
+      [*deck.cards, *deck.sideboard].each do |_count, card|
         card.parts.each do |cp|
           matching_card_names[cp.set_code] ||= Set.new
           matching_card_names[cp.set_code] << cp.name
@@ -42,15 +44,15 @@ class ConditionDeck < Condition
   def resolve_deck_name(db)
     deck_name = @deck_name.strip
 
-    if deck_name.include?("/")
-      set_query, deck_query = @deck_name.split("/", 2)
+    if deck_name.include?('/')
+      set_query, deck_query = @deck_name.split('/', 2)
       sets = db.resolve_editions(set_query.strip)
       possible_decks = sets.flat_map(&:decks)
     else
       possible_decks = db.decks
       deck_query = deck_name
     end
-    deck_query = deck_query.downcase.strip.gsub("'s", "").gsub(",", "")
+    deck_query = deck_query.downcase.strip.gsub("'s", '').gsub(',', '')
 
     decks = possible_decks.select do |deck|
       deck.slug == deck_query
@@ -58,15 +60,15 @@ class ConditionDeck < Condition
     return decks unless decks.empty?
 
     decks = possible_decks.select do |deck|
-      deck.name.downcase.gsub("'s", "").gsub(",", "") == deck_query
+      deck.name.downcase.gsub("'s", '').gsub(',', '') == deck_query
     end
     return decks unless decks.empty?
 
     normalized_query_words = deck_query.split
 
     possible_decks.select do |deck|
-      normalized_words = deck.name.downcase.gsub("'s", "").gsub(",", "").split
-      normalized_query_words.all?{|qw| normalized_words.include?(qw)}
+      normalized_words = deck.name.downcase.gsub("'s", '').gsub(',', '').split
+      normalized_query_words.all? { |qw| normalized_words.include?(qw) }
     end
   end
 end

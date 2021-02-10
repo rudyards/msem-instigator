@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ConditionFlavor < ConditionSimple
   def initialize(flavor)
     @flavor = flavor
-    flavor_normalized = @flavor.gsub("Æ", "Ae").tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-")    
-    @flavor_rx = Regexp.new("\\b(?:" + Regexp.escape(flavor_normalized) + ")\\b", Regexp::IGNORECASE)
+    flavor_normalized = @flavor.gsub('Æ', 'Ae').tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-")
+    @flavor_rx = Regexp.new("\\b(?:#{Regexp.escape(flavor_normalized)})\\b", Regexp::IGNORECASE)
   end
 
   def match?(card)

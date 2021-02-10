@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionNot < Condition
   def initialize(cond)
     @cond = cond
@@ -15,7 +17,8 @@ class ConditionNot < Condition
 
   def match?(card)
     raise unless @simple
-    not @cond.match?(card)
+
+    !@cond.match?(card)
   end
 
   def simple?

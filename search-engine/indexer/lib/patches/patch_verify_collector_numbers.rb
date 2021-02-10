@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # We need unique identifiers for cards, and generally we use <set_code>/<collector_number>
 # This means we must force collector numbers to be unique within each set.
 #
@@ -23,20 +25,20 @@ class PatchVerifyCollectorNumbers < Patch
 
   # This breaks the frontend, so it needs to be hard exception
   def verify_numbers(set)
-    set_code = set["code"]
-    set_name = set["name"]
+    set_code = set['code']
+    set_name = set['name']
     cards = cards_by_set[set_code]
-    numbers = cards.map{|c| c["number"]}
-    if numbers.compact.size == 0
+    numbers = cards.map { |c| c['number'] }
+    if numbers.compact.size.zero?
       warn "Set #{set_code} #{set_name} has no numbers"
     elsif numbers.compact.size != numbers.size
       warn "Set #{set_code} #{set_name} has cards without numbers"
     end
     if numbers.compact.size != numbers.compact.uniq.size
       duplicates = cards
-        .group_by{|c| c["number"]}
-        .transform_values{|cs| cs.map{|c| c["name"]}}
-        .select{|_,cs| cs.size > 1}
+                   .group_by { |c| c['number'] }
+                   .transform_values { |cs| cs.map { |c| c['name'] } }
+                   .select { |_, cs| cs.size > 1 }
       warn "Set #{set_code} #{set_name} has DUPLICATE numbers: #{duplicates.inspect}"
     end
   end

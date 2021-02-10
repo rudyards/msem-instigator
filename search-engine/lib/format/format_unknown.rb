@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class FormatUnknown < Format
   def format_pretty_name
-    "Unknown"
+    'Unknown'
   end
 
   def build_included_sets

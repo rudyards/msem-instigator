@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConditionLegal < ConditionFormat
   def to_s
     timify_to_s "legal:#{maybe_quote(@format_name)}"
@@ -6,6 +8,6 @@ class ConditionLegal < ConditionFormat
   private
 
   def legality_ok?(legality)
-    legality == "legal"
+    legality == 'legal'
   end
 end

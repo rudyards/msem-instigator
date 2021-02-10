@@ -1,18 +1,17 @@
+# frozen_string_literal: true
+
 class PatchUnstableBorders < Patch
   def call
     each_printing do |card|
-      next unless card["set_code"] == "ust"
-      name = card["name"]
-      supertypes = (card["supertypes"] || [])
-      subtypes = (card["subtypes"] || [])
+      next unless card['set_code'] == 'ust'
 
-      if name == "Steamflogger Boss"
-        card["border"] = "black"
-      end
+      name = card['name']
+      supertypes = (card['supertypes'] || [])
+      subtypes = (card['subtypes'] || [])
 
-      if supertypes.include?("Basic") or subtypes.include?("Contraption")
-        card["border"] = "none"
-      end
+      card['border'] = 'black' if name == 'Steamflogger Boss'
+
+      card['border'] = 'none' if supertypes.include?('Basic') || subtypes.include?('Contraption')
     end
   end
 end

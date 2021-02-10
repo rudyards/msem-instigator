@@ -1,44 +1,41 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "pathname"
-require "set"
+require 'pathname'
+require 'set'
 
 class String
   def oneline
-    gsub(/\s+/, " ")
+    gsub(/\s+/, ' ')
   end
 end
 
 class FormatCompRules
   def call
     @output = []
-    @output << "= content_for(:disable_turbolinks) do"
-    @output << "  true"
-    @output << ".row"
-    @output << "  .col-12"
+    @output << '= content_for(:disable_turbolinks) do'
+    @output << '  true'
+    @output << '.row'
+    @output << '  .col-12'
     paras = text_rules.split(/\n{2,}/)
 
-    raise unless paras[0] == "Magic: The Gathering Comprehensive Rules"
+    raise unless paras[0] == 'Magic: The Gathering Comprehensive Rules'
+
     primary_header! paras.shift
-    para! paras.shift while paras[0] != "Introduction"
+    para! paras.shift while paras[0] != 'Introduction'
     secondary_header! paras.shift
-    para! paras.shift while paras[0] != "Contents"
-    secondary_header! paras.shift
-
-    while paras[0] != "1. Game Concepts"
-      tos_section! paras.shift
-    end
-
-    while paras[0] =~ /\A\d/
-      rule! paras.shift
-    end
-
-    raise unless paras[0] == "Glossary"
+    para! paras.shift while paras[0] != 'Contents'
     secondary_header! paras.shift
 
-    while paras[0] != "Credits"
-      glossary_entry! paras.shift
-    end
+    tos_section! paras.shift while paras[0] != '1. Game Concepts'
+
+    rule! paras.shift while paras[0] =~ /\A\d/
+
+    raise unless paras[0] == 'Glossary'
+
+    secondary_header! paras.shift
+
+    glossary_entry! paras.shift while paras[0] != 'Credits'
 
     secondary_header! paras.shift
     para! paras.shift while paras[0]
@@ -49,22 +46,22 @@ class FormatCompRules
   ## Output formatting
 
   def ref(id)
-    "section-#{ id.downcase.sub(/\.\z/, "").gsub(/[^a-z0-9]/, "-") }"
+    "section-#{id.downcase.sub(/\.\z/, '').gsub(/[^a-z0-9]/, '-')}"
   end
 
   ## duplicates form ApplicationHelper
   def format_mana_symbols(syms)
     syms.gsub(/\{(.*?)\}/) do
-      sym  = $&
-      mana = $1.gsub("/", "").downcase
+      sym  = Regexp.last_match(0)
+      mana = Regexp.last_match(1).gsub('/', '').downcase
       if good_mana_symbols.include?(mana)
-        if mana[0] == "h"
-          %Q[<span class="mana mana-half"><span class="mana mana-cost mana-#{mana[1..-1]}"><span class="sr-only">#{sym}</span></span></span>]
-        elsif mana == "p" or mana == "chaos" or mana == "pw" or mana == "e"
+        if mana[0] == 'h'
+          %(<span class="mana mana-half"><span class="mana mana-cost mana-#{mana[1..]}"><span class="sr-only">#{sym}</span></span></span>)
+        elsif (mana == 'p') || (mana == 'chaos') || (mana == 'pw') || (mana == 'e')
           # No circle
-          %Q[<span class="mana mana-#{mana}"><span class="sr-only">#{sym}</span></span>]
+          %(<span class="mana mana-#{mana}"><span class="sr-only">#{sym}</span></span>)
         else
-          %Q[<span class="mana mana-cost mana-#{mana}"><span class="sr-only">#{sym}</span></span>]
+          %(<span class="mana mana-cost mana-#{mana}"><span class="sr-only">#{sym}</span></span>)
         end
       else
         sym
@@ -74,49 +71,50 @@ class FormatCompRules
 
   def good_mana_symbols
     @good_mana_symbols ||= Set[
-      "x", "y", "z",
-      "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-      "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-      "w", "u", "b", "r", "g",
-      "wu", "wb", "rw", "gw", "ub", "ur", "gu", "br", "bg", "rg",
-      "2w", "2u", "2b", "2r", "2g",
-      "wp", "up", "bp", "rp", "gp", "p",
-      "s", "q", "t", "c", "e",
-      "½", "1000000", "100", "∞",
-      "chaos", "pw",
-      "hw", "hr",
+      'x', 'y', 'z',
+      '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+      '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+      'w', 'u', 'b', 'r', 'g',
+      'wu', 'wb', 'rw', 'gw', 'ub', 'ur', 'gu', 'br', 'bg', 'rg',
+      '2w', '2u', '2b', '2r', '2g',
+      'wp', 'up', 'bp', 'rp', 'gp', 'p',
+      's', 'q', 't', 'c', 'e',
+      '½', '1000000', '100', '∞',
+      'chaos', 'pw',
+      'hw', 'hr',
     ]
   end
 
   def resolve_references(text)
     text.gsub(/\b\d{3}\.\d+[a-z]\b|\b\d{3}\.\d+\b|\b\d{3}\b/) do
-      %Q[<a href="##{ref($&)}">#{$&}</a>]
+      %(<a href="##{ref(Regexp.last_match(0))}">#{Regexp.last_match(0)}</a>)
     end.gsub(/(?:\{.*?\})+/) do
-      %Q[<span class="manacost">] + format_mana_symbols($&) + %Q[</span>]
-    end.gsub(/\[([\+\-]?(?:\d+|N|X))\]/) do
-      symbol = $1
-      usymbol = symbol.sub("-", "\u2013").sub("\u2212", "\u2013")
-      if usymbol[0] == "+"
-        dir = "up"
-      elsif usymbol[0] == "\u2013"
-        dir = "down"
-      else
-        dir = "zero"
-      end
-      %Q[<i class="mana mana-loyalty mana-loyalty-#{dir}" data-loyalty="#{usymbol}"></i>] +
-      %Q[<span class="sr-only">[#{usymbol}]</span>]
+      "<span class=\"manacost\">#{format_mana_symbols(Regexp.last_match(0))}</span>"
+    end.gsub(/\[([+\-]?(?:\d+|N|X))\]/) do
+      symbol = Regexp.last_match(1)
+      usymbol = symbol.sub('-', "\u2013").sub("\u2212", "\u2013")
+      dir = case usymbol[0]
+            when '+'
+              'up'
+            when "\u2013"
+              'down'
+            else
+              'zero'
+            end
+      %(<i class="mana mana-loyalty mana-loyalty-#{dir}" data-loyalty="#{usymbol}"></i>) +
+        %(<span class="sr-only">[#{usymbol}]</span>)
     end
   end
 
   def glossary_entry!(text)
     term, definition = text.split("\n", 2)
-    @output << "    .glossary_entry"
+    @output << '    .glossary_entry'
     @output << "      .glossary_term #{term}"
     @output << "      .glossary_definition #{resolve_references(definition).oneline}"
   end
 
   def rule!(rule)
-    rule_id, rule_text = rule.split(" ", 2)
+    rule_id, rule_text = rule.split(' ', 2)
     @output << "    .rule{id: #{ref(rule_id).inspect}}"
     @output << "      .rule_id #{rule_id}"
     rule_text.split("\n").each do |rule_line|
@@ -125,17 +123,17 @@ class FormatCompRules
   end
 
   def tos_entry!(tos_entry)
-    if tos_entry =~ /\A(\d+)/
-      section_ref = "section-#{$1}"
-    else
-      section_ref = "section-#{tos_entry.downcase}"
-    end
-    @output << "      %li"
+    section_ref = if tos_entry =~ /\A(\d+)/
+                    "section-#{Regexp.last_match(1)}"
+                  else
+                    "section-#{tos_entry.downcase}"
+                  end
+    @output << '      %li'
     @output << "        %a{href: '##{section_ref}'} #{tos_entry.oneline}"
   end
 
   def tos_section!(text)
-    @output << "    %ul.tos_section"
+    @output << '    %ul.tos_section'
     text.split("\n").each do |tos_entry|
       tos_entry! tos_entry
     end
@@ -156,28 +154,28 @@ class FormatCompRules
   ## Everything else
 
   def save!
-    html_rules_path.write(@output.join("\n")+"\n")
+    html_rules_path.write("#{@output.join("\n")}\n")
   end
 
   def html_rules_path
-    Pathname(__dir__) + "../app/views/help/rules.html.haml"
+    "#{Pathname(__dir__)}../app/views/help/rules.html.haml"
   end
 
   def text_rules_path
-    Pathname(__dir__) + "../data/MagicCompRules.txt"
+    "#{Pathname(__dir__)}../data/MagicCompRules.txt"
   end
 
   def text_rules
     # Assumes converted to UTF-8
     @text_rules ||= html_escape(text_rules_path
                       .read
-                      .tr("\r", "")
-                    )
+                      .tr("\r", ''))
   end
 
   def html_escape(txt)
     raise if txt =~ /[<>]/
-    txt.gsub("&", "&amp;")
+
+    txt.gsub('&', '&amp;')
   end
 end
 

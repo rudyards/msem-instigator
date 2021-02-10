@@ -1,36 +1,35 @@
-source "https://rubygems.org"
-ruby "2.7.1"
+# frozen_string_literal: true
 
+source 'https://rubygems.org'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "rails", "5.2.4.4"
+gem 'rails', '5.2.4.4'
 
 # Use SCSS for stylesheets
-gem "sass-rails"
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
+gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem "coffee-rails"
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem "therubyracer", platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem "jquery-rails"
+gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem "turbolinks"
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.0"
+gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem "sdoc", "~> 0.4.0", group: :doc
+gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem "bootstrap", "4.5"
+gem 'bootstrap', '4.5'
 
-gem "rails-assets-tether"
-gem "select2-rails"
+gem 'rails-assets-tether'
+gem 'select2-rails'
 
 gem 'json'
-
-
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
@@ -41,35 +40,35 @@ gem 'json'
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
-gem "haml"
-gem "will_paginate"
-gem "damerau-levenshtein"
-gem "unicode_utils"
-gem "famfamfam_flags_rails"
+gem 'damerau-levenshtein'
+gem 'famfamfam_flags_rails'
+gem 'haml'
+gem 'unicode_utils'
+gem 'will_paginate'
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   # gem "byebug"
-  gem "pry"
-  gem "erb2haml"
+  gem 'erb2haml'
+  gem 'pry'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem "web-console"
+  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
-  gem "listen"
-  gem "pathname-glob"
+  gem 'listen'
+  gem 'pathname-glob'
+  gem 'spring'
 end
 
 group :test do
-  gem "capybara"
+  gem 'capybara'
 end
 
 group :production do
-  gem "unicorn"
+  gem 'unicorn'
 end
 
-gem "byebug", "~> 11.1", :groups => [:development, :test]
+gem 'byebug', '~> 11.1', groups: %i[development test]

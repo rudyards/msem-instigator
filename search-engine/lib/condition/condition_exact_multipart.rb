@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ConditionExactMultipart < ConditionSimple
   def initialize(name)
     @name = name
-    @name_parts = @name.split(%r[(?:&|/)+]).map{|n| normalize_name(n)}
+    @name_parts = @name.split(%r{(?:&|/)+}).map { |n| normalize_name(n) }
   end
 
   def match?(card)
