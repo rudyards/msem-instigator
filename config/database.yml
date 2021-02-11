@@ -1,0 +1,14 @@
+# SQLite version 3.x
+#   gem install pg
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'pg'
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: instigator_development

@@ -1,3 +1,4 @@
+- byebug
 - if @warnings.present?
   .row
     .col-12.warnings
@@ -6,8 +7,8 @@
 - if @search.present?
   = render 'summary'
   .row.multicard_row
-    - @cards.each_with_index do |(card, printings), i|
-      .col-6.col-sm-4.card_picture_cell{class: "card_#{i % 3}_of_3 card_#{i % 2}_of_2"}
+    - @cards.each_with_index do |(card, printings), j|
+      .col-6.col-sm-4.card_picture_cell{class: "card_#{j % 3}_of_3 card_#{j % 2}_of_2"}
         = link_to_card(card) do
           = render 'card/picture', card: card
   = render "pagination", cards: @cards

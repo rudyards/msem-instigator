@@ -1,0 +1,5 @@
+<%= form_tag do %>
+  <%= text_field_tag(:name, 'Deckname') %><br />
+  <%= text_area_tag(:decklist, 'Place your decklist here', size:'20x20') %><br />
+  <%= submit_tag('Create') %>
+<% end %>

@@ -20,15 +20,12 @@ Rails.application.routes.draw do
   get 'help/contact' => 'help#contact'
   get 'help/rules' => 'help#rules'
 
-  get 'proxy' => 'proxy#show'
-  get 'proxy/search' => 'proxy#search'
+  get 'proxy' => 'proxy#new'
+  get 'proxy/search' => 'proxy#show'
 
-  get 'deck/:set/:id' => 'deck#show'
-  get 'deck/:set/:id/download' => 'deck#download'
-  get 'deck' => 'deck#index'
-
-  get "sealed" => "sealed#index"
-  get 'visualizer' => 'visualizer#show'
-  get "/" => "card#index"
+  get 'visualizer' => 'deck#new'
+  post 'visualizer' => 'deck#create'
+  get 'visualizer/:id' => 'deck#show'
+  get '/' => 'card#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

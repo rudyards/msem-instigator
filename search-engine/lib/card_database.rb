@@ -15,9 +15,6 @@ require_relative 'card_sheet_factory'
 require_relative 'pack'
 require_relative 'pack_factory'
 require_relative 'weighted_pack'
-require_relative 'sealed'
-require_relative 'deck'
-require_relative 'deck_database'
 
 class CardDatabase
   attr_reader :sets, :cards, :blocks, :artists, :cards_in_precons
@@ -45,26 +42,6 @@ class CardDatabase
     @printings ||= enum_for(:each_printing).to_set
   end
 
-  def decks
-    @decks ||= @sets.values.flat_map(&:decks)
-  end
-
-  # We also need to include all other cards with same name from same set,
-  # as we don't know which Forest etc. is included
-  def decks_containing(card_printing)
-    set_code = card_printing.set_code
-    name = card_printing.name
-    decks.select do |deck|
-      next unless deck.all_set_codes.include?(set_code)
-
-      [*deck.cards, *deck.sideboard].any? do |_, physical_card|
-        physical_card.parts.any? do |physical_card_part|
-          physical_card_part.set_code == card_printing.set_code and
-            physical_card_part.name == card_printing.name
-        end
-      end
-    end
-  end
 
   def subset(sets)
     # puts "Loading subset: #{sets}"
@@ -264,21 +241,6 @@ class CardDatabase
     link_multipart_cards!(multipart_cards)
     setup_artists!
     setup_sort_index!
-    DeckDatabase.new(self).load!
-    index_cards_in_precons!
-  end
-
-  def index_cards_in_precons!
-    @cards_in_precons = {}
-    @sets.values
-         .flat_map(&:decks)
-         .flat_map(&:cards_with_sideboard)
-         .map(&:last)
-         .flat_map { |c| c.parts.map(&:name).map { |n| [c.set_code, c.foil, n] } }
-         .each do |set_code, foil, name|
-      @cards_in_precons[set_code] ||= [Set.new, Set.new]
-      @cards_in_precons[set_code][foil ? 1 : 0] << name
-    end
   end
 
   def fix_multipart_cards_color_identity!(color_identity_cache)
@@ -316,7 +278,7 @@ class CardDatabase
       @artists[artist_slug] ||= Artist.new(artist_name)
       artist = @artists[artist_slug]
       unless artist_name == artist.name
-        warn "Different artists have same slug - `#{artist_name}' `#{artist.name}' (slug: #{artist_slug})"
+        # warn "Different artists have same slug - `#{artist_name}' `#{artist.name}' (slug: #{artist_slug})"
       end
       artist.printings << printing
       printing.artist = artist

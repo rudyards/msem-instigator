@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class ProxyController < ApplicationController
-  def show
+  def new
     @title = 'Proxies'
     render layout: 'no_search_box'
   end
 
-  def search
+  def show
     @title = 'Printable Proxies'
     # Search takes its params from the decklist textarea in show
     @search = params[:decklist] || ''

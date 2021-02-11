@@ -5,7 +5,7 @@ require_relative 'boot'
 # Pick the frameworks you want:
 require 'active_model/railtie'
 require 'active_job/railtie'
-# require "active_record/railtie"
+require 'active_record/railtie'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
@@ -30,6 +30,7 @@ module Frontend
     config.middleware.delete ActionDispatch::Cookies
     config.middleware.delete ActionDispatch::Session::CookieStore
     config.middleware.delete ActionDispatch::Flash
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end
 
