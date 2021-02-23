@@ -153,7 +153,7 @@ class QueryTokenizer
         op = '=' if op == ':'
         mana = s[2]
         tokens << [:test, ConditionMana.new(op, mana)]
-      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|front|back|commander|reprint|canon|desertshock|shockfetch|mirrorland|bounceland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|drawdual|checkland|scryland|tricheck|unique|draft|historic|staple|scuttleback|brawler|storied)\b/i)
+      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|front|back|commander|reprint|canon|tale|desertshock|shockfetch|mirrorland|bounceland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|drawdual|checkland|scryland|tricheck|unique|draft|historic|staple|scuttleback|brawler|storied)\b/i)
         tokens << [:not] if s[1].downcase == 'not'
         cond = s[2].capitalize
         cond = 'Timeshifted' if cond == 'Colorshifted'

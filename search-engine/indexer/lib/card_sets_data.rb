@@ -8,7 +8,7 @@ class CardSetsData
   end
 
   def sets_path
-    "#{Indexer::ROOT}sets"
+    Indexer::ROOT + "sets"
   end
 
   def set_paths

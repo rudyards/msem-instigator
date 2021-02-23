@@ -12,7 +12,7 @@ require_relative 'patches/patch'
 Dir["#{__dir__}/patches/*.rb"].each { |path| require_relative path }
 
 class Indexer
-  ROOT = "#{Pathname(__dir__).parent.parent.parent}data"
+  ROOT = Pathname(__dir__).parent.parent.parent + "data"
   puts "Indexer: Root = #{ROOT}"
 
   # In verbose mode we validate each patch to make sure it actually does something

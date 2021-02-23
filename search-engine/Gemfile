@@ -10,3 +10,4 @@ gem 'rake'
 gem 'rspec', require: false, group: :test
 gem 'simplecov', require: false, group: :test
 gem 'unicode_utils'
+gem 'byebug', '~> 11.1', groups: %i[development test]
