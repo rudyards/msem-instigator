@@ -294,6 +294,7 @@ class CardDatabase
     multipart_cards.each do |card_name, other_names|
       card = @cards[card_name.downcase]
       other_cards = other_names.map { |name| @cards[name.downcase] }
+      # puts(" card_name: #{card_name}")
       # puts(" card_database: other_cards=#{other_cards}")
       card.printings.each do |printing|
         printing.others = other_cards.map do |other_card|
