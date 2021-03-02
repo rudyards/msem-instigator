@@ -44,6 +44,7 @@ BanList.for_format('msem2') do
     'Weathered Fortress' => 'banned',
     'Malice Crafter' => 'banned',
     'Creeping Crypts' => 'banned',
-    'Pyre Ritual' => 'banned'
+    'Pyre Ritual' => 'banned',
+    'Life Giving Waters' => 'banned'
   )
 end

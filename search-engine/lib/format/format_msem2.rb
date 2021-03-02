@@ -50,7 +50,8 @@ class FormatMSEM2 < Format
       'STN',
       'SOU',
       'ALR',
-      'MON'
+      'MON',
+      'DSS','EIA'
     ]
   end
 end
