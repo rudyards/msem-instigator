@@ -5,7 +5,7 @@ class ConditionIsTricheck < Condition
     names = [
       'bleak shoreline', 'charred marsh', 'cloudcover heights', 'forbidding isle',
       'idyllic oasis', 'deeplife cavern', 'frigid highlands', 'gleaming hot springs',
-      'ravaged cityscape', 'sunlit ruins'
+      'calmed battleground', 'sunlit ruins'
     ]
 
     names
