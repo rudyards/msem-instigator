@@ -39,6 +39,10 @@
       = search_help %Q[e:arcanum], %Q[cards from all sets including "arcanum" in name (only if there's no exact match)]
       = search_help "e:mac,cac", %Q[cards from "Memorium Arcanum" and "Carpe Arcanum" sets]
 
+    %h4 Search for staples
+    %ul
+      = search_help "is:staple", "cards that have a 45 percent or better winrate over the last four months with at least 3 players and 50 games."
+
     %h4 Search by color expression
     %ul
       = search_help "c=w", "cards which are exactly white"
