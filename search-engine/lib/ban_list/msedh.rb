@@ -7,6 +7,10 @@ BanList.for_format('msedh') do
     'End of the World' => 'banned',
     'Planar Conflagration' => 'banned',
     'Sway of the Stars' => 'banned',
-    'Whiterun Gates' => 'banned'
+    'Whiterun Gates' => 'banned',
+    'Poisoned Well' => 'banned',
+    'Isles Uncharted' => 'banned',
+    'Siesa Tremund' => 'banned',
+    'Talent Pool' => 'banned'
   )
 end

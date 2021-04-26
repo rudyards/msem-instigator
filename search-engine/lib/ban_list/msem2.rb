@@ -16,7 +16,6 @@ BanList.for_format('msem2') do
     'Embrace Madness' => 'banned',
     'Halskrow Street Gallows' => 'banned',
     'Mercantile Accords' => 'banned',
-    'Mystic Meddling' => 'banned',
     'Ontarachie Dryad' => 'banned',
     "Parliament's Courtyard" => 'banned',
     'Planar Conflagration' => 'banned',
@@ -29,8 +28,6 @@ BanList.for_format('msem2') do
     'Sentinel of Latter Days' => 'banned',
     "Unmasker of Fate's Design" => 'banned',
     'Vidal, Rune Thief' => 'banned',
-    "Zetla, the Dragon's Voice" => 'banned',
-    "Winter's Exhaustion" => 'banned',
     'Eleventh Hour Breakthrough' => 'banned',
     'Dawnlit Battlefield' => 'banned',
     'Deadwood Grove' => 'banned',
@@ -42,9 +39,11 @@ BanList.for_format('msem2') do
     'Sunlit Fissure' => 'banned',
     'Towering Boughs' => 'banned',
     'Weathered Fortress' => 'banned',
-    'Malice Crafter' => 'banned',
-    'Creeping Crypts' => 'banned',
-    'Pyre Ritual' => 'banned',
-    'Life Giving Waters' => 'banned'
+    'Life Giving Waters' => 'banned',
+    'Leyline Alignment Field' => 'banned',
+    'Ammbradu Goliath' => 'banned',
+    'Entelan Erasure' => 'banned',
+    'Imperial Mox' => 'banned',
+    'Kevthra’s Will' => 'banned'
   )
 end
