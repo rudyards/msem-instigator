@@ -39,11 +39,11 @@ BanList.for_format('msem2') do
     'Sunlit Fissure' => 'banned',
     'Towering Boughs' => 'banned',
     'Weathered Fortress' => 'banned',
-    'Life Giving Waters' => 'banned',
+    'Life-Giving Waters' => 'banned',
     'Leyline Alignment Field' => 'banned',
     'Ammbradu Goliath' => 'banned',
     'Entelan Erasure' => 'banned',
     'Imperial Mox' => 'banned',
-    'Kevthra’s Will' => 'banned'
+    "Kevthra's Will" => 'banned'
   )
 end

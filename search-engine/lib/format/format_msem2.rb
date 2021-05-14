@@ -46,7 +46,8 @@ class FormatMSEM2 < Format
       'SOU',
       'ALR',
       'MON',
-      'DSS','EIA'
+      'DSS','EIA',
+      'HZN'
     ]
   end
 end

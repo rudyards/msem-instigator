@@ -15,20 +15,16 @@ class FormatMSEDH < Format
     'GNJ', 'SUR',
     'OPH', 'ORP',
     'CAC', 'MAC',
-    'DYA',
     'HI12',
     'K15',
     'KLC',
-    'LNG',
     'MIS',
     'NVA',
     'POA',
     'SOR',
-    'TGE',
     'TOW',
     'GHQ',
     'HVF',
-    'XPM',
     'ZER',
     'L',
     'L2',
@@ -44,14 +40,15 @@ class FormatMSEDH < Format
     'DOA',
     'WAY',
     'LAW',
-    'WAW',
     'MS2',
     'LVS',
     'KOD',
     'STN',
     'SOU',
     'ALR',
-    'MON'
+    'MON',
+    'EIA','DSS',
+    'HZN'
     ]
   end
 end
