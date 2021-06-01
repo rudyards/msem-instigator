@@ -48,12 +48,12 @@ desc 'Delete outdated images'
 task 'uninstall' do
   file = File.read('./uninstall.json')
   data_hash = JSON.parse(file)
-  data_hash.each do |c|
-    set = c['setID']
-    id_num = c['cardID']
+  data_hash.each do |card|
+    set = card['setID']
+    id_num = card['cardID']
     image_path = "./public/cards/#{set}/#{id_num}.jpg"
     File.delete(image_path) if File.exist?(image_path)
-    puts "#{c['name']} deleted"
+    puts "#{card['name']} deleted"
   end
 end
 
