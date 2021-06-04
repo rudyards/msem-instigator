@@ -16,7 +16,7 @@ class Sorter
   attr_reader :warnings, :sort_order
 
   def initialize(sort_order, seed)
-    known_sort_orders = %w[ci cmc color name new newall number old oldall pow rand
+    known_sort_orders = %w[ci cmc mv color name new newall number old oldall pow rand
                            rarity tou]
     known_sort_orders += known_sort_orders.map { |s| "-#{s}" }
 
@@ -59,9 +59,9 @@ class Sorter
         [-c.release_date_i]
       when 'oldall', '-newall'
         [c.release_date_i]
-      when 'cmc'
+      when 'cmc', 'mv'
         [c.cmc ? 0 : 1, -c.cmc.to_i]
-      when '-cmc'
+      when '-cmc', '-mv'
         [c.cmc ? 0 : 1, c.cmc.to_i]
       when 'pow'
         [c.power ? 0 : 1, -c.power.to_i]
