@@ -3,8 +3,16 @@
 class ConditionIsCycleland < Condition
   def search(db)
     names = [
-      'back alley', 'expansive sprawl', 'lakeside market', 'rugged outcropping', 'weathered slums',
-      'courtroom halls', 'empty courtyard', 'ornate interior', 'torchlit shipyard', 'waterway dam'
+        "boiling ridge",
+        "duskwood thicket",
+        "hazy moorland",
+        "rugged fields",
+        "sungrace meadows",
+        "bustling harbor",
+        "dreary township",
+        "glittering grove",
+        "monsoon lagoon",
+        "urban wastelands",
     ]
 
     names
