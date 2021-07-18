@@ -48,7 +48,8 @@ class FormatMSEDH < Format
     'ALR',
     'MON',
     'EIA','DSS',
-    'HZN'
+    'HZN',
+    'RVO','AKD'
     ]
   end
 end
