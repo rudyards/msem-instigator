@@ -95,6 +95,14 @@ class ConditionAny < ConditionOr
       @conds << ConditionIsUnique.new
     when 'vanilla'
       @conds << ConditionIsVanilla.new
+    when 'hugo'
+      @conds << ConditionIsHugo.new
+    when 'searle'
+      @conds << ConditionIsSearle.new
+    when 'marisa'
+      @conds << ConditionIsMarisa.new
+    when 'mable'
+      @conds << ConditionIsMable.new
     end
     @simple = @conds.all?(&:simple?)
   end
