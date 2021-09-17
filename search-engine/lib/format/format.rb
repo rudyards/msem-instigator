@@ -67,7 +67,8 @@ class Format
       # Removed spaces so you can say "lw block" lw-block lwblock lw_block or whatever
       {
         'msem2' => FormatMSEM2,
-        'msedh' => FormatMSEDH
+        'msedh' => FormatMSEDH,
+        'phm'   => FormatPHM
       }
     end
 
