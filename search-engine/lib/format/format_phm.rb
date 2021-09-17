@@ -4,7 +4,7 @@
 
 class FormatPHM < Format
     def format_pretty_name
-      'Perfect Hand Magic'
+      'PHM'
     end
   
     def build_included_sets
@@ -51,5 +51,4 @@ class FormatPHM < Format
         'RVO','AKD'
       ]
     end
-  end
 end
