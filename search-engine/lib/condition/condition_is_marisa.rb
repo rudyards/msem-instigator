@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class ConditionIsMarisa < Condition
+class ConditionMarisa < Condition
 	def search(db)
 		names = [
 			"afterlife heist",
@@ -497,6 +495,7 @@ class ConditionIsMarisa < Condition
 			"mental meltdown",
 			"might of the oslyd",
 			"obliterate flesh",
+			"one",
 			"ravencaller",
 			"reforged relic",
 			"revived colpah",

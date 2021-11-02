@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class ConditionIsHugo < Condition
+class ConditionHugo < Condition
 	def search(db)
 		names = [
 			"academy renegade",
@@ -1784,7 +1782,6 @@ class ConditionIsHugo < Condition
 			"wanted",
 			"wardens of the ulek",
 			"warning shot",
-			"wendigo",
 			"whirling thoughts",
 			"wild bounties",
 			"abscond",
@@ -2869,7 +2866,6 @@ class ConditionIsHugo < Condition
 			"slay the unkillable",
 			"speedreading",
 			"sword of tides and time",
-			"terraformer's globe",
 			"the clocktower project",
 			"timeworn crags",
 			"transplanted citadel",
@@ -3293,6 +3289,7 @@ class ConditionIsHugo < Condition
 			"subduing serum",
 			"sun-dappled paragon",
 			"telemin architect",
+			"terraformer's globe",
 			"terramorphic expanse",
 			"thallid cultivator",
 			"thrinax sporemother",
@@ -3638,7 +3635,6 @@ class ConditionIsHugo < Condition
 			"edina's soulsinger",
 			"emerge from the reeds",
 			"enchanting palace",
-			"entrancing light",
 			"eye of the beholder",
 			"fabulous find",
 			"face of the abyss",
@@ -3651,7 +3647,6 @@ class ConditionIsHugo < Condition
 			"guppyfin duelist",
 			"harried submersible",
 			"hila okunos",
-			"hit the bottom",
 			"hopesinker",
 			"horrors' reach",
 			"idyllic odyssey",

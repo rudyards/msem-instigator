@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class ConditionIsMable < Condition
+class ConditionMable < Condition
 	def search(db)
 		names = [
 			"afterlife heist",
@@ -1976,7 +1974,6 @@ class ConditionIsMable < Condition
 			"alratha, pearl of the sand sea",
 			"cold shoulder",
 			"collapsing ridges",
-			"confront the riddle master",
 			"conto sika, ruined glory",
 			"crest",
 			"daring escape",
