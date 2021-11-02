@@ -222,6 +222,8 @@ class Card
         # c - colorless mana
       when /\A([wubrg])\z/
         ci << Regexp.last_match(1)
+      when 'mg'
+        # don't do anything
       when %r{\A([wubrg])/p\z}
         # Phyrexian mana
         ci << Regexp.last_match(1)
