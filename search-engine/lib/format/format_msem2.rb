@@ -48,7 +48,8 @@ class FormatMSEM2 < Format
       'MON',
       'DSS','EIA',
       'HZN',
-      'RVO','AKD'
+      'RVO','AKD',
+      'BYK','ALK'
     ]
   end
 end

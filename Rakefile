@@ -23,10 +23,12 @@ desc 'Fetch MSEM pics'
 task 'pics:MSEM' do
   pics = Pathname('./public/cards')
   db.printings.each do |c|
-    next unless c.multiverseid
+    # next unless c.multiverseid
 
     tempNumber = if c.layout == 'split'
                    c.number.gsub(/[ab]/, '')
+                 elsif c.set_code != 'MPS_MIS'
+                  c.number.gsub(/[s]/, '')
                  else
                    c.number
                  end
