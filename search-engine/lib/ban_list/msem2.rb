@@ -44,6 +44,7 @@ BanList.for_format('msem2') do
     'Ammbradu Goliath' => 'banned',
     'Entelan Erasure' => 'banned',
     'Imperial Mox' => 'banned',
-    "Kevthra's Will" => 'banned'
+    "Kevthra's Will" => 'banned',
+    'Last Passage' => 'banned'
   )
 end

@@ -11,6 +11,8 @@ BanList.for_format('msedh') do
     'Poisoned Well' => 'banned',
     'Isles Uncharted' => 'banned',
     'Siesa Tremund' => 'banned',
-    'Talent Pool' => 'banned'
+    'Talent Pool' => 'banned',
+    'Heart of Zhedina' => 'banned',
+    'Kaur, End of Lies' => 'banned'
   )
 end
