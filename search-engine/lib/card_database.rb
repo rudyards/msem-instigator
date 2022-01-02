@@ -357,6 +357,7 @@ class CardDatabase
             if matching_number.size == 1
               matching_number[0]
             else
+              pp printing
               raise "Can't link other side - #{card_name}"
             end
           end

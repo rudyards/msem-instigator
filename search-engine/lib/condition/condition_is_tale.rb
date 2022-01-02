@@ -23,6 +23,7 @@ class ConditionIsTale < Condition
       'student of the scroll',
       'virtuorangutan',
       'wise farseer chini',
+	  'enraptured countess',
     ]
 
     names
