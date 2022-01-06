@@ -17,16 +17,21 @@ BanList.for_format('phm') do
       'Voidbringer' => 'banned',
       'Wandering Souls' => 'banned',
       'Warden of the Dead' => 'banned',
+      'Tunu, Ancient Shaper' => 'banned',
       # Disruption
       'Hexplate Companion' => 'banned',
       "Mage's Command" => 'banned',
       'Persecution Official' => 'banned',
       'Silent Hypnotist' => 'banned',
       'Spellshatter' => 'banned',
+      'Cosmic Sinkhole' => 'banned',
+      'Bind the Mind' => 'banned',
+      "Archivist's Torment" => 'banned',
       # Overly Efficient Threats
       'Ammbradu Goliath' => 'banned',
       'Jara Champion' => 'banned',
       'Monument of Queens' => 'banned',
+      'Infectious Ego' => 'banned',
       "The Stranger's Play" => 'banned'
     )
 end
