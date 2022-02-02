@@ -24,6 +24,7 @@ class ConditionIsTale < Condition
       'virtuorangutan',
       'wise farseer chini',
 	  'enraptured countess',
+	  'daisite pioneer',
     ]
 
     names
