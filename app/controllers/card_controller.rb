@@ -84,7 +84,7 @@ class CardController < ApplicationController
   private
 
   def choose_best_printing(printings)
-    best_printing = printings.find { |cp| ApplicationHelper.card_picture_path(cp) } || printings[1]
+    best_printing = printings.find { |cp| ApplicationHelper.card_picture_path(cp) } || printings.first
     [best_printing, printings]
   end
 end

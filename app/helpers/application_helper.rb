@@ -139,17 +139,15 @@ module ApplicationHelper
 
   def self.card_picture_path(card)
     if card.layout != 'split'
-      url_hq = "/cards/#{card.set_code}/#{card.number}.jpg"
-      url_lq = "/cards/#{card.set_code}/#{card.number}.jpg"
+      url_hq = "https://mse-modern.com/msem2/images/#{card.set_code}/#{card.number}.jpg"
+      url_lq = "https://mse-modern.com/msem2/images//#{card.set_code}/#{card.number}.jpg"
     else
       tempNumber = card.number.gsub(/[ab]/, '')
-      url_hq = "/cards/#{card.set_code}/#{tempNumber}.jpg"
-      url_lq = "/cards/#{card.set_code}/#{tempNumber}.jpg"
+      url_hq = "https://mse-modern.com/msem2/images//#{card.set_code}/#{tempNumber}.jpg"
+      url_lq = "https://mse-modern.com/msem2/images//#{card.set_code}/#{tempNumber}.jpg"
     end
-    path_hq = Pathname(__dir__) + "../../public#{url_hq}"
-    path_lq = Pathname(__dir__) + "../../public#{url_lq}"
-    return url_hq if path_hq.exist?
-    return url_lq if path_lq.exist?
+    return url_hq if url_hq.present?
+    return url_lq if url_lq.present?
 
     nil
   end
