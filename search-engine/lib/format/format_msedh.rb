@@ -49,7 +49,9 @@ class FormatMSEDH < Format
     'MON',
     'EIA','DSS',
     'HZN',
-    'RVO','AKD'
+    'RVO','AKD',
+    'OTH','ONO',
+    'QRB','SWR'
     ]
   end
 end

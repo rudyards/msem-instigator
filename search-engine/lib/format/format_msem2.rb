@@ -49,7 +49,9 @@ class FormatMSEM2 < Format
       'DSS','EIA',
       'HZN',
       'RVO','AKD',
-      'BYK','ALK'
+      'BYK','ALK',
+      'OTH','ONO',
+      'QRB','SWR'
     ]
   end
 end
