@@ -32,7 +32,6 @@ class FormatMSEDH < Format
     '101',
     'VTM',
     'UNR',
-    'MS1',
     'RWR',
     'ATB',
     'DHL',
@@ -40,7 +39,6 @@ class FormatMSEDH < Format
     'DOA',
     'WAY',
     'LAW',
-    'MS2',
     'LVS',
     'KOD',
     'STN',
@@ -51,7 +49,8 @@ class FormatMSEDH < Format
     'HZN',
     'RVO','AKD',
     'OTH','ONO',
-    'QRB','SWR'
+    'QRB','SWR',
+    'MS1', 'MS2', 'MS3', 'MSC'
     ]
   end
 end

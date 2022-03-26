@@ -32,7 +32,7 @@ class FormatMSEM2 < Format
       '101',
       'VTM',
       'UNR',
-      'MS1', 'MS2', 'MS3',
+      'MS1', 'MS2', 'MS3', 'MSC'
       'RWR',
       'ATB',
       'DHL',
