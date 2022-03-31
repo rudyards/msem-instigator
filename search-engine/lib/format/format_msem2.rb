@@ -32,7 +32,7 @@ class FormatMSEM2 < Format
       '101',
       'VTM',
       'UNR',
-      'MS1', 'MS2', 'MS3', 'MSC'
+      'MS1', 'MS2', 'MS3', 'MSC',
       'RWR',
       'ATB',
       'DHL',
@@ -51,7 +51,7 @@ class FormatMSEM2 < Format
       'RVO','AKD',
       'BYK','ALK',
       'OTH','ONO',
-      'QRB','SWR'
+      'QRB','SWR',
     ]
   end
 end
