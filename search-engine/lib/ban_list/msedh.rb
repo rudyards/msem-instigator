@@ -6,13 +6,13 @@ BanList.for_format('msedh') do
     'Citadel of Denial' => 'banned',
     'End of the World' => 'banned',
     'Planar Conflagration' => 'banned',
-    'Sway of the Stars' => 'banned',
     'Whiterun Gates' => 'banned',
     'Poisoned Well' => 'banned',
     'Isles Uncharted' => 'banned',
     'Siesa Tremund' => 'banned',
     'Talent Pool' => 'banned',
     'Heart of Zhedina' => 'banned',
-    'Kaur, End of Lies' => 'banned'
+    'Kaur, End of Lies' => 'banned',
+    'Planar Reflection' => 'banned',
   )
 end
