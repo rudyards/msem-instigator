@@ -15,7 +15,6 @@ BanList.for_format('msem2') do
     'Ebb and Flow' => 'banned',
     'Embrace Madness' => 'banned',
     'Halskrow Street Gallows' => 'banned',
-    'Mercantile Accords' => 'banned',
     'Ontarachie Dryad' => 'banned',
     "Parliament's Courtyard" => 'banned',
     'Planar Conflagration' => 'banned',
@@ -45,6 +44,10 @@ BanList.for_format('msem2') do
     'Entelan Erasure' => 'banned',
     'Imperial Mox' => 'banned',
     "Kevthra's Will" => 'banned',
-    'Last Passage' => 'banned'
+    'Last Passage' => 'banned',
+    'Hellbent Speed' => 'banned',
+    'Lotus Studies' => 'banned',
+    'Scintillate' => 'banned',
+    'Unleash the Dragon' => 'banned',
   )
 end
