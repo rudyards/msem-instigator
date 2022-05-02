@@ -1,4 +1,4 @@
-class ConditionMable < Condition
+class ConditionIsMable < Condition
 	def search(db)
 		names = [
 			"afterlife heist",

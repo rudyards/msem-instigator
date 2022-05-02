@@ -1,4 +1,4 @@
-class ConditionLilia < Condition
+class ConditionIsLilia < Condition
 	def search(db)
 		names = [
 			"crystal garden",

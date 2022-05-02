@@ -1,4 +1,4 @@
-class ConditionAshe < Condition
+class ConditionIsAshe < Condition
 	def search(db)
 		names = [
 			"bretala of redsky",
