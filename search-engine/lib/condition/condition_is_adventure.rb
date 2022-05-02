@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ConditionIsTale < Condition
+class ConditionIsAdventure < Condition
   def search(db)
     names = [
 		"valdez, leafdown vagabond",
