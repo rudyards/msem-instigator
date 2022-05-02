@@ -82,6 +82,6 @@ class ConditionIsTale < Condition
   end
 
   def to_s
-    'is:tale'
+    'is:adventure'
   end
 end
