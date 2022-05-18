@@ -48,7 +48,10 @@ class FormatPHM < Format
         'MON',
         'DSS','EIA',
         'HZN',
-        'RVO','AKD'
+        'RVO','AKD',
+        'MSC',
+        'ONO','OTH',
+        'QRB','SWR'
       ]
     end
 end
