@@ -29,7 +29,7 @@ gem 'bootstrap', '4.5'
 gem 'rails-assets-tether'
 gem 'select2-rails'
 
-gem 'json'
+gem 'json', ">= 2.3.0"
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
