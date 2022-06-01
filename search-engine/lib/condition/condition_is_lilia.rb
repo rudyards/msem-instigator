@@ -1,4 +1,4 @@
-class ConditionIsLilia < Condition
+class ConditionLilia < Condition
 	def search(db)
 		names = [
 			"crystal garden",
@@ -679,6 +679,42 @@ class ConditionIsLilia < Condition
 			"rugged expanse",
 			"eon campfire",
 			"breathtaking valley",
+			"ancestral glade",
+			"archmage's tower",
+			"bustling marketplace",
+			"chamber of ceremonies",
+			"cloudpeak spires",
+			"commander's stronghold",
+			"conjured acropolis",
+			"magnificent palace",
+			"midnight gate",
+			"mystical tomb",
+			"sacred summits",
+			"seaside grotto",
+			"sunlit meadow",
+			"tranquil shrine",
+			"vale ruins",
+			"vraniveer's edge",
+			"wildkin grove",
+			"tomb of the roseblade",
+			"cresting bay",
+			"firehearth halls",
+			"serene chapel",
+			"wise old oak",
+			"swarming midden",
+			"secluded courtyard",
+			"sparring ground",
+			"indomitable armory",
+			"descended glacier",
+			"descended hollow",
+			"descended fissure",
+			"descended gorge",
+			"descended countryside",
+			"ornate interior",
+			"torchlit shipyard",
+			"empty courtyard",
+			"courtroom halls",
+			"waterway dam",
 ]
 
 		names

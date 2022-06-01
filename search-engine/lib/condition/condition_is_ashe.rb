@@ -1,4 +1,4 @@
-class ConditionIsAshe < Condition
+class ConditionAshe < Condition
 	def search(db)
 		names = [
 			"bretala of redsky",
@@ -91,12 +91,25 @@ class ConditionIsAshe < Condition
 			"horizon sovereign",
 			"dragonglass harp",
 			"dragon's breath throatsinger",
-			"ashe of thewinged steed",
+			"ashe of the winged steed",
 			"vidal's conjurant",
 			"bleakrealm mini-menace",
 			"seven seas scourge",
 			"azos, tyrant of bleakrealm",
 			"shoal dragon",
+			"dragonheart seer",
+			"venwyn, the dragon's fang",
+			"hellkite annihilator",
+			"hoarding dragon",
+			"trove keeper",
+			"varagan wyrmling",
+			"zarthane, scourge of galdurheim",
+			"tyrant's breath",
+			"great vorganisaath",
+			"xedrios, progenitor wyrm",
+			"vorganisaath's flamewaker",
+			"scourge of the mountains",
+			"tyrant of prophecies",
 ]
 
 		names

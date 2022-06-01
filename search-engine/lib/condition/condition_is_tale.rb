@@ -25,6 +25,7 @@ class ConditionIsTale < Condition
       'wise farseer chini',
 	  'enraptured countess',
 	  'daisite pioneer',
+	  'marianne, the heartstopper',
     ]
 
     names

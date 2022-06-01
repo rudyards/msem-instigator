@@ -1,4 +1,4 @@
-class ConditionIsTelsi < Condition
+class ConditionTelsi < Condition
 	def search(db)
 		names = [
 			"kiora, empress of the flood",
@@ -70,6 +70,12 @@ class ConditionIsTelsi < Condition
 			"dr. telsi of the ark",
 			"marianne's mercies",
 			"admiral olson stout",
+			"damaris alfahir",
+			"bustling marketplace",
+			"chamber of ceremonies",
+			"lord yaran, the usurper",
+			"usurper's sway",
+			"horse thief",
 ]
 
 		names
