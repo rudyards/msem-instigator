@@ -1,4 +1,4 @@
-class ConditionTinbeard < Condition
+class ConditionIsTinbeard < Condition
 	def search(db)
 		names = [
 			"academic's claymore",

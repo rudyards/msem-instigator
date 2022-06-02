@@ -1,4 +1,4 @@
-class ConditionSearle < Condition
+class ConditionIsSearle < Condition
 	def search(db)
 		names = [
 			"academic's claymore",

@@ -1,4 +1,4 @@
-class ConditionMarisa < Condition
+class ConditionIsMarisa < Condition
 	def search(db)
 		names = [
 			"afterlife heist",

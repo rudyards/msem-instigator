@@ -1,4 +1,4 @@
-class ConditionTelsi < Condition
+class ConditionIsTelsi < Condition
 	def search(db)
 		names = [
 			"kiora, empress of the flood",
