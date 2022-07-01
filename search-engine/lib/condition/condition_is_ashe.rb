@@ -110,6 +110,25 @@ class ConditionIsAshe < Condition
 			"vorganisaath's flamewaker",
 			"scourge of the mountains",
 			"tyrant of prophecies",
+			"glorious herald",
+			"crested cloudfisher",
+			"cloud swine",
+			"draconic admiration",
+			"fleeting soulkite",
+			"scrappy hatchling",
+			"seaside skimmer",
+			"skullhoarder dragon",
+			"aspiring dragon",
+			"curio hellkite",
+			"dragon dance",
+			"flying with dragons",
+			"ilieth, transcendent",
+			"prismscale dragon",
+			"skiviar scraplord",
+			"blizzard dragon",
+			"flynn skara",
+			"in league with dragons",
+			"sisterhood of the traveling planes",
 ]
 
 		names
@@ -119,6 +138,6 @@ class ConditionIsAshe < Condition
 	end
 
 	def to_s
-		"ashe"
+		'is:ashe'
 	end
 end

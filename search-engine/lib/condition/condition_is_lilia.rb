@@ -710,11 +710,20 @@ class ConditionIsLilia < Condition
 			"descended fissure",
 			"descended gorge",
 			"descended countryside",
-			"ornate interior",
-			"torchlit shipyard",
-			"empty courtyard",
-			"courtroom halls",
-			"waterway dam",
+			"alchemist's abode",
+			"opera house",
+			"imperial capital",
+			"thriving bluff",
+			"thriving moor",
+			"thriving isle",
+			"thriving grove",
+			"thriving heath",
+			"barbed reef",
+			"calciform wastes",
+			"crumbling shrine",
+			"implant greenhouse",
+			"snow drift",
+			"spiny ridge",
 ]
 
 		names
@@ -724,6 +733,6 @@ class ConditionIsLilia < Condition
 	end
 
 	def to_s
-		"lilia"
+		'is:lilia'
 	end
 end

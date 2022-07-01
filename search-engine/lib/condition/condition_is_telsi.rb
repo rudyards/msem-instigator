@@ -76,6 +76,9 @@ class ConditionIsTelsi < Condition
 			"lord yaran, the usurper",
 			"usurper's sway",
 			"horse thief",
+			"ashen mare",
+			"sea's allure",
+			"nothing left",
 ]
 
 		names
@@ -85,6 +88,6 @@ class ConditionIsTelsi < Condition
 	end
 
 	def to_s
-		"telsi"
+		'is:telsi'
 	end
 end
