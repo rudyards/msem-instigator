@@ -231,6 +231,7 @@ class Indexer
           'frame',
           'multiverseid',
           'number',
+          'lair_number',
           'print_sheet',
           'rarity',
           'release_date',

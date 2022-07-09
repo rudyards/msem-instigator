@@ -2,7 +2,8 @@
 
 class CardPrinting
   attr_reader :card, :set, :date, :release_date, :designer, :watermark, :rarity, :artist_name, :multiverseid, :number,
-              :frame, :flavor, :flavor_normalized, :border, :timeshifted, :rarity_code, :print_sheet, :release_date_i
+              :frame, :flavor, :flavor_normalized, :border, :timeshifted, :rarity_code, :print_sheet, :release_date_i,
+              :lair_number
 
   # Performance cache of derived information
   attr_reader :stemmed_name, :set_code
@@ -19,6 +20,7 @@ class CardPrinting
     @release_date_i = @release_date.to_i_sort
     @watermark = data['watermark']
     @number = data['number']
+    @lair_number = data['lairNumber'] || nil
     @multiverseid = data['multiverseid']
     @artist_name = data['artist']
     @flavor = data['flavor'] || -''
@@ -139,7 +141,7 @@ class CardPrinting
 
   include Comparable
   def <=>(other)
-    [name, set, number.to_i, number] <=> [other.name, other.set, other.number.to_i, other.number]
+    [name, set, number.to_i, number, lair_number.to_i, lair_number] <=> [other.name, other.set, other.number.to_i, other.number, other.lair_number.to_i, other.lair_number]
   end
 
   def age
