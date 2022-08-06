@@ -32,6 +32,13 @@ BanList.for_format('phm') do
       'Jara Champion' => 'banned',
       'Monument of Queens' => 'banned',
       'Infectious Ego' => 'banned',
-      "The Stranger's Play" => 'banned'
+      "The Stranger's Play" => 'banned',
+      # Codexes
+      'Family Tree' => 'banned',
+      'In League With Dragons' => 'banned',
+      "Irbek's Bestiary" => 'banned',
+      "Mei's Collection" => 'banned',
+      "Rehysia's Chronicle" => 'banned',
+      "Versatility" => 'banned'
     )
 end
