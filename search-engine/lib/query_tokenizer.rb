@@ -4,6 +4,7 @@ require 'strscan'
 
 class QueryTokenizer
   def tokenize(str)
+    str = str.gsub('”', '"')
     tokens = []
     @warnings = []
     s = StringScanner.new(str)
