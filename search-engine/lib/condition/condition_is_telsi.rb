@@ -79,6 +79,9 @@ class ConditionIsTelsi < Condition
 			"ashen mare",
 			"sea's allure",
 			"nothing left",
+			"ram wrangler",
+			"barx, aspiring archvillain",
+			"oshu of the bosk",
 ]
 
 		names

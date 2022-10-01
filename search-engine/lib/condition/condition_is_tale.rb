@@ -30,6 +30,7 @@ class ConditionIsTale < Condition
 			"enraptured countess",
 			"daisite pioneer",
 			"marianne, the heartstopper",
+			"enraptured countess",
 ]
 
 		names
