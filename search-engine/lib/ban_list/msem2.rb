@@ -45,5 +45,7 @@ BanList.for_format('msem2') do
     'Lotus Studies' => 'banned',
     'Scintillate' => 'banned',
     'Unleash the Dragon' => 'banned',
+    'Beckon the Pack' => 'banned',
+    
   )
 end
