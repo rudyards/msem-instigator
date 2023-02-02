@@ -82,6 +82,7 @@ class ConditionIsTelsi < Condition
 			"ram wrangler",
 			"barx, aspiring archvillain",
 			"oshu of the bosk",
+			"coerced tutelage",
 ]
 
 		names

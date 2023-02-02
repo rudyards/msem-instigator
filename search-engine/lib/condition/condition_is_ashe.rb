@@ -168,6 +168,8 @@ class ConditionIsAshe < Condition
 			"song of wind and fire",
 			"effigy of ivory fire",
 			"scourge of the sun",
+			"kamata, ruby ascendant",
+			"warden of distortion",
 ]
 
 		names
