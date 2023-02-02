@@ -52,6 +52,8 @@ class FormatMSEM2 < Format
       'BYK','ALK',
       'OTH','ONO',
       'QRB','SWR',
+      'PAX','NJB',
+      'ACA','VHS','MSJ'
     ]
   end
 end

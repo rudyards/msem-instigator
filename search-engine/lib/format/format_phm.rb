@@ -51,7 +51,9 @@ class FormatPHM < Format
         'RVO','AKD',
         'MSC',
         'ONO','OTH',
-        'QRB','SWR'
+        'QRB','SWR',
+        'PAX','NJB',
+        'ACA','VHS','MSJ'
       ]
     end
 end
