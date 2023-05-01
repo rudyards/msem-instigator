@@ -44,9 +44,9 @@ BanList.for_format('msem2') do
     'Hellbent Speed' => 'banned',
     'Lotus Studies' => 'banned',
     'Scintillate' => 'banned',
-    'Unleash the Dragon' => 'banned',
     'Beckon the Pack' => 'banned',
     'Reefcrown Egg' => 'banned',
-    'Reinvent' => 'banned'
+    'Reinvent' => 'banned',
+    'Instant of Brilliance' => 'banned'
   )
 end
