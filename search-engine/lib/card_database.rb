@@ -29,7 +29,7 @@ end
 
 class String
   def normalize_accents
-    result = gsub("Æ", "Ae").gsub("æ", "ae").tr("ĆćÄàáâäãèéêíõöúûüǵŠš’\u2212", "CcAaaaaaeeeioouuugSs'-")
+    result = gsub("Æ", "Ae").gsub("æ", "ae").tr("ĆćÄàáâäãèéêíõöúûuǵŠš’\u2212", "CcAaaaaaeeeioouuugSs'-")
     result = self if result == self # Memory saving trick
     -result
   end
@@ -347,6 +347,7 @@ class CardDatabase
     multipart_cards.each do |card_name, other_names|
       card = @cards[card_name.downcase]
       other_cards = other_names.map{|name| @cards[name.downcase] }
+      pp card_name
       card.printings.each do |printing|
         printing.others = other_cards.map do |other_card|
           from_same_set = other_card.printings.select{|other_printing| other_printing.set_code == printing.set_code}

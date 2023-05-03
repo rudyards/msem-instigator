@@ -31,7 +31,7 @@ class Card
     @text = (data['text'] || '')
     @text = @text.gsub(/\s*\([^()]*\)/, '') unless @funny
     @text = -@text.sub(/\s*\z/, '').gsub(/ *\n/, "\n").sub(/\A\s*/, '')
-    @text_normalized = -@text.gsub('Æ', 'Ae').tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-")
+    @text_normalized = -@text.gsub('Æ', 'Ae').tr("Äàáâäèéêíõöúûu’\u2212", "Aaaaaeeeioouuu'-")
     @augment = !(@text =~ /augment \{/i).nil?
     @mana_cost = data['manaCost']
     @reserved = data['reserved'] || false
@@ -174,7 +174,7 @@ class Card
   end
 
   def normalize_name(name)
-    -name.gsub('Æ', 'Ae').tr('Äàáâäèéêíõöúûü', 'Aaaaaeeeioouuu')
+    -name.gsub('Æ', 'Ae').tr('Äàáâäèéêíõöúûu', 'Aaaaaeeeioouuu')
   end
 
   def hard_normalize(s)

@@ -60,6 +60,6 @@ class SpellingSuggestions
   private
 
   def normalize_text(text)
-    text.downcase.gsub(/[Ææ]/, 'ae').tr("Äàáâäèéêíõöúûü’\u2212", "Aaaaaeeeioouuu'-").gsub(/'s\b/, '').strip
+    text.downcase.gsub(/[Ææ]/, 'ae').tr("Äàáâäèéêíõöúûu’\u2212", "Aaaaaeeeioouuu'-").gsub(/'s\b/, '').strip
   end
 end
