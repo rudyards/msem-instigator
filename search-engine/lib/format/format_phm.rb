@@ -53,7 +53,8 @@ class FormatPHM < Format
         'ONO','OTH',
         'QRB','SWR',
         'PAX','NJB',
-        'ACA','VHS','MSJ'
+        'ACA','VHS','MSJ',
+        'RCM', 'SPK'
       ]
     end
 end

@@ -36,7 +36,7 @@ task 'pics:MSEM' do
     path.parent.mkpath
     next if path.exist?
 
-    url = "http://mse-modern.com/msem2/images/#{c.set_code}/#{tempNumber}.jpg"
+    url = "https://mse-modern.com/msem2/images/#{c.set_code}/#{tempNumber}.jpg"
     puts "Downloading #{c.name} #{c.set_code} #{c.multiverseid}"
     puts "   from #{url}"
     puts "   to #{path}"
