@@ -54,7 +54,8 @@ class FormatMSEM2 < Format
       'QRB','SWR',
       'FNV','KXP',
       'PAX','NJB',
-      'ACA','VHS','MSJ'
+      'ACA','VHS','MSJ',
+      'AVX','TTR',
     ]
   end
 end

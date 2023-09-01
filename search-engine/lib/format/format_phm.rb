@@ -54,7 +54,8 @@ class FormatPHM < Format
         'QRB','SWR',
         'PAX','NJB',
         'ACA','VHS','MSJ',
-        'RCM', 'SPK'
+        'RCM', 'SPK',
+        'AVX','TTR'
       ]
     end
 end

@@ -50,7 +50,11 @@ class FormatMSEDH < Format
     'RVO','AKD',
     'OTH','ONO',
     'QRB','SWR',
-    'MS1', 'MS2', 'MS3', 'MSC'
+    'MS1', 'MS2', 'MS3', 'MSC','MSJ',
+    'PAX','NJB',
+    'ACA','VHS',
+    'RCM','SPK',
+    'AVX','TTR',
     ]
   end
 end
