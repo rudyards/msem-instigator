@@ -55,6 +55,7 @@ class FormatMSEM2 < Format
       'FNV','KXP',
       'PAX','NJB',
       'ACA','VHS','MSJ',
+      'SPK','RCM',
       'AVX','TTR',
     ]
   end
