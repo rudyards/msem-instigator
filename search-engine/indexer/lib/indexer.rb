@@ -194,6 +194,7 @@ class Indexer
     card.each do |printing|
       common_card_data << printing.slice(
         'designer',
+        'changes',
         'cmc',
         'colors',
         'display_power',
@@ -219,6 +220,7 @@ class Indexer
         'toughness',
         'types'
       ).compact
+      
 
       printing_data << [
         printing['set_code'],
@@ -231,7 +233,7 @@ class Indexer
           'frame',
           'multiverseid',
           'number',
-          'lair_number',
+          'lairNumber',
           'print_sheet',
           'rarity',
           'release_date',
@@ -240,6 +242,7 @@ class Indexer
         ).compact
       ]
     end
+
 
     result = common_card_data[0]
     name = result['name']

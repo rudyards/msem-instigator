@@ -27,6 +27,9 @@
         = "Rarity: #{card.ui_rarity}"
       %li.infolabel
         = "Collector Number: #{card.number}"
+      - if card.lairnumber.present?
+        %li.infolabel
+          = "Lair Number: #{card.lairnumber}"
       %li.infolabel
         = "Released: #{card.release_date.to_s}"
 

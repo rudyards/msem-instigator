@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CardPrinting
-  attr_reader :card, :set, :date, :release_date, :designer, :watermark, :rarity, :artist_name, :multiverseid, :number,
+  attr_reader :card, :set, :date, :release_date, :designer, :changes, :watermark, :rarity, :artist_name, :multiverseid, :number,
               :frame, :flavor, :flavor_normalized, :border, :timeshifted, :rarity_code, :print_sheet, :release_date_i,
-              :lair_number
+              :lairnumber
 
   # Performance cache of derived information
   attr_reader :stemmed_name, :set_code
@@ -15,12 +15,13 @@ class CardPrinting
     @card = card
     @set = set
     @designer = designer
+    @changes = changes || nil
     @others = nil
     @release_date = data['release_date'] ? Date.parse(data['release_date']) : @set.release_date
     @release_date_i = @release_date.to_i_sort
     @watermark = data['watermark']
     @number = data['number']
-    @lair_number = data['lairNumber'] || nil
+    @lairnumber = data['lairNumber'] || nil
     @multiverseid = data['multiverseid']
     @artist_name = data['artist']
     @flavor = data['flavor'] || -''
@@ -129,19 +130,9 @@ class CardPrinting
     @card.legality_information(time)
   end
 
-  def gatherer_link
-    return nil unless multiverseid
-
-    "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=#{multiverseid}"
-  end
-
-  def magiccards_info_link
-    "http://magiccards.info/#{set_code}/en/#{number}.html"
-  end
-
   include Comparable
   def <=>(other)
-    [name, set, number.to_i, number, lair_number.to_i, lair_number] <=> [other.name, other.set, other.number.to_i, other.number, other.lair_number.to_i, other.lair_number]
+    [name, set, number.to_i, number, lairnumber.to_i, lairnumber] <=> [other.name, other.set, other.number.to_i, other.number, other.lairnumber.to_i, other.lairnumber]
   end
 
   def age

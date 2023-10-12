@@ -14,7 +14,7 @@ class Card
   ABILITY_WORD_RX = /^(#{Regexp.union(ABILITY_WORD_LIST)}) —/i.freeze
 
   attr_accessor :printings
-  attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer,
+  attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer, :changes,
               :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
 
   # For db subset
@@ -26,6 +26,7 @@ class Card
     @names = data['names']
     @layout = data['layout']
     @designer = data['designer']
+    @changes = data['changes']
     @colors = data['colors'] || ''
     @funny = data['funny']
     @text = (data['text'] || '')

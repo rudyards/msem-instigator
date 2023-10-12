@@ -347,7 +347,6 @@ class CardDatabase
     multipart_cards.each do |card_name, other_names|
       card = @cards[card_name.downcase]
       other_cards = other_names.map{|name| @cards[name.downcase] }
-      pp card_name
       card.printings.each do |printing|
         printing.others = other_cards.map do |other_card|
           from_same_set = other_card.printings.select{|other_printing| other_printing.set_code == printing.set_code}
@@ -358,7 +357,6 @@ class CardDatabase
             if matching_number.size == 1
               matching_number[0]
             else
-              pp printing
               raise "Can't link other side - #{card_name}"
             end
           end

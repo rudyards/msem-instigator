@@ -8,10 +8,10 @@ class ConditionLairNumber < ConditionSimple
     end
   
     def match?(card)
-      return unless card.respond_to?(:lair_number)
+      return unless card.respond_to?(:lairnumber)
 
-      card_number_s = card.lair_number&.downcase || nil
-      card_number_i = card.lair_number&.to_i || nil
+      card_number_s = card.lairnumber&.downcase || nil
+      card_number_i = card.lairnumber&.to_i || nil
       case @op
       when '>'
         ([card_number_i, card_number_s] <=> [@number_i, @number_s]).positive?
