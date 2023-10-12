@@ -29,7 +29,9 @@
         = "Collector Number: #{card.number}"
       - if card.lairnumber.present?
         %li.infolabel
-          = "Lair Number: #{card.lairnumber}"
+          %span
+            Lair Number:
+          %a{ :href => "/card?q=lairnumber%3A#{card.lairnumber}" } #{card.lairnumber}
       %li.infolabel
         = "Released: #{card.release_date.to_s}"
 
