@@ -58,6 +58,9 @@ module ApplicationHelper
       .gsub(/(?:\{.*?\})+/) do
         "<span class=\"manacost\">#{format_mana_symbols(Regexp.last_match(0))}</span>"
       end
+      .gsub(/s*\([^()]*\)/) do
+        "<i class='reminder_text'>#{Regexp.last_match(0)}</i>"
+      end
       .gsub(/\[([+\-\u2013\u2212]?(?:\d+|N|X))\]/) do
         symbol = Regexp.last_match(1)
         usymbol = symbol.sub('-', "\u2013").sub("\u2212", "\u2013")
@@ -69,9 +72,9 @@ module ApplicationHelper
               else
                 'zero'
               end
+
         %(<i class="mana mana-loyalty mana-loyalty-#{dir}" data-loyalty="#{usymbol}"></i>) +
           %(<span class="sr-only">[#{usymbol}]</span>)
-      end
       %(<i class="reminder-text">#{Regexp.last_match(0)}</i>)
     end
       .html_safe

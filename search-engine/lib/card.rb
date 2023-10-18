@@ -7,14 +7,14 @@ require_relative 'ban_list'
 require_relative 'legality_information'
 
 class Card
-  ABILITY_WORD_LIST = ['Battalion', 'Bloodrush', 'Channel', 'Chroma', 'Cohort', 'Constellation', 'Converge', "Council's dilemma", 'Delirium', 'Domain',
+  ABILITY_WORD_LIST = ['Civilized', 'Bloodrush', 'Channel', 'Chroma', 'Cohort', 'Constellation', 'Converge', "Council's dilemma", 'Delirium', 'Domain',
                        'Eminence', 'Enrage', 'Fateful hour', 'Ferocious', 'Formidable', 'Gotcha', 'Grandeur', 'Hellbent', 'Heroic', 'Imprint', 'Inspired', 'Join forces',
                        'Kinship', 'Landfall', 'Lieutenant', 'Metalcraft', 'Morbid', 'Parley', 'Radiance', 'Raid', 'Rally', 'Revolt', 'Spell mastery', 'Strive', 'Sweep',
                        'Tempting offer', 'Threshold', 'Will of the council'].freeze
   ABILITY_WORD_RX = /^(#{Regexp.union(ABILITY_WORD_LIST)}) —/i.freeze
 
   attr_accessor :printings
-  attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer, :changes,
+  attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer, :changes, :full_oracle,
               :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
 
   # For db subset
@@ -29,6 +29,8 @@ class Card
     @changes = data['changes']
     @colors = data['colors'] || ''
     @funny = data['funny']
+    @full_oracle = (data['text'] || '')
+    @full_oracle = -@full_oracle.sub(/\s*\z/, '').gsub(/ *\n/, "\n").sub(/\A\s*/, '')
     @text = (data['text'] || '')
     @text = @text.gsub(/\s*\([^()]*\)/, '') unless @funny
     @text = -@text.sub(/\s*\z/, '').gsub(/ *\n/, "\n").sub(/\A\s*/, '')

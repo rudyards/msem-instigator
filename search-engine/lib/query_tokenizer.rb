@@ -83,6 +83,8 @@ class QueryTokenizer
         tokens << [:test, ConditionFlavor.new(s[1] || s[2])]
       elsif s.scan(/o\s*[:=]\s*(?:"(.*?)"|([^\s)]+))/i)
         tokens << [:test, ConditionOracle.new(s[1] || s[2])]
+      elsif s.scan(/fo\s*[:=]\s*(?:"(.*?)"|([^\s)]+))/i)
+        tokens << [:test, ConditionFullOracle.new(s[1] || s[2])]
       elsif s.scan(/a\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
         tokens << [:test, ConditionArtist.new(s[1] || s[2])]
       elsif s.scan(/(cn|tw|fr|de|it|jp|kr|pt|ru|sp|cs|ct|foreign)\s*[:=]\s*(?:"(.*?)"|([^\s)]+))/i)
