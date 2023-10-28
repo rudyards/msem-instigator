@@ -75,7 +75,6 @@ module ApplicationHelper
 
         %(<i class="mana mana-loyalty mana-loyalty-#{dir}" data-loyalty="#{usymbol}"></i>) +
           %(<span class="sr-only">[#{usymbol}]</span>)
-      %(<i class="reminder-text">#{Regexp.last_match(0)}</i>)
     end
       .html_safe
   end
