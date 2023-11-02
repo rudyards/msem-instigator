@@ -41,12 +41,14 @@ BanList.for_format('msem2') do
     'Imperial Mox' => 'banned',
     "Kevthra's Will" => 'banned',
     'Last Passage' => 'banned',
+    'Grasp for Understanding' => 'banned',
     'Hellbent Speed' => 'banned',
     'Lotus Studies' => 'banned',
     'Scintillate' => 'banned',
     'Beckon the Pack' => 'banned',
     'Reefcrown Egg' => 'banned',
     'Reinvent' => 'banned',
-    'Instant of Brilliance' => 'banned'
+    'Instant of Brilliance' => 'banned',
+    'Vivid March' => 'banned'
   )
 end

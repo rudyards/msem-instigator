@@ -18,5 +18,10 @@ BanList.for_format('msedh') do
     'Sea of Skies Beyond'  => 'banned',
     'Cradle of Corruption'  => 'banned',
     'Elrayin, the Manaroot'  => 'banned',
+    'Aiko, Tranquil Fury' => 'banned',
+    'Challenge Authority' => 'banned',
+    'Brink of Something' => 'banned',
+    'The Past is Gone' => 'banned',
+    'End of Worlds' => 'banned',
   )
 end
