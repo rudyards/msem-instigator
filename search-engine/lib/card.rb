@@ -15,7 +15,10 @@ class Card
 
   attr_accessor :printings
   attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer, :changes, :full_oracle,
-              :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
+              :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, 
+              :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, 
+              :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost,
+              :changes
 
   # For db subset
 

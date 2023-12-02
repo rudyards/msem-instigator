@@ -14,7 +14,6 @@ class CardPrinting
   def initialize(card, set, data)
     @card = card
     @set = set
-    @changes = changes || nil
     @others = nil
     @release_date = data['release_date'] ? Date.parse(data['release_date']) : @set.release_date
     @release_date_i = @release_date.to_i_sort
@@ -115,7 +114,7 @@ class CardPrinting
   %w[block_code block_name online_only?].each do |m|
     eval("def #{m}; @set.#{m}; end")
   end
-  %w[name names designer layout colors mana_cost reserved types cmc text full_oracle text_normalized power
+  %w[name names designer changes layout colors mana_cost reserved types cmc text full_oracle text_normalized power
      toughness loyalty extra color_identity has_multiple_parts? typeline
      first_release_date last_release_date printings life hand rulings
      foreign_names foreign_names_normalized mana_hash funny color_indicator

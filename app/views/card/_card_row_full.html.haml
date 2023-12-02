@@ -36,7 +36,7 @@
         = "Released: #{card.release_date.to_s}"
 
     = render 'legality', card: card
-
+            
     - if card.rulings.present?
       %h5 Rulings
       %ul.rulings
@@ -47,3 +47,9 @@
 
   .col-6
     = render 'printings_full', card: card, printings: printings_view_full(card, printings)
+    - if card.card.changes.present?
+      %h5 Changes
+      %ul.changes
+        - card.card.changes.each do |change|
+          %li.infolabel
+            = change
