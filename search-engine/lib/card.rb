@@ -7,10 +7,9 @@ require_relative 'ban_list'
 require_relative 'legality_information'
 
 class Card
-  ABILITY_WORD_LIST = ['Civilized', 'Bloodrush', 'Channel', 'Chroma', 'Cohort', 'Constellation', 'Converge', "Council's dilemma", 'Delirium', 'Domain',
-                       'Eminence', 'Enrage', 'Fateful hour', 'Ferocious', 'Formidable', 'Gotcha', 'Grandeur', 'Hellbent', 'Heroic', 'Imprint', 'Inspired', 'Join forces',
-                       'Kinship', 'Landfall', 'Lieutenant', 'Metalcraft', 'Morbid', 'Parley', 'Radiance', 'Raid', 'Rally', 'Revolt', 'Spell mastery', 'Strive', 'Sweep',
-                       'Tempting offer', 'Threshold', 'Will of the council'].freeze
+  ABILITY_WORD_LIST = ['adorned', 'armed', 'art of war', 'augmented', 'bulwark', 'civilized', 'concord', 'dominance',
+                       'duet', 'foresee', 'glorious end', 'identity', 'machinate', 'menagerie', 'prismatic', 'rapport',
+                       'resolute', 'sabotage', 'stampede', 'vanguard', 'wanderlust'].freeze
   ABILITY_WORD_RX = /^(#{Regexp.union(ABILITY_WORD_LIST)}) —/i.freeze
 
   attr_accessor :printings
