@@ -9,8 +9,4 @@ When a new set comes out:
 
 2) This will populate the database with the cards.
 
-3) Afterwards, "rake pics:MSEM" will download all the new images
-
-3a)When cards are edited, remember to delete their images
-
-4)Add it to "search-engine/lib/format/msem2" and "search-engine/lib/format/msedh"
+3)Add it to "search-engine/lib/format/msem2" and "search-engine/lib/format/msedh"

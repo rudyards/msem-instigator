@@ -66,7 +66,7 @@ class Format
     def formats_index
       # Removed spaces so you can say "lw block" lw-block lwblock lw_block or whatever
       {
-        'msem2' => FormatMSEM2,
+        'msem' => FormatMSEM,
         'msedh' => FormatMSEDH,
         'phm'   => FormatPHM
       }

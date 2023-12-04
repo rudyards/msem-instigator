@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-BanList.for_format('msem2') do
+BanList.for_format('msem') do
   format_start(
     'https://snapdragonfirework.wixsite.com/msem2/bans',
     'Angeltouched Cavern' => 'banned',

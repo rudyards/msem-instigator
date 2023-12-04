@@ -2,9 +2,9 @@
 
 # This is loaded manually in format.rb, go there to tell it to load more formats or change the order.
 
-class FormatMSEM2 < Format
+class FormatMSEM < Format
   def format_pretty_name
-    'MSEM2'
+    'MSEM'
   end
 
   def build_included_sets
