@@ -57,6 +57,7 @@ class FormatMSEM < Format
       'ACA','VHS','MSJ',
       'SPK','RCM',
       'AVX','TTR',
+      'ACT', 'MSL',
     ]
   end
 end

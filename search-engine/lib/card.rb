@@ -166,6 +166,8 @@ class Card
         @mana_hash[normalize_mana_symbol(m)] += 1
       when %r{\A2/([wubrg])\z}
         @mana_hash[normalize_mana_symbol(m)] += 1
+      when %r{\A([v][p])\z}
+        @mana_hash[normalize_mana_symbol(m)] += 1
       else
         raise "Unrecognized mana type: #{m}"
       end
@@ -241,6 +243,8 @@ class Card
         ci << Regexp.last_match(1) << Regexp.last_match(2)
       when 'chaos'
         # planechase special symbol, disregard
+      when %r{\A([v][p])\z}
+        # prismatic mana, disregard
       else
         raise "Unknown mana symbol `#{sym}'"
       end
@@ -255,7 +259,7 @@ class Card
   def calculate_color_indicator
     colors_inferred_from_mana_cost = (@mana_hash || {}).keys
                                                        .flat_map do |x|
-      next [] if x =~ /[?xyzc]/
+      next [] if x =~ /[?xyzcv]/
 
       x = x.sub(/[p2]/, '')
       if x =~ /\A[wubrg]+\z/

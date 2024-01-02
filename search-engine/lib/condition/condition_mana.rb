@@ -149,6 +149,9 @@ class ConditionMana < ConditionSimple
   end
 
   def normalize_mana_symbol(sym)
+    if sym == 'vp'
+      return 'v'
+    end
     sym.downcase.tr('/{}', '').chars.sort.join
   end
 end
