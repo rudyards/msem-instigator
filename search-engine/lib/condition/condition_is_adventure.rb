@@ -94,9 +94,11 @@ class ConditionIsAdventure < Condition
 			"drop bear",
 			"sluggish sage",
 			"inconspicuous platypus",
-			"inconspicuous platypus",
-			"inconspicuous platypus",
 			"irbek, crocodile hunter",
+			"feathersword duelist",
+			"the undercity amalgam",
+			"aurora hydra",
+			"ominous dragoncaller",
 ]
 
 		names
