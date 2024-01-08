@@ -36,7 +36,6 @@ BanList.for_format('msem') do
     'Imperial Mox' => 'banned',
     "Kevthra's Will" => 'banned',
     'Last Passage' => 'banned',
-    'Grasp for Understanding' => 'banned',
     'Hellbent Speed' => 'banned',
     'Lotus Studies' => 'banned',
     'Scintillate' => 'banned',
