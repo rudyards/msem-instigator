@@ -16,8 +16,7 @@ class Card
   attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :designer, :changes, :full_oracle,
               :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, 
               :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, 
-              :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost,
-              :changes
+              :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
 
   # For db subset
 
@@ -27,8 +26,8 @@ class Card
     @stemmed_name = normalize_name(@name).downcase.gsub(/s\b/, '').tr('-', ' ')
     @names = data['names']
     @layout = data['layout']
-    @designer = data['designer']
-    @changes = data['changes']
+    @designer = data['designer'] || ''
+    @changes = data['changes'] || ''
     @colors = data['colors'] || ''
     @funny = data['funny']
     @full_oracle = (data['text'] || '')
