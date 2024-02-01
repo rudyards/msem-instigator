@@ -6,7 +6,7 @@ class ConditionDesigner < ConditionSimple
   end
 
   def match?(card)
-    card.card.designer.downcase.include?(@designer)
+    card.card.designer&.downcase.include?(@designer)
   end
 
   def to_s

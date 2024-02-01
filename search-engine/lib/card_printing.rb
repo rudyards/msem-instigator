@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CardPrinting
-  attr_reader :card, :set, :date, :release_date, :designer, :changes, :watermark, :rarity, :artist_name, :multiverseid, :number,
+  attr_reader :card, :set, :date, :release_date, :designer, :champion, :changes, :watermark, :rarity, :artist_name, :multiverseid, :number,
               :frame, :flavor, :flavor_normalized, :border, :timeshifted, :rarity_code, :print_sheet, :release_date_i,
               :lairnumber
 
@@ -114,7 +114,7 @@ class CardPrinting
   %w[block_code block_name online_only?].each do |m|
     eval("def #{m}; @set.#{m}; end")
   end
-  %w[name names designer changes layout colors mana_cost reserved types cmc text full_oracle text_normalized power
+  %w[name names designer champion changes layout colors mana_cost reserved types cmc text full_oracle text_normalized power
      toughness loyalty extra color_identity has_multiple_parts? typeline
      first_release_date last_release_date printings life hand rulings
      foreign_names foreign_names_normalized mana_hash funny color_indicator

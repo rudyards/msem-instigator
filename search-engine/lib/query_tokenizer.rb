@@ -76,7 +76,9 @@ class QueryTokenizer
           tokens << [:test, ConditionForeign.new(s[1], s[2])]
         end
       elsif s.scan(/designer\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
-        tokens << [:test, ConditionDesigner.new(s[2].downcase)]
+        tokens << [:test, ConditionDesigner.new(s[1].downcase || s[2].downcase)]
+      elsif s.scan(/champion\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
+        tokens << [:test, ConditionChampion.new(s[1].downcase || s[2].downcase)]
       elsif s.scan(/t\s*[:=]\s*(?:"(.*?)"|([’'\-\u2212\w*]+))/i)
         tokens << [:test, ConditionTypes.new(s[1] || s[2])]
       elsif s.scan(/ft\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
