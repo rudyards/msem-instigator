@@ -2,7 +2,7 @@
 
 class PatchLinkRelated < Patch
   # Array of Shame here is for card names that are erroneously flagged as Related when they aren't.
-  NotRelated = %w[Lo Sword Ether Sanctum].freeze
+  NotRelated = %w[Lo Sword Ether Sanctum Rot].freeze
   def call
     # The index has tokens as cards, CardDatabase filters them out
     # We should probably move them out of the way before that
