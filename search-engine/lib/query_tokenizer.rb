@@ -160,7 +160,7 @@ class QueryTokenizer
         op = '=' if op == ':'
         mana = s[2]
         tokens << [:test, ConditionMana.new(op, mana)]
-      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|front|back|commander|reprint|canon|tale|adventure|ashe|lilia|telsi|tinbeard|shockfetch|mirrorland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|checkland|tricheck|tangoland|unique|draft|historic|staple|playable|perfect|scuttleback|brawler|storied|modal|hugo|searle|mable|marisa|dragoncodex|familycodex|forgottencodex|irbekcodex|karinacodex|meicodex|moribundcodex|pidgecodex|reyhsiacodex|versatilitycodex|perfecthandunderdog|rebalanced)\b/i)
+      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|front|back|commander|reprint|canon|tale|adventure|ashe|lilia|telsi|tinbeard|shockfetch|mirrorland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|checkland|tricheck|tangoland|unique|draft|historic|staple|played|perfect|scuttleback|brawler|storied|modal|hugo|searle|mable|marisa|dragoncodex|familycodex|forgottencodex|irbekcodex|karinacodex|meicodex|moribundcodex|pidgecodex|reyhsiacodex|versatilitycodex|perfecthandunderdog|rebalanced)\b/i)
         tokens << [:not] if s[1].downcase == 'not'
         cond = s[2].capitalize
         cond = 'Timeshifted' if cond == 'Colorshifted'
