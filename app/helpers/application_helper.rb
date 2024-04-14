@@ -235,4 +235,11 @@ module ApplicationHelper
   def preview_id(card)
     [card.set_code, card.number, card.foil ? 'foil' : nil].compact.join('-')
   end
+
+  def is_champion_printing?(card)
+    return true if ["MPS_MSE", "CHAMPIONS"].include?(card.set_code)
+    return true if card.set_code == "LAIR" && ["99", "119"].include?(card.lairnumber)
+
+    return false
+  end
 end

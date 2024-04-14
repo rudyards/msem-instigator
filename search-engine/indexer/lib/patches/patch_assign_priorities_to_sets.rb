@@ -11,11 +11,10 @@ class PatchAssignPrioritiesToSets < Patch
 
   def priority(set)
     case set['code'].downcase
-    # These are mostly various promos which are not on Gatherer
-    # They never get updated, but since their cards have other printings in regular sets,
-    # they'll still get all Oracle updates via reconciliation
     when 'l2', 'mps_mis', 'mps_opo', 'mps_mse', 'mps_hi12'
       -10
+    when 'champions'
+      -12
     else
       # Errata sets are just a way to apply Oracle erratas without creating any cards
       if set['type'] == 'errata'

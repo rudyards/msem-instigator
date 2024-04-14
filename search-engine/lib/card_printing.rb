@@ -9,12 +9,13 @@ class CardPrinting
   attr_reader :stemmed_name, :set_code
 
   # Set by CardDatabase initialization
-  attr_accessor :others, :artist, :default_sort_index
+  attr_accessor :others, :artist, :default_sort_index, :champion
 
   def initialize(card, set, data)
     @card = card
     @set = set
     @others = nil
+    @champion = data['champion'] || ''
     @release_date = data['release_date'] ? Date.parse(data['release_date']) : @set.release_date
     @release_date_i = @release_date.to_i_sort
     @watermark = data['watermark']
