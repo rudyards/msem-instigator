@@ -10,6 +10,6 @@ class HelpController < ApplicationController
   end
 
   def rules
-    @title = 'Rules'
+    redirect_to "https://lackeybot.herokuapp.com/msem/cr"
   end
 end
