@@ -6,12 +6,10 @@ class PatchSecondary < Patch
       next unless card['names']
 
       # https://github.com/mtgjson/mtgjson/issues/227
-      if (card['name'] == 'B.F.M. (Big Furry Monster)') || (card['name'] == 'B.F.M. (Big Furry Monster, Right Side)')
-        # just give up on this one
-      elsif card['layout'] == 'split'
+      if card['layout'] == 'split'
         # All primary
       elsif card['layout'] == 'double-faced'
-        if card['manaCost'] || (card['name'] == 'Westvale Abbey')
+        if !card['manaCost'].empty?
           # Primary side
         else
           card['secondary'] = true

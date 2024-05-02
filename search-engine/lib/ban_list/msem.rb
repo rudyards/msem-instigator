@@ -24,11 +24,6 @@ BanList.for_format('msem') do
     "Unmasker of Fate's Design" => 'banned',
     'Vidal, Rune Thief' => 'banned',
     'Eleventh Hour Breakthrough' => 'banned',
-    'Dawnlit Battlefield' => 'banned',
-    'Deadwood Grove' => 'banned',
-    'Lush Outskirts' => 'banned',
-    'Shrouded Rooftops' => 'banned',
-    'Weathered Fortress' => 'banned',
     'Life-Giving Waters' => 'banned',
     'Leyline Alignment Field' => 'banned',
     'Ammbradu Goliath' => 'banned',
@@ -43,6 +38,8 @@ BanList.for_format('msem') do
     'Reefcrown Egg' => 'banned',
     'Reinvent' => 'banned',
     'Instant of Brilliance' => 'banned',
-    'Vivid March' => 'banned'
+    'Vivid March' => 'banned',
+    'Fogspewer' => 'banned',
+    'Pensive Songwritter' => 'banned'
   )
 end
