@@ -15,6 +15,7 @@ class PatchSecondary < Patch
           card['secondary'] = true
         end
       elsif (card['layout'] == 'flip') || (card['layout'] == 'aftermath') || (card['layout'] == 'adventure')
+        pp card['number']
         raise unless card['number'] =~ /[ab]\z/
 
         card['secondary'] = true if card['number'] =~ /b\z/
@@ -23,6 +24,11 @@ class PatchSecondary < Patch
           # Primary side
         else
           card['secondary'] = true
+        end
+      elsif card['layout'] == 'normal' # tales/adventure hack
+        if card['type'].include?("Tale") || card['type'].include?("Adventure")
+          card['secondary'] = true
+        else
         end
       else
         raise "Unknown multipart card layout: #{card['layout']} for #{card['name']}"
