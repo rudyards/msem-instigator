@@ -1,4 +1,4 @@
 %div.card_picture{class: card_layout}
-  %img{src: "https://mse-modern.com/msem2/images/#{card.set_code}/#{card.number}.jpg", alt: card.name}
+  %img{src: "https://mse-modern.com/msem2/images/#{card.set_code.upcase}/#{card.number}.jpg", alt: card.name}
   - if foil
     .foil_layer
