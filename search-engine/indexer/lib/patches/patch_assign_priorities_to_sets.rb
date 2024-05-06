@@ -10,23 +10,24 @@ class PatchAssignPrioritiesToSets < Patch
   private
 
   def priority(set)
-    case set['code'].downcase
-    when 'l2', 'mps_mis', 'mps_opo', 'mps_mse', 'mps_hi12'
-      -10
-    when 'champions'
-      -12
+	case set['type'].downcase
+	when 'errata'
+	  1000 # Errata sets are just a way to apply Oracle erratas without creating any cards
+	when 'masters', 'bundle'
+	  -1   # Commonly reprints, some new cards
+	when 'champions'
+	  -5   # Higher than other special prints
+	when 'promo'
+	  -10  # Secret Lair, CHAMPIONS, SHRINE
+	when 'masterpiece'
+	  -12  # Masterpiece sets while they still exist
     else
-      # Errata sets are just a way to apply Oracle erratas without creating any cards
-      if set['type'] == 'errata'
-        1000
-      # Give all unlisted custom sets max priority
-      # If you want to customize priority between different custom sets, just list them explicitly
-      elsif set['custom']
-        100
-      # Default priority for everything else
-      else
-        0
-      end
+      # Give all unlisted custom sets priority, newest first
+	  if set['release_number']
+	    set['release_number']
+	  else
+	    0
+	  end
     end
   end
 end

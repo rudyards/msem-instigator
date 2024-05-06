@@ -84,6 +84,7 @@ class Indexer
       'official_code',
       'online_only',
       'release_date',
+      'release_number',
       'type'
     ).compact
   end
@@ -171,6 +172,7 @@ class Indexer
         'custom',
         'name',
         'releaseDate',
+        'release_number',
         'type'
       ).merge(
         'code' => set_data['magicCardsInfoCode'],
