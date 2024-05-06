@@ -149,4 +149,13 @@ class CardPrinting
   def to_s
     inspect
   end
+  
+  def image_slug
+    if @card.layout == "adventure" || @card.layout == "split"
+	  "#{set_code}/#{number.sub(/[ab]/, '')}"
+	else
+	  "#{set_code}/#{number}"
+	end
+  end
+
 end
