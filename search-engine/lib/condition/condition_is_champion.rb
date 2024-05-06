@@ -2,12 +2,8 @@
 
 class ConditionIsChampion < ConditionSimple
   def match?(card)
-    return false unless card.champion&.downcase.present?
-    return true if ["MPS_MSE", "CHAMPIONS"].include?(card.set_code)
-
-    return true if card.set_code == "LAIR" && ["99", "119"].include?(card.lairnumber)
-
-    return false
+    return false unless card.prints_champion&.downcase.present?
+    return true
   end
 
   def to_s

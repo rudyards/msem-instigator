@@ -84,6 +84,7 @@ class Indexer
       'official_code',
       'online_only',
       'release_date',
+      'release_number',
       'type'
     ).compact
   end
@@ -171,6 +172,7 @@ class Indexer
         'custom',
         'name',
         'releaseDate',
+        'release_number',
         'type'
       ).merge(
         'code' => set_data['magicCardsInfoCode'],
@@ -193,8 +195,6 @@ class Indexer
     printing_data = []
     card.each do |printing|
       common_card_data << printing.slice(
-        'designer',
-        'champion',
         'changes',
         'cmc',
         'colors',
@@ -222,11 +222,12 @@ class Indexer
         'types'
       ).compact
       
-
       printing_data << [
         printing['set_code'],
         printing.slice(
           'artist',
+          'designer',
+          'champion',
           'border',
           'exclude_from_boosters',
           'flavor',
@@ -244,7 +245,6 @@ class Indexer
       ]
     end
 
-
     result = common_card_data[0]
     name = result['name']
     # Make sure it's reconciled at this point
@@ -252,7 +252,6 @@ class Indexer
     common_card_data[1..].each do |other_printing|
       warn "Data for card #{name} inconsistent" if other_printing != result
     end
-
     # Output in canonical form, to minimize diffs between mtgjson updates
     result['printings'] = printing_data.sort_by { |sc, d| [set_order.fetch(sc), d['number'], d['multiverseid']] }
     result

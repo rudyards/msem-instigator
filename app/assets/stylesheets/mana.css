@@ -3,8 +3,8 @@
  * Global */
 @font-face {
   font-family: 'Mana';
-  src: url('../fonts/mana.eot?v=1.3.1');
-  src: url('../fonts/mana.eot?#iefix&v=1.3.1') format('embedded-opentype'), url('../fonts/mana.woff?v=1.3.1') format('woff'), url('../fonts/mana.ttf?v=1.3.1') format('truetype'), url('../fonts/mana.svg?v=1.3.1#mana') format('svg');
+  src: url('../fonts/mana.eot?v=1.3.2');
+  src: url('../fonts/mana.eot?#iefix&v=1.3.2') format('embedded-opentype'), url('../fonts/mana.woff?v=1.3.2') format('woff'), url('../fonts/mana.ttf?v=1.3.2') format('truetype'), url('../fonts/mana.svg?v=1.3.2#mana') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -153,7 +153,7 @@
   background: linear-gradient(135deg, #93b483 0%, #93b483 50%, #b5cde3 50%, #b5cde3 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#93b483', endColorstr='#b5cde3', GradientType=1);
 }
-.mana-cost.mana-2w {
+.mana-cost.mana-2w, .mana-cost.mana-cw {
   background: #beb9b2;
   background: -moz-linear-gradient(-45deg, #beb9b2 0%, #beb9b2 50%, #edf2b0 50%, #edf2b0 100%);
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #beb9b2), color-stop(50%, #beb9b2), color-stop(50%, #edf2b0), color-stop(100%, #edf2b0));
@@ -163,7 +163,7 @@
   background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #edf2b0 50%, #edf2b0 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#beb9b2', endColorstr='#edf2b0', GradientType=1);
 }
-.mana-cost.mana-2u {
+.mana-cost.mana-2u, .mana-cost.mana-cu {
   background: #beb9b2;
   background: -moz-linear-gradient(-45deg, #beb9b2 0%, #beb9b2 50%, #b5cde3 50%, #b5cde3 100%);
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #beb9b2), color-stop(50%, #beb9b2), color-stop(50%, #b5cde3), color-stop(100%, #b5cde3));
@@ -173,7 +173,7 @@
   background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #b5cde3 50%, #b5cde3 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#beb9b2', endColorstr='#b5cde3', GradientType=1);
 }
-.mana-cost.mana-2b {
+.mana-cost.mana-2b, .mana-cost.mana-cb {
   background: #beb9b2;
   background: -moz-linear-gradient(-45deg, #beb9b2 0%, #beb9b2 50%, #9c9188 50%, #9c9188 100%);
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #beb9b2), color-stop(50%, #beb9b2), color-stop(50%, #9c9188), color-stop(100%, #9c9188));
@@ -183,7 +183,7 @@
   background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #9c9188 50%, #9c9188 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#beb9b2', endColorstr='#9c9188', GradientType=1);
 }
-.mana-cost.mana-2r {
+.mana-cost.mana-2r, .mana-cost.mana-cr {
   background: #beb9b2;
   background: -moz-linear-gradient(-45deg, #beb9b2 0%, #beb9b2 50%, #db8664 50%, #db8664 100%);
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #beb9b2), color-stop(50%, #beb9b2), color-stop(50%, #db8664), color-stop(100%, #db8664));
@@ -193,7 +193,7 @@
   background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #db8664 50%, #db8664 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#beb9b2', endColorstr='#db8664', GradientType=1);
 }
-.mana-cost.mana-2g {
+.mana-cost.mana-2g, .mana-cost.mana-cg {
   background: #beb9b2;
   background: -moz-linear-gradient(-45deg, #beb9b2 0%, #beb9b2 50%, #93b483 50%, #93b483 100%);
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #beb9b2), color-stop(50%, #beb9b2), color-stop(50%, #93b483), color-stop(100%, #93b483));
@@ -249,18 +249,18 @@
 }
 /**
  * Split costs */
-.mana-2b,.mana-2g,.mana-2r,.mana-2u,.mana-2w,.mana-bg,.mana-br,.mana-gu,.mana-gw,.mana-rg,.mana-rw,.mana-ub,.mana-ur,.mana-wb,.mana-wu {
+.mana-2b,.mana-2g,.mana-2r,.mana-2u,.mana-2w,.mana-bg,.mana-br,.mana-gu,.mana-gw,.mana-rg,.mana-rw,.mana-ub,.mana-ur,.mana-wb,.mana-wu,.mana-cw,.mana-cu,.mana-cb,.mana-cr,.mana-cg {
   position: relative;
   width: 1.3em;
   height: 1.3em;
 }
-.mana-2b:before,.mana-2g:before,.mana-2r:before,.mana-2u:before,.mana-2w:before,.mana-bg:before,.mana-br:before,.mana-gu:before,.mana-gw:before,.mana-rg:before,.mana-rw:before,.mana-ub:before,.mana-ur:before,.mana-wb:before,.mana-wu:before {
+.mana-2b:before,.mana-2g:before,.mana-2r:before,.mana-2u:before,.mana-2w:before,.mana-bg:before,.mana-br:before,.mana-gu:before,.mana-gw:before,.mana-rg:before,.mana-rw:before,.mana-ub:before,.mana-ur:before,.mana-wb:before,.mana-wu:before,.mana-wu,.mana-cw::before,.mana-cu::before,.mana-cb::before,.mana-cr::before,.mana-cg::before {
   font-size: 0.55em !important;
   position: absolute;
   top: -0.38em;
   left: 0.28em;
 }
-.mana-2b:after,.mana-2g:after,.mana-2r:after,.mana-2u:after,.mana-2w:after,.mana-bg:after,.mana-br:after,.mana-gu:after,.mana-gw:after,.mana-rg:after,.mana-rw:after,.mana-ub:after,.mana-ur:after,.mana-wb:after,.mana-wu:after {
+.mana-2b:after,.mana-2g:after,.mana-2r:after,.mana-2u:after,.mana-2w:after,.mana-bg:after,.mana-br:after,.mana-gu:after,.mana-gw:after,.mana-rg:after,.mana-rw:after,.mana-ub:after,.mana-ur:after,.mana-wb:after,.mana-wu:after,.mana-wu,.mana-cw::after,.mana-cu::after,.mana-cb::after,.mana-cr::after,.mana-cg::after {
   font-size: 0.55em !important;
   position: absolute;
   top: 0.5em;
@@ -469,6 +469,26 @@
   content: "\e903";
 }
 /**
+ * Custom symbols */
+.mana-vp:before {
+  content: "\e700";
+  color: black;
+  -webkit-text-fill-color: #d49f49;
+  -webkit-text-stroke: 0.5px black;
+}
+.mana-flag {
+	background-color: transparent;
+}
+.mana-flag:before {
+  content: "\e701";
+}
+.mana-mag {
+	background-color: transparent;
+}
+.mana-mag:before {
+  content: "\e702";
+}
+/**
  * Card types */
 .mana-artifact:before {
   content: "\e61e";
@@ -497,35 +517,40 @@
 .mana-wb:before,
 .mana-rw:after,
 .mana-gw:after,
-.mana-2w:after {
+.mana-2w:after,
+.mana-cw:after {
   content: "\e600";
 }
 .mana-ub:before,
 .mana-ur:before,
 .mana-wu:after,
 .mana-gu:after,
-.mana-2u:after {
+.mana-2u:after,
+.mana-cu:after {
   content: "\e601";
 }
 .mana-br:before,
 .mana-bg:before,
 .mana-wb:after,
 .mana-ub:after,
-.mana-2b:after {
+.mana-2b:after,
+.mana-cb:after {
   content: "\e602";
 }
 .mana-rw:before,
 .mana-rg:before,
 .mana-ur:after,
 .mana-br:after,
-.mana-2r:after {
+.mana-2r:after,
+.mana-cr:after {
   content: "\e603";
 }
 .mana-gw:before,
 .mana-gu:before,
 .mana-bg:after,
 .mana-rg:after,
-.mana-2g:after {
+.mana-2g:after,
+.mana-cg:after {
   content: "\e604";
 }
 .mana-2w:before,
@@ -534,6 +559,13 @@
 .mana-2r:before,
 .mana-2g:before {
   content: "\e607";
+}
+.mana-cw:before,
+.mana-cu:before,
+.mana-cb:before,
+.mana-cr:before,
+.mana-cg:before {
+	content: "\e904";
 }
 /**
  * Un-set symbols */
