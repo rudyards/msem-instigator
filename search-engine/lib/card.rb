@@ -13,7 +13,7 @@ class Card
   ABILITY_WORD_RX = /^(#{Regexp.union(ABILITY_WORD_LIST)}) —/i.freeze
 
   attr_accessor :printings
-  attr_reader :data, :name, :names, :layout, :champion, :colors, :mana_cost, :reserved, :types, :designer, :changes, :full_oracle,
+  attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :changes, :full_oracle,
               :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand,
               :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, 
               :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
@@ -26,8 +26,6 @@ class Card
     @stemmed_name = normalize_name(@name).downcase.gsub(/s\b/, '').tr('-', ' ')
     @names = data['names']
     @layout = data['layout']
-    @designer = data['designer'] || ''
-    @champion = data['champion'] || ''
     @changes = data['changes'] || ''
     @colors = data['colors'] || ''
     @funny = data['funny']

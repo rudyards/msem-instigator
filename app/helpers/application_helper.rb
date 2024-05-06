@@ -237,9 +237,6 @@ module ApplicationHelper
   end
 
   def is_champion_printing?(card)
-    return true if ["MPS_MSE", "CHAMPIONS"].include?(card.set_code)
-    return true if card.set_code == "LAIR" && ["99", "119"].include?(card.lairnumber)
-
-    return false
+    card.prints_champion != ""
   end
 end
