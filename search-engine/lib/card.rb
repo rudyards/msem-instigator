@@ -241,8 +241,8 @@ class Card
         ci << Regexp.last_match(1) << Regexp.last_match(2)
       when 'chaos'
         # planechase special symbol, disregard
-      when %r{\A([v][p])\z}
-        # prismatic mana, disregard
+      when %r{\A(vp|flag|mag)\z}
+        # noncolor symbols, disregard
       else
         raise "Unknown mana symbol `#{sym}'"
       end

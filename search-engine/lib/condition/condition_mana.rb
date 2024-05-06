@@ -113,7 +113,7 @@ class ConditionMana < ConditionSimple
     query_mana = query_mana.sort_by { |key, value| [value, key] }.to_h
     q_mana = Hash.new(0)
     colors = %w[w u b r g c]
-    hybrids = %w[uw bu br gr gw bw bg gu ru rw]
+    hybrids = %w[uw bu br gr gw bw bg gu ru rw cw cu bc cr cg]
 
     query_mana.each do |color, count|
       case color

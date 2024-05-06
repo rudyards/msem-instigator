@@ -193,9 +193,11 @@ module ApplicationHelper
       'w', 'u', 'b', 'r', 'g',
       'wu', 'wb', 'rw', 'gw', 'ub', 'ur', 'gu', 'br', 'bg', 'rg',
       '2w', '2u', '2b', '2r', '2g',
+	  'cw', 'cu', 'cb', 'cr', 'cg',
       'wp', 'up', 'bp', 'rp', 'gp', 'p',
       's', 'q', 't', 'c', 'e',
       '½', '1000000', '100', '∞',
+	  'vp', 'flag', 'mag',
       'chaos', 'pw',
       'hw', 'hr',
       'v'
