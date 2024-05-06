@@ -14,7 +14,7 @@ class Card
 
   attr_accessor :printings
   attr_reader :data, :name, :names, :layout, :champion, :colors, :mana_cost, :reserved, :types, :designer, :changes, :full_oracle,
-              :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, 
+              :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand,
               :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, 
               :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
 
@@ -347,15 +347,15 @@ class Card
              when 'forest island swamp'
                '{B}, {G}, or {U}'
              when 'island plains swamp'
-               '{U}, {W}, or {B}'
+               '{W}, {U}, or {B}'
              when 'island mountain swamp'
-               '{U}, {R}, or {B'
+               '{U}, {B}, or {R}'
              when 'forest mountain swamp'
-               '{G}, {R}, or {B}'
+               '{B}, {R}, or {G}'
              when 'forest mountain plains'
-               '{G}, {R}, or {W}'
+               '{R}, {G}, or {W}'
              when 'forest island plains'
-               '{G}, {U}, or {W}'
+               '{G}, {W}, or {U}'
              else
                raise "No idea what's correct line for #{basic_land_types.inspect}"
              end
@@ -366,4 +366,5 @@ class Card
       @reminder_text = "(#{@name} keeps color and mana cost of #{other_name} when flipped)"
     end
   end
+  
 end
