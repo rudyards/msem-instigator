@@ -3,7 +3,7 @@
 class CardPrinting
   attr_reader :card, :set, :date, :release_date, :designer, :champion, :changes, :watermark, :rarity, :artist_name, :multiverseid, :number,
               :frame, :flavor, :flavor_normalized, :border, :timeshifted, :rarity_code, :print_sheet, :release_date_i,
-              :lairnumber
+              :lairnumber, :atags
 
   # Performance cache of derived information
   attr_reader :stemmed_name, :set_code
@@ -22,6 +22,7 @@ class CardPrinting
     @watermark = data['watermark']
     @number = data['number']
     @lairnumber = data['lairNumber'] || nil
+	@atags = data['atags'] || []
     @multiverseid = data['multiverseid']
     @artist_name = data['artist']
     @flavor = data['flavor'] || -''

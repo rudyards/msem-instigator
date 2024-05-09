@@ -2,7 +2,8 @@
 
 class ConditionIsRebalanced < ConditionSimple
   def match?(card)
-    card.changes.blank? == false
+    return true if (card.card.otags & ["reworked", "nerfed", "buffed"]).any?
+	return false
   end
 
   def to_s

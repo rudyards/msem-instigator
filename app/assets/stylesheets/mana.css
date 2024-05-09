@@ -254,13 +254,13 @@
   width: 1.3em;
   height: 1.3em;
 }
-.mana-2b:before,.mana-2g:before,.mana-2r:before,.mana-2u:before,.mana-2w:before,.mana-bg:before,.mana-br:before,.mana-gu:before,.mana-gw:before,.mana-rg:before,.mana-rw:before,.mana-ub:before,.mana-ur:before,.mana-wb:before,.mana-wu:before,.mana-wu,.mana-cw::before,.mana-cu::before,.mana-cb::before,.mana-cr::before,.mana-cg::before {
+.mana-2b:before,.mana-2g:before,.mana-2r:before,.mana-2u:before,.mana-2w:before,.mana-bg:before,.mana-br:before,.mana-gu:before,.mana-gw:before,.mana-rg:before,.mana-rw:before,.mana-ub:before,.mana-ur:before,.mana-wb:before,.mana-wu:before,.mana-cw::before,.mana-cu::before,.mana-cb::before,.mana-cr::before,.mana-cg::before {
   font-size: 0.55em !important;
   position: absolute;
   top: -0.38em;
   left: 0.28em;
 }
-.mana-2b:after,.mana-2g:after,.mana-2r:after,.mana-2u:after,.mana-2w:after,.mana-bg:after,.mana-br:after,.mana-gu:after,.mana-gw:after,.mana-rg:after,.mana-rw:after,.mana-ub:after,.mana-ur:after,.mana-wb:after,.mana-wu:after,.mana-wu,.mana-cw::after,.mana-cu::after,.mana-cb::after,.mana-cr::after,.mana-cg::after {
+.mana-2b:after,.mana-2g:after,.mana-2r:after,.mana-2u:after,.mana-2w:after,.mana-bg:after,.mana-br:after,.mana-gu:after,.mana-gw:after,.mana-rg:after,.mana-rw:after,.mana-ub:after,.mana-ur:after,.mana-wb:after,.mana-wu:after,.mana-cw::after,.mana-cu::after,.mana-cb::after,.mana-cr::after,.mana-cg::after {
   font-size: 0.55em !important;
   position: absolute;
   top: 0.5em;
