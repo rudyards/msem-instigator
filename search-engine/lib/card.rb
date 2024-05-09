@@ -13,8 +13,8 @@ class Card
   ABILITY_WORD_RX = /^(#{Regexp.union(ABILITY_WORD_LIST)}) —/i.freeze
 
   attr_accessor :printings
-  attr_reader :data, :name, :names, :layout, :champion, :colors, :mana_cost, :reserved, :types, :designer, :changes, :full_oracle,
-              :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand, 
+  attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :changes, :full_oracle, :otags,
+              :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand,
               :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, 
               :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
 
@@ -26,8 +26,6 @@ class Card
     @stemmed_name = normalize_name(@name).downcase.gsub(/s\b/, '').tr('-', ' ')
     @names = data['names']
     @layout = data['layout']
-    @designer = data['designer'] || ''
-    @champion = data['champion'] || ''
     @changes = data['changes'] || ''
     @colors = data['colors'] || ''
     @funny = data['funny']
@@ -47,6 +45,7 @@ class Card
     @power = data['power'] ? smart_convert_powtou(data['power']) : nil
     @toughness = data['toughness'] ? smart_convert_powtou(data['toughness']) : nil
     @loyalty = data['loyalty'] ? smart_convert_powtou(data['loyalty']) : nil
+	@otags = data['otags'] || []
     @display_power = data['display_power'] || @power
     @display_toughness = data['display_toughness'] || @toughness
     @display_mana_cost = data['hide_mana_cost'] ? nil : @mana_cost
@@ -243,8 +242,8 @@ class Card
         ci << Regexp.last_match(1) << Regexp.last_match(2)
       when 'chaos'
         # planechase special symbol, disregard
-      when %r{\A([v][p])\z}
-        # prismatic mana, disregard
+      when %r{\A(vp|flag|mag)\z}
+        # noncolor symbols, disregard
       else
         raise "Unknown mana symbol `#{sym}'"
       end
@@ -347,15 +346,15 @@ class Card
              when 'forest island swamp'
                '{B}, {G}, or {U}'
              when 'island plains swamp'
-               '{U}, {W}, or {B}'
+               '{W}, {U}, or {B}'
              when 'island mountain swamp'
-               '{U}, {R}, or {B'
+               '{U}, {B}, or {R}'
              when 'forest mountain swamp'
-               '{G}, {R}, or {B}'
+               '{B}, {R}, or {G}'
              when 'forest mountain plains'
-               '{G}, {R}, or {W}'
+               '{R}, {G}, or {W}'
              when 'forest island plains'
-               '{G}, {U}, or {W}'
+               '{G}, {W}, or {U}'
              else
                raise "No idea what's correct line for #{basic_land_types.inspect}"
              end
@@ -366,4 +365,5 @@ class Card
       @reminder_text = "(#{@name} keeps color and mana cost of #{other_name} when flipped)"
     end
   end
+  
 end

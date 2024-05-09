@@ -79,6 +79,12 @@ class QueryTokenizer
         tokens << [:test, ConditionDesigner.new(s[1]&.downcase || s[2]&.downcase)]
       elsif s.scan(/champion\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
         tokens << [:test, ConditionChampion.new(s[1]&.downcase || s[2]&.downcase)]
+      elsif s.scan(/otag\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
+        tokens << [:test, ConditionCardTag.new(s[1]&.downcase || s[2]&.downcase)]
+      elsif s.scan(/atag\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
+        tokens << [:test, ConditionPrintTag.new(s[1]&.downcase || s[2]&.downcase)]
+      elsif s.scan(/tag\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
+        tokens << [:test, ConditionAnyTag.new(s[1]&.downcase || s[2]&.downcase)]
       elsif s.scan(/t\s*[:=]\s*(?:"(.*?)"|([’'\-\u2212\w*]+))/i)
         tokens << [:test, ConditionTypes.new(s[1] || s[2])]
       elsif s.scan(/ft\s*[:=]\s*(?:"(.*?)"|(\w+))/i)
@@ -160,7 +166,7 @@ class QueryTokenizer
         op = '=' if op == ':'
         mana = s[2]
         tokens << [:test, ConditionMana.new(op, mana)]
-      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|champion|front|back|commander|reprint|canon|tale|adventure|ashe|lilia|telsi|tinbeard|shockfetch|mirrorland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|checkland|tricheck|tangoland|unique|draft|historic|staple|played|perfect|scuttleback|brawler|storied|modal|hugo|searle|mable|marisa|dragoncodex|familycodex|forgottencodex|irbekcodex|karinacodex|meicodex|moribundcodex|pidgecodex|reyhsiacodex|versatilitycodex|perfecthandunderdog|rebalanced)\b/i)
+      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|champion|front|back|commander|reprint|canon|tale|adventure|ashe|lilia|telsi|tinbeard|shockfetch|mirrorland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|checkland|tricheck|tangoland|unique|draft|historic|staple|played|perfect|scuttleback|brawler|storied|modal|hugo|searle|mable|marisa|dragoncodex|familycodex|forgottencodex|irbekcodex|karinacodex|meicodex|moribundcodex|pidgecodex|reyhsiacodex|versatilitycodex|perfecthandunderdog|rebalanced|changed)\b/i)
         tokens << [:not] if s[1].downcase == 'not'
         cond = s[2].capitalize
         cond = 'Timeshifted' if cond == 'Colorshifted'

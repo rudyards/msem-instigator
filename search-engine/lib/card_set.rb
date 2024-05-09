@@ -2,7 +2,7 @@
 
 class CardSet
   attr_reader :name, :code, :official_code, :gatherer_code, :block_name, :block_code, :official_block_code, :border,
-              :frame, :release_date, :printings, :type, :decks, :foiling
+              :frame, :release_date, :release_number, :printings, :type, :decks, :foiling
 
   def initialize(db, data)
     @db = db
@@ -17,6 +17,7 @@ class CardSet
     @frame         = data['frame']
     @type          = data['type']
     @release_date  = data['release_date'] && Date.parse(data['release_date'])
+    @release_number  = data['release_number']
     @printings     = Set[]
     @online_only   = !data['online_only'].nil?
     @has_boosters  = !data['has_boosters'].nil?

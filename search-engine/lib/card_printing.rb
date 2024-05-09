@@ -3,7 +3,7 @@
 class CardPrinting
   attr_reader :card, :set, :date, :release_date, :designer, :champion, :changes, :watermark, :rarity, :artist_name, :multiverseid, :number,
               :frame, :flavor, :flavor_normalized, :border, :timeshifted, :rarity_code, :print_sheet, :release_date_i,
-              :lairnumber
+              :lairnumber, :atags
 
   # Performance cache of derived information
   attr_reader :stemmed_name, :set_code
@@ -16,11 +16,13 @@ class CardPrinting
     @set = set
     @others = nil
     @champion = data['champion'] || ''
+	@designer = data['designer'] || ''
     @release_date = data['release_date'] ? Date.parse(data['release_date']) : @set.release_date
     @release_date_i = @release_date.to_i_sort
     @watermark = data['watermark']
     @number = data['number']
     @lairnumber = data['lairNumber'] || nil
+	@atags = data['atags'] || []
     @multiverseid = data['multiverseid']
     @artist_name = data['artist']
     @flavor = data['flavor'] || -''
@@ -39,7 +41,6 @@ class CardPrinting
     @stemmed_name = @card.stemmed_name
     @set_code = @set.code
   end
-
   # "foilonly", "nonfoil", "both"
   # def foiling
   #   return @foiling if @foiling
@@ -149,4 +150,24 @@ class CardPrinting
   def to_s
     inspect
   end
+  
+  def image_slug
+    if @card.layout == "adventure" || @card.layout == "split"
+	  "#{set_code}/#{number.sub(/[ab]/, '')}"
+	else
+	  "#{set_code}/#{number}"
+	end
+  end
+
+  ## for some reason this.champion returns "" even with attr_reader
+  ## and it doesn't seem to be a class hierarchy thing
+  ## but this works
+  def prints_champion
+    @champion
+  end
+  
+  def prints_designer
+    @designer
+  end
+
 end

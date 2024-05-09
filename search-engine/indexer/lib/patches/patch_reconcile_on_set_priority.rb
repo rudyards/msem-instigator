@@ -38,6 +38,7 @@ class PatchReconcileOnSetPriority < Patch
     printings.each do |printing|
       set_code = printing['set_code']
       set_priority = printing['set']['priority']
+	  set_priority -= 0.5 if printing['rarity'] == "special"
       variant = printing[field_name]
       by_priority[set_priority] ||= {}
       by_priority[set_priority][variant] ||= []
