@@ -2,7 +2,7 @@
 
 class ConditionIsChampion < ConditionSimple
   def match?(card)
-    return false unless card.prints_champion&.downcase.present?
+    return false unless card.champion&.downcase.present?
     return true
   end
 

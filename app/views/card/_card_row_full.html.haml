@@ -16,12 +16,12 @@
       %li.infolabel
         %span
           Designer:
-        %a{ :href => "/card?q=designer%3A#{card.prints_designer}" } #{card.prints_designer}
+        %a{ :href => "/card?q=designer%3A#{card.designer}" } #{card.designer}
       - if is_champion_printing?(card)
         %li.infolabel
           %span
             Champion:
-          %a{ :href => "/card?q=champion%3A#{card.prints_champion}" } #{card.prints_champion}
+          %a{ :href => "/card?q=champion%3A#{card.champion}" } #{card.champion}
       - if card.reserved
         %li.infolabel
           = "#{card.name} is on the Reserved List."
