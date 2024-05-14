@@ -208,6 +208,23 @@
       = search_help "is:tricheck", "all 10 trichecks"
 
 
+    %h4 Search by card tags
+    %div Some tags are supported; otags apply to the card in every printing, atags to specific printings, or you can search just tags to check both.
+    %ul
+      = search_help "otag:canon", "cards reprinted from canon"
+      = search_help "otag:conflict", "cards that have a name conflict with canon"
+      = search_help "atag:anniversary", "cards from Anniversary Lairs"
+      = search_help "atag:pride", "cards from Pride Lairs"
+      = search_help "tag:spikey", "cards that have been banned"
+      = search_help "tag:buffed", "cards that have been buffed"
+      = search_help "tag:nerfed", "cards that have been nerfed"
+      = search_help "tag:reworked", "cards that have been reworked"
+      = search_help %Q[otag:"unique-cr"], "cards with their own CR entries"
+      = search_help %Q[otag:"unique-conjure"], "cards that conjure illegal cards"
+      = search_help "atag:touhou", "the number of touhou arts"
+      = search_help "atag:okus", "hats you should avoid"
+
+
     %h4 Search by card layout
     %div Selecting non-standard layout expands search to special cards as well
     %ul

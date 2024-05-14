@@ -116,7 +116,7 @@ class CardPrinting
   %w[block_code block_name online_only?].each do |m|
     eval("def #{m}; @set.#{m}; end")
   end
-  %w[name names designer champion changes layout colors mana_cost reserved types cmc text full_oracle text_normalized power
+  %w[name names changes layout colors mana_cost reserved types cmc text full_oracle text_normalized power
      toughness loyalty extra color_identity has_multiple_parts? typeline
      first_release_date last_release_date printings life hand rulings
      foreign_names foreign_names_normalized mana_hash funny color_indicator
@@ -157,17 +157,6 @@ class CardPrinting
 	else
 	  "#{set_code}/#{number}"
 	end
-  end
-
-  ## for some reason this.champion returns "" even with attr_reader
-  ## and it doesn't seem to be a class hierarchy thing
-  ## but this works
-  def prints_champion
-    @champion
-  end
-  
-  def prints_designer
-    @designer
   end
 
 end

@@ -7,9 +7,15 @@ require_relative 'ban_list'
 require_relative 'legality_information'
 
 class Card
-  ABILITY_WORD_LIST = ['adorned', 'armed', 'art of war', 'augmented', 'bulwark', 'civilized', 'concord', 'dominance',
-                       'duet', 'foresee', 'glorious end', 'identity', 'machinate', 'menagerie', 'prismatic', 'rapport',
-                       'resolute', 'sabotage', 'stampede', 'vanguard', 'wanderlust'].freeze
+  ABILITY_WORD_LIST = ['Adamant','Addendum','Alliance','Battalion','Bloodrush','Celebration','Channel','Chroma','Cohort',
+                       'Constellation','Converge','Council’s dilemma','Coven','Delirium','Descend 4','Descend 8','Domain',
+                       'Eminence','Enrage','Fateful hour','Fathomless descent','Ferocious','Formidable','Grandeur','Hellbent',
+                       'Heroic','Imprint','Inspired','Join forces','Kinship','Landfall','Lieutenant','Magecraft','Metalcraft',
+                       'Morbid','Pack tactics','Paradox','Parley','Radiance','Raid','Rally','Revolt','Secret council',
+                       'Spell mastery','Strive','Sweep','Tempting offer','Threshold','Undergrowth','Will of the council',
+                       'Adorned','Armed','Art of war','Augmented','Bulwark','Beakthrough','Civilized','Concord','Dominance','Duet','Foresee',
+                       'Foresight','Glorious end','Identity','Machinate','Menagerie','Prismatic','Rapport','Resolute','Sabotage','Stampede',
+                       'Vanguard','Wanderlust','Wildcast'].freeze
   ABILITY_WORD_RX = /^(#{Regexp.union(ABILITY_WORD_LIST)}) —/i.freeze
 
   attr_accessor :printings

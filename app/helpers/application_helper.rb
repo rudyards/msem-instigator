@@ -239,6 +239,6 @@ module ApplicationHelper
   end
 
   def is_champion_printing?(card)
-    card.prints_champion != ""
+    card.champion != ""
   end
 end

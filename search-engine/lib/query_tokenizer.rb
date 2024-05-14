@@ -166,13 +166,13 @@ class QueryTokenizer
         op = '=' if op == ':'
         mana = s[2]
         tokens << [:test, ConditionMana.new(op, mana)]
-      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|champion|front|back|commander|reprint|canon|tale|adventure|ashe|lilia|telsi|tinbeard|shockfetch|mirrorland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|checkland|tricheck|tangoland|unique|draft|historic|staple|played|perfect|scuttleback|brawler|storied|modal|hugo|searle|mable|marisa|dragoncodex|familycodex|forgottencodex|irbekcodex|karinacodex|meicodex|moribundcodex|pidgecodex|reyhsiacodex|versatilitycodex|perfecthandunderdog|rebalanced|changed)\b/i)
+      elsif s.scan(/(is|not)\s*[:=]\s*(vanilla|spell|permanent|multipart|promo|primary|secondary|champion|front|back|commander|reprint|ashe|lilia|telsi|tinbeard|shockfetch|mirrorland|monofetch|plagueland|tormentland|cycleland|handland|investigateland|checkland|tricheck|tangoland|unique|draft|historic|staple|played|perfect|scuttleback|brawler|storied|modal|hugo|searle|mable|marisa|dragoncodex|familycodex|forgottencodex|irbekcodex|karinacodex|meicodex|moribundcodex|pidgecodex|reyhsiacodex|versatilitycodex|perfecthandunderdog|rebalanced|changed)\b/i)
         tokens << [:not] if s[1].downcase == 'not'
         cond = s[2].capitalize
         cond = 'Timeshifted' if cond == 'Colorshifted'
         klass = Kernel.const_get("ConditionIs#{cond}")
         tokens << [:test, klass.new]
-      elsif s.scan(/(is|not|layout)\s*[:=]\s*(normal|leveler|vanguard|dfc|double-faced|token|split|flip|plane|scheme|phenomenon|meld|aftermath|saga)\b/i)
+      elsif s.scan(/(is|not|layout)\s*[:=]\s*(normal|leveler|vanguard|dfc|double-faced|token|split|flip|plane|scheme|phenomenon|meld|aftermath|saga|adventure)\b/i)
         tokens << [:not] if s[1].downcase == 'not'
         tokens << [:test, ConditionLayout.new(s[2])]
       elsif s.scan(/(is|frame|not)\s*[:=]\s*(old|new|future|modern|m15)\b/i)
