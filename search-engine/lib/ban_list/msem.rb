@@ -8,6 +8,17 @@ BanList.for_format('msem') do
     'Angeltouched Garden' => 'banned',
     'Angeltouched Marsh' => 'banned',
     'Angeltouched Saltflat' => 'banned',
+    'Ancient Maze' => 'banned',
+    'Clockwork Astrolarium' => 'banned',
+    'Cryptic Fragment' => 'banned',
+    'Dreamcast Relic' => 'banned',
+    'Hall of Lost Histories' => 'banned',
+    'Key to the Nexus' => 'banned',
+    'Mirror Cipher' => 'banned',
+    "Mortal's Conundrum" => 'banned',
+    'Riddle of Entropy' => 'banned',
+    'Tesseract Conjecture' => 'banned',
+    "Traitor's Gambit" => 'banned',
     'Deadly Manipulation' => 'banned',
     'District of Artisans' => 'banned',
     'Ebb and Flow' => 'banned',
@@ -40,6 +51,6 @@ BanList.for_format('msem') do
     'Instant of Brilliance' => 'banned',
     'Vivid March' => 'banned',
     'Fogspewer' => 'banned',
-    'Pensive Songwritter' => 'banned'
+    'Pensive Songwriter' => 'banned'
   )
 end
