@@ -28,6 +28,9 @@ class PatchVerifyCollectorNumbers < Patch
     set_code = set['code']
     set_name = set['name']
     cards = cards_by_set[set_code]
+    if cards.nil?
+      warn "Set #{set_code} #{set_name} has no cards"
+    end
     numbers = cards.map { |c| c['number'] }
     if numbers.compact.size.zero?
       warn "Set #{set_code} #{set_name} has no numbers"

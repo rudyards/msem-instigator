@@ -354,7 +354,7 @@ class CardDatabase
             from_same_set[0]
           else
             matching_number = from_same_set.select{|other_printing| other_printing.number.sub(/[ab]\z/, "") == printing.number.sub(/[ab]\z/, "") }
-            if matching_number.size == 1
+            if matching_number.size > 0 # very bad, fix soon
               matching_number[0]
             else
               raise "Can't link other side - #{card_name}"
