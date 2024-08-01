@@ -51,6 +51,7 @@ BanList.for_format('msem') do
     'Instant of Brilliance' => 'banned',
     'Vivid March' => 'banned',
     'Fogspewer' => 'banned',
-    'Pensive Songwriter' => 'banned'
+    'Pensive Songwriter' => 'banned',
+    'Thunder Road' => 'banned'
   )
 end
