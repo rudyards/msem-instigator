@@ -165,7 +165,7 @@ class Card
         @mana_hash[normalize_mana_symbol(m)] += 1
       when %r{\A2/([wubrg])\z}
         @mana_hash[normalize_mana_symbol(m)] += 1
-      when %r{\A([v][p])\z}
+      when %r{\A([Vv][p])\z}
         @mana_hash[normalize_mana_symbol(m)] += 1
       else
         raise "Unrecognized mana type: #{m}"
