@@ -52,6 +52,8 @@ BanList.for_format('msem') do
     'Vivid March' => 'banned',
     'Fogspewer' => 'banned',
     'Pensive Songwriter' => 'banned',
-    'Thunder Road' => 'banned'
+    'Thunder Road' => 'banned',
+    'Elrayin, the Manaroot' => 'banned',
+    'Green Elemental Circle' => 'banned',
   )
 end
