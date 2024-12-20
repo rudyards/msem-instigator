@@ -23,5 +23,7 @@ BanList.for_format('msedh') do
     'Brink of Something' => 'banned',
     'The Past is Gone' => 'banned',
     'End of Worlds' => 'banned',
+    'Instant of Brilliance' => 'banned',
+    'Turn the Record Over' => 'banned',
   )
 end
