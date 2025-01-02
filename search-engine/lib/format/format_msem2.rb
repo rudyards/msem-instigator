@@ -58,7 +58,9 @@ class FormatMSEM < Format
       'SPK','RCM',
       'AVX','TTR',
       'ACT', 'MSL',
-      'ETF', 'BTB'
+      'ETF', 'BTB',
+      'ROS',
+      'MC25'
     ]
   end
 end

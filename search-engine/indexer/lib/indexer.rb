@@ -198,6 +198,7 @@ class Indexer
         'changes',
         'cmc',
         'colors',
+        'defense',
         'display_power',
         'display_toughness',
         'foreign_names',

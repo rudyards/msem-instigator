@@ -16,7 +16,8 @@ class Card
   attr_reader :data, :name, :names, :layout, :colors, :mana_cost, :reserved, :types, :changes, :full_oracle, :otags,
               :partial_color_identity, :cmc, :text, :text_normalized, :power, :toughness, :loyalty, :extra, :hand,
               :life, :rulings, :foreign_names, :foreign_names_normalized, :stemmed_name, :mana_hash, :typeline, :funny, 
-              :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost
+              :color_indicator, :related, :reminder_text, :augment, :display_power, :display_toughness, :display_mana_cost,
+              :defense
 
   # For db subset
 
@@ -45,6 +46,7 @@ class Card
     @power = data['power'] ? smart_convert_powtou(data['power']) : nil
     @toughness = data['toughness'] ? smart_convert_powtou(data['toughness']) : nil
     @loyalty = data['loyalty'] ? smart_convert_powtou(data['loyalty']) : nil
+    @defense = data['defense'] ? smart_convert_powtou(data['defense']) : nil
 	@otags = data['otags'] || []
     @display_power = data['display_power'] || @power
     @display_toughness = data['display_toughness'] || @toughness

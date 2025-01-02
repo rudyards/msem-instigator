@@ -122,7 +122,7 @@ class CardPrinting
      foreign_names foreign_names_normalized mana_hash funny color_indicator
      related first_regular_release_date reminder_text augment
      display_power display_toughness display_mana_cost
-     primary? secondary? front? back?].each do |m|
+     primary? secondary? front? back? defense].each do |m|
     eval("def #{m}; @card.#{m}; end")
   end
 
