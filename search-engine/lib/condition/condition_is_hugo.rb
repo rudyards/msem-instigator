@@ -434,7 +434,7 @@ class ConditionIsHugo < Condition
 			"fellor grunt",
 			"fellor raider",
 			"flame jolt",
-			"flooded depths",
+			"floodwater depths",
 			"forestborn acolyte",
 			"general's presence",
 			"grave reaper",

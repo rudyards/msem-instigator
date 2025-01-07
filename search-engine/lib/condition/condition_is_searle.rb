@@ -451,7 +451,7 @@ class ConditionIsSearle < Condition
 			"fatestitcher",
 			"fellor charm",
 			"flame jolt",
-			"flooded depths",
+			"floodwater depths",
 			"forced loyalty",
 			"general's presence",
 			"goblin experimenter",

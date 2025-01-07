@@ -289,7 +289,7 @@ class ConditionIsMarisa < Condition
 			"fading memories",
 			"faith",
 			"fatestitcher",
-			"flooded depths",
+			"floodwater depths",
 			"forbidden resource",
 			"forced loyalty",
 			"goblin experimenter",

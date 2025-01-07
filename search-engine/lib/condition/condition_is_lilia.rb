@@ -41,7 +41,7 @@ class ConditionIsLilia < Condition
 			"amber hills",
 			"boiling ridge",
 			"duskwood thicket",
-			"flooded depths",
+			"floodwater depths",
 			"grim bastion",
 			"hazy moorland",
 			"magmatic torrent",

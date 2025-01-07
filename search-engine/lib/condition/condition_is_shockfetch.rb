@@ -4,7 +4,7 @@ class ConditionIsShockfetch < Condition
   def search(db)
     names = [
       'ocean monastery',
-      'flooded depths',
+      'floodwater depths',
       'shardstone rift',
       'amber hills',
       'barren desolation',

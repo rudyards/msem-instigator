@@ -216,7 +216,7 @@ class ConditionIsMable < Condition
 			"empty the tombs",
 			"fellor charm",
 			"flame jolt",
-			"flooded depths",
+			"floodwater depths",
 			"grim bastion",
 			"hazy moorland",
 			"intrepid shooter",

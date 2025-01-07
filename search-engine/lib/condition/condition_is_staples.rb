@@ -15,7 +15,7 @@ class ConditionIsStaple < Condition
 			"stand unassailable",
 			"murmuring falls",
 			"mysterious cataract",
-			"flooded depths",
+			"floodwater depths",
 			"sedate tundra",
 			"grim bastion",
 			"crumbling precipice",

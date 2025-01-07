@@ -157,7 +157,7 @@ class ConditionIsTinbeard < Condition
 			"dusty record",
 			"erudite's tome",
 			"expendable contraption",
-			"flooded depths",
+			"floodwater depths",
 			"grim bastion",
 			"hazy moorland",
 			"helm of the anointer",

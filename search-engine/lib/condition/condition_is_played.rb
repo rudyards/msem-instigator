@@ -24,7 +24,7 @@ class ConditionIsPlayed < Condition
 			"pay up",
 			"shardstone rift",
 			"murmuring falls",
-			"flooded depths",
+			"floodwater depths",
 			"pith wilt",
 			"grim bastion",
 			"barren desolation",
