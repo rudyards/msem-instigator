@@ -59,6 +59,7 @@ class FormatMSEM < Format
       'AVX','TTR',
       'ACT', 'MSL',
       'ETF', 'BTB',
+      'EOW', 'TMI',
       'ROS',
       'MC25'
     ]
