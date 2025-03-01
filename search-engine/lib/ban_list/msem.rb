@@ -55,5 +55,6 @@ BanList.for_format('msem') do
     'Thunder Road' => 'banned',
     'Elrayin, the Manaroot' => 'banned',
     'Green Elemental Circle' => 'banned',
+    "Serafina's Gift" => 'banned',
   )
 end
