@@ -61,7 +61,8 @@ class FormatMSEM < Format
       'ETF', 'BTB',
       'EOW', 'TMI',
       'ROS',
-      'MC25'
+      'MC25',
+      'INM', 'TPW'
     ]
   end
 end
